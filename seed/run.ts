@@ -1,20 +1,21 @@
 import "dotenv/config";
 import dotenv from "dotenv";
 dotenv.config();
-import { getPayload } from "payload";
+import { getPayload, migrate } from "payload";
 import configPromise from "@payload-config";
 
 import SeedService from "./index";
 // pnpm tsx seed/run.ts
 
 async function run() {
-  const { execSync } = await import("node:child_process");
-
-  execSync("yes | payload migrate:fresh", {
-    stdio: "inherit",
-    env: process.env,
-    shell: process.platform === "win32" ? "cmd.exe" : "/bin/sh",
-  });
+  // const { execSync } = await import("node:child_process");
+  //
+  // execSync("yes | payload migrate:fresh", {
+  //   stdio: "inherit",
+  //   env: process.env,
+  //   shell: process.platform === "win32" ? "cmd.exe" : "/bin/sh",
+  // });
+  await migrate({ config: configPromise, fresh: true });
 
   const payload = await getPayload({ config: configPromise });
 
