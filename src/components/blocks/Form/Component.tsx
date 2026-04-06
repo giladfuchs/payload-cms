@@ -50,6 +50,7 @@ export default function FormBlockClient({
     handleSubmit,
     register,
   } = formMethods;
+
   const [isLoading, setIsLoading] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [error, setError] = useState<
@@ -58,16 +59,12 @@ export default function FormBlockClient({
 
   const router = useRouter();
   const t = useTranslations("form");
+
   const onSubmit = useCallback(
     (data: FormFieldBlock[]) => {
-      let loadingTimerID: ReturnType<typeof setTimeout>;
-
       const submitForm = async () => {
         setError(undefined);
-
-        loadingTimerID = setTimeout(() => {
-          setIsLoading(true);
-        }, 1000);
+        setIsLoading(true);
 
         try {
           if (submitUrl) {
@@ -85,9 +82,9 @@ export default function FormBlockClient({
             });
           }
 
-          clearTimeout(loadingTimerID);
           setIsLoading(false);
           setHasSubmitted(true);
+
           if (form.confirmationType === "redirect" && form.redirect?.url) {
             router.push(form.redirect.url);
           } else if (refreshOnSubmit) {
@@ -96,7 +93,6 @@ export default function FormBlockClient({
             }, 900);
           }
         } catch (err) {
-          clearTimeout(loadingTimerID);
           console.warn(err);
           setIsLoading(false);
           setError({
@@ -118,22 +114,6 @@ export default function FormBlockClient({
 
       <div className="rounded-[0.8rem] border border-border p-4 lg:p-6">
         <FormProvider {...formMethods}>
-          {!isLoading &&
-            hasSubmitted &&
-            form.confirmationType === "message" && (
-              <RichText data={form.confirmationMessage} />
-            )}
-
-          {isLoading && !hasSubmitted && (
-            <div className="flex items-center justify-center py-6">
-              <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-black" />
-            </div>
-          )}
-
-          {error && (
-            <div>{`${error.status || "500"}: ${error.message || ""}`}</div>
-          )}
-
           {!hasSubmitted && (
             <form id={String(form.id)} onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4 last:mb-0">
@@ -156,16 +136,33 @@ export default function FormBlockClient({
                 })}
               </div>
 
+              {error && (
+                <div className="mb-4">{`${error.status || "500"}: ${error.message || ""}`}</div>
+              )}
+
               <Button
                 form={String(form.id)}
                 eventName={form.title}
                 type="submit"
                 variant="default"
+                disabled={isLoading}
+                className="min-w-[9rem]"
               >
-                {form.submitButtonLabel}
+                <span className="inline-flex items-center justify-center gap-2">
+                  {isLoading && (
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                  )}
+                  <span>{form.submitButtonLabel}</span>
+                </span>
               </Button>
             </form>
           )}
+
+          {!isLoading &&
+            hasSubmitted &&
+            form.confirmationType === "message" && (
+              <RichText data={form.confirmationMessage} />
+            )}
         </FormProvider>
       </div>
     </div>

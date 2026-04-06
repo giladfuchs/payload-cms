@@ -8,7 +8,7 @@ import { formatDate } from "@/lib/core/utilities";
 export default async function PostHero({ post }: { post: Post }) {
   const t = await getTranslations("post");
   return (
-    <div className="relative   flex items-end">
+    <div className="relative max-w-5xl mx-auto  flex items-end">
       <div className="container relative z-10 pb-8 text-white">
         <h1 className="mb-6 text-3xl md:text-5xl lg:text-6xl">{post.title}</h1>
 

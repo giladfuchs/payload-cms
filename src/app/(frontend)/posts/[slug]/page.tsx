@@ -47,7 +47,7 @@ export default async function PostPage({ params }: PropsSlug) {
       <div className="flex flex-col items-center gap-4 my-4">
         <div className="container">
           <RichText
-            className="max-w-[48rem] mx-auto"
+            className="max-w-5xl lg:px-2 "
             data={post.content}
             enableGutter={false}
           />
