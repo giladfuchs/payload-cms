@@ -50,7 +50,7 @@
             "type": "custom",
             "label": "Source Code",
             "newTab": true,
-            "url": "https://github.com/payloadcms/payload/tree/main/templates/website"
+            "url": "https://github.com/giladfuchs/payload-cms"
           }
         },
         {
@@ -271,7 +271,7 @@
                   {
                     "type": "link",
                     "fields": {
-                      "url": "https://github.com/payloadcms/payload/tree/main/templates/website",
+                      "url": "https://github.com/giladfuchs/payload-cms",
                       "newTab": true,
                       "linkType": "custom"
                     },

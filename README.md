@@ -40,7 +40,7 @@ https://cms.url-link.org/preview/reset
 
 Deploy your own Payload-powered CMS.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yaara-food/payload-ecommerce)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/giladfuchs/payload-cms)
 
 After creating your project, make sure to go to the Vercel dashboard
 and update your environment variables based on [.env.example](.env.example)
