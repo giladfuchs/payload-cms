@@ -15,7 +15,7 @@ export default async function GalleryBlock({
   const canNavigate = images.length > 1;
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-3xl px-5">
       <style>{`
     .gallery-radio {
       position: fixed;
@@ -122,7 +122,7 @@ export default async function GalleryBlock({
       </div>
 
       <div className="gallery-thumbs w-full">
-        <div className="-ml-4 flex flex-wrap">
+        <div className="-mx-4 flex flex-wrap">
           {images.map((item, i) => (
             <div
               key={`${item.image.id}-${i}`}

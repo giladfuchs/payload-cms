@@ -71,27 +71,26 @@ export const MediumImpactHero = ({ links, media, richText }: Page["hero"]) => {
 export const HighImpactHero = ({ links, media, richText }: Page["hero"]) => {
   return (
     <div
-      className="relative  flex items-center justify-center text-white"
+      className="relative isolate min-h-[70vh]   overflow-hidden text-white px-4"
       data-theme="dark"
     >
-      <div className="container relative z-10 mb-8 flex items-center justify-center">
-        <div className="max-w-[45rem]">
+      {media && typeof media === "object" && (
+        <ImageVideo
+          fill
+          className="absolute inset-0 -z-10 h-full w-full"
+          imgClassName="object-cover"
+          priority
+          resource={media}
+        />
+      )}
+
+      <div className="relative z-10 mx-auto flex min-h-[80vh] w-full max-w-6xl items-center px-2 sm:px-4">
+        <div className="mb-8 max-w-[45rem]">
           {richText && (
             <RichText className="mb-6" data={richText} enableGutter={false} />
           )}
           {renderLinks(links, true)}
         </div>
-      </div>
-
-      <div className="min-h-[80vh] select-none">
-        {media && typeof media === "object" && (
-          <ImageVideo
-            fill
-            imgClassName="-z-10 object-cover"
-            priority
-            resource={media}
-          />
-        )}
       </div>
     </div>
   );

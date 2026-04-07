@@ -16,11 +16,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
     "paths": {
       "@payload-config": ["./src/payload.config.ts"],
       "@/payload-types": ["./src/lib/core/types/payload-types.ts"],

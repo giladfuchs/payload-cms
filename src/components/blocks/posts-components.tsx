@@ -8,7 +8,6 @@ import type { DefaultTypedEditorState } from "@payloadcms/richtext-lexical";
 
 import { FormBlock } from "@/components/shared/wrappers";
 import Card from "@/components/ui/card";
-import RichText from "@/components/ui/rich-text";
 import { CollectionName } from "@/lib/core/types/types";
 import { formatDate } from "@/lib/core/utilities";
 
@@ -197,21 +196,23 @@ export const PostComments = async ({
     </section>
   );
 };
-export type RelatedPostsProps = {
+export async function RelatedPosts({
+  className,
+  posts,
+}: {
   className?: string;
-  docs?: Post[];
-  introContent?: DefaultTypedEditorState;
-};
+  posts?: Post[];
+}) {
+  const t = await getTranslations("post");
 
-export const RelatedPosts: React.FC<RelatedPostsProps> = (props) => {
-  const { className, docs, introContent } = props;
+  if (!posts?.length) return null;
 
   return (
     <div className={clsx("lg:container", className)}>
-      {introContent && <RichText data={introContent} enableGutter={false} />}
+      <h2 className="mb-6 text-2xl font-semibold">{t("relatedArticles")}</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-stretch">
-        {docs?.map((doc, index) => {
+        {posts.map((doc, index) => {
           if (typeof doc === "string") return null;
 
           return (
@@ -224,4 +225,4 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = (props) => {
       </div>
     </div>
   );
-};
+}

@@ -17,15 +17,15 @@ Perfect for **websites, blogs, landing pages, and content platforms**.
 
 ## Live Preview
 
-**Main Site:**
-https://cms.url-link.org
+## Live Preview
 
-**Admin Panel:**
-https://cms.url-link.org/admin
+- **Main Site:** https://cms.url-link.org
+- **Admin Panel:** https://cms.url-link.org/admin
+- **RTL (Hebrew) Demo:** https://cms-he.url-link.org
 
-**Demo Login:**
-Email: `admin@admin.com`
-Password: `admin`
+**Demo Login**
+- Email: `admin@admin.com`
+- Password: `admin`
 
 🔄 Reset Demo Data
 

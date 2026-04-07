@@ -32,27 +32,29 @@ export default async function RootLayout({
         <Head />
       </head>
 
-      <body className="max-w-6xl mx-auto">
-        <AnalyticsLayout />
+      <body>
+        <div className="mx-auto w-full max-w-6xl">
+          <AnalyticsLayout />
 
-        <IntlProvider>
-          <Header
-            header={siteSettings.header!}
-            general={siteSettings.general}
-          />
-          {siteSettings.popup?.content?.length ? (
-            <Popup
-              popup={siteSettings.popup}
-              content={<RenderBlocks blocks={siteSettings.popup.content} />}
+          <IntlProvider>
+            <Header
+              header={siteSettings.header!}
+              general={siteSettings.general}
             />
-          ) : null}
-          <AccessibilityBar />
-          {children}
-          <Footer
-            footer={siteSettings.footer!}
-            general={siteSettings.general}
-          />
-        </IntlProvider>
+            {siteSettings.popup?.content?.length ? (
+              <Popup
+                popup={siteSettings.popup}
+                content={<RenderBlocks blocks={siteSettings.popup.content} />}
+              />
+            ) : null}
+            <AccessibilityBar />
+            {children}
+            <Footer
+              footer={siteSettings.footer!}
+              general={siteSettings.general}
+            />
+          </IntlProvider>
+        </div>
       </body>
     </html>
   );

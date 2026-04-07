@@ -102,7 +102,7 @@ export default class SeedService {
         ? "image/png"
         : "image/jpeg";
 
-    const uniqueName = `${filename}-${Math.random().toString(36).slice(2, 8)}`;
+    const uniqueName = `${Math.random().toString(36).slice(2, 5)}-${filename}`;
 
     const created = await this.payload.create({
       collection: "media",

@@ -55,7 +55,7 @@ export default async function PostPage({ params }: PropsSlug) {
           {post.relatedPosts && post.relatedPosts.length > 0 && (
             <RelatedPosts
               className="mt-12 max-w-[52rem] lg:grid lg:grid-cols-subgrid col-start-1 col-span-3 grid-rows-[2fr]"
-              docs={post.relatedPosts.filter((p) => typeof p === "object")}
+              posts={post.relatedPosts.filter((p) => typeof p === "object")}
             />
           )}
 

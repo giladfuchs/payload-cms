@@ -58,7 +58,7 @@ export default function FormBlockClient({
   >();
 
   const router = useRouter();
-  const t = useTranslations("form");
+  const t = useTranslations("blocks.form");
 
   const onSubmit = useCallback(
     (data: FormFieldBlock[]) => {

@@ -8,7 +8,7 @@ export const Error = ({ name }: { name: string }) => {
     formState: { errors },
   } = useFormContext();
 
-  const t = useTranslations("form");
+  const t = useTranslations("blocks.form");
 
   return (
     <div className="mt-2 text-red-500 text-sm">

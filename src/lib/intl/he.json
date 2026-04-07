@@ -1,9 +1,6 @@
 {
-  "form": {
-    "required": "שדה חובה",
-    "submitError": "משהו השתבש."
-  },
   "post": {
+    "relatedArticles": "מאמרים קשורים",
     "author": "מחבר",
     "publishedAt": "פורסם",
     "readTime": "זמן קריאה",
@@ -22,6 +19,10 @@
     "gallery": {
       "previous": "תמונה קודמת",
       "next": "התמונה הבאה"
+    },
+    "form": {
+      "required": "שדה חובה",
+      "submitError": "משהו השתבש."
     }
   },
   "general": {

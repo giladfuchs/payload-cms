@@ -1,9 +1,6 @@
 {
-  "form": {
-    "required": "This field is required",
-    "submitError": "Something went wrong."
-  },
   "post": {
+    "relatedArticles": "Related Articles",
     "author": "Author",
     "publishedAt": "Published",
     "readTime": "Read time",
@@ -22,9 +19,12 @@
     "gallery": {
       "previous": "Previous image",
       "next": "Next image"
+    },
+    "form": {
+      "required": "This field is required",
+      "submitError": "Something went wrong."
     }
   },
-
   "general": {
     "toggle_theme": "Toggle theme",
     "pageNotFound": "This page could not be found.",
@@ -33,7 +33,6 @@
     "somethingWentWrongDescription": "There was an issue with our storefront. This may be temporary. Please try again.",
     "tryAgain": "Try again"
   },
-
   "accessibility": {
     "title": "Accessibility Tools",
     "contrast": "High Contrast",
