@@ -26,9 +26,9 @@ export async function generateMetadata({
   const slug = await getDecodedSlug(params);
   const post = (await queryPostBySlug(slug)) as Post;
   return buildMetadata({
-    ...post.meta,
+    ...(post?.meta ?? {}),
     path: `${CollectionName.posts}/${slug}`,
-    modifiedTime: post.updatedAt,
+    modifiedTime: post?.updatedAt,
   } as MetaInput);
 }
 

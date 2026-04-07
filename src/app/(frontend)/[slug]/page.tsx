@@ -20,7 +20,7 @@ export async function generateMetadata({
   const slug = await getDecodedSlug(params);
   const page = (await queryPageBySlug(slug)) as Page;
   return buildMetadata({
-    ...page.meta,
+    ...(page?.meta ?? {}),
     path: slug === appConfig.HOME_SLUG ? "" : slug,
   } as MetaInput);
 }
