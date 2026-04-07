@@ -24,6 +24,7 @@ Perfect for **websites, blogs, landing pages, and content platforms**.
 - **RTL (Hebrew) Demo:** https://cms-he.url-link.org
 
 **Demo Login**
+
 - Email: `admin@admin.com`
 - Password: `admin`
 

@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   productionBrowserSourceMaps: false,
-  // cacheComponents: process.env.NODE_ENV !== "development",
   cacheComponents: true,
   typescript: {
     ignoreBuildErrors: false,

@@ -142,6 +142,7 @@ export default class SeedService {
       "image-post2.webp",
       "image-post3.webp",
       "image-hero1.webp",
+      "meta-website.webp",
       "gallery-1.webp",
       "gallery-2.webp",
       "gallery-3.webp",
@@ -266,11 +267,9 @@ export default class SeedService {
 
   private async seedPages({
     imageHomeDoc,
-    image2Doc,
     contactForm,
   }: {
     imageHomeDoc: any;
-    image2Doc: any;
     contactForm: any;
   }) {
     this.payload.logger.info("— Seeding pages...");
@@ -281,16 +280,17 @@ export default class SeedService {
       let data;
 
       const [
+        META_IMAGE,
         GALLERY_IMAGE_1,
         GALLERY_IMAGE_2,
         GALLERY_IMAGE_3,
         GALLERY_IMAGE_4,
-      ] = this.ids.mediaIds.slice(-4);
+      ] = this.ids.mediaIds.slice(-5);
 
       if (page.slug === "home")
         data = this.injectData(page, {
           HERO_IMAGE: imageHomeDoc,
-          META_IMAGE: image2Doc,
+          META_IMAGE,
           GALLERY_IMAGE_1,
           GALLERY_IMAGE_2,
           GALLERY_IMAGE_3,
@@ -299,7 +299,7 @@ export default class SeedService {
       else if (page.slug === "contact")
         data = this.injectData(page, {
           FORM: contactForm.id,
-          META_IMAGE: image2Doc,
+          META_IMAGE,
         });
       else data = page;
 

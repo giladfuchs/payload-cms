@@ -18,7 +18,7 @@ async function run() {
   // await migrate({ config: configPromise, fresh: true });
   const payload = await getPayload({ config: configPromise });
 
-  const seed = new SeedService(payload, "reset");
+  const seed = new SeedService(payload, "seed");
 
   await seed.run();
 
