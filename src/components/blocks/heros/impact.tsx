@@ -84,8 +84,8 @@ export const HighImpactHero = ({ links, media, richText }: Page["hero"]) => {
         />
       )}
 
-      <div className="relative z-10 mx-auto flex min-h-[80vh] w-full max-w-6xl items-center px-2 sm:px-4">
-        <div className="mb-8 max-w-[45rem]">
+      <div className="relative z-10 mx-auto flex min-h-[80vh] w-full max-w-6xl items-center">
+        <div className="mb-8 max-w-[45rem] mx-auto">
           {richText && (
             <RichText className="mb-6" data={richText} enableGutter={false} />
           )}

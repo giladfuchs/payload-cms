@@ -7,15 +7,20 @@ import ImageVideo from "@/components/ui/image-video";
 import appConfig from "@/lib/core/config";
 
 export default async function GalleryBlock({
+  title,
   images,
 }: {
+  title?: string | null;
   images: { image: Media }[];
 }) {
   const t = await getTranslations("blocks.gallery");
   const canNavigate = images.length > 1;
-
   return (
     <div className="mx-auto max-w-3xl px-5">
+      {title ? (
+        <h2 className="mb-2 text-center text-2xl font-semibold">{title}</h2>
+      ) : null}
+
       <style>{`
     .gallery-radio {
       position: fixed;

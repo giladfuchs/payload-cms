@@ -911,6 +911,7 @@
         {
           "blockName": "Gallery",
           "blockType": "gallery",
+          "title": "Gallery Block",
           "images": [
             { "image": "__GALLERY_IMAGE_1__" },
             { "image": "__GALLERY_IMAGE_2__" },

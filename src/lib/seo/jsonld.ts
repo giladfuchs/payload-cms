@@ -8,9 +8,8 @@ import type {
 import appConfig from "@/lib/core/config";
 import { CollectionName } from "@/lib/core/types/types";
 import { extractRichTextText, resolveMediaUrl } from "@/lib/core/utilities";
-
 export const generateJsonLdPage = (page: Page) => {
-  const url = `${appConfig.BASE_URL}/${page.slug === appConfig.HOME_SLUG ? "" : page.slug}`;
+  const url = `${appConfig.BASE_URL}/${page.slug === appConfig.HOME_SLUG ? "" : encodeURIComponent(page.slug)}`;
   const image = resolveMediaUrl(page.meta.image as Media);
 
   return {
@@ -30,7 +29,7 @@ export const generateJsonLdBreadcrumbsPage = (page: Page) => {
   const isHome = page.slug === appConfig.HOME_SLUG;
   const url = isHome
     ? appConfig.BASE_URL
-    : `${appConfig.BASE_URL}/${page.slug}`;
+    : `${appConfig.BASE_URL}/${encodeURIComponent(page.slug)}`;
 
   return {
     "@context": "https://schema.org",
@@ -56,8 +55,9 @@ export const generateJsonLdBreadcrumbsPage = (page: Page) => {
     ],
   };
 };
+
 export const generateJsonLdPost = (post: Post) => {
-  const url = `${appConfig.BASE_URL}/${CollectionName.posts}/${post.slug}`;
+  const url = `${appConfig.BASE_URL}/${CollectionName.posts}/${encodeURIComponent(post.slug)}`;
   const image = resolveMediaUrl(post.meta?.image as Media);
   const content = extractRichTextText(post.content);
 
@@ -97,7 +97,7 @@ export const generateJsonLdPost = (post: Post) => {
 
 export const generateJsonLdBreadcrumbsPost = (post: Post) => {
   const postsUrl = `${appConfig.BASE_URL}/${CollectionName.posts}`;
-  const url = `${postsUrl}/${post.slug}`;
+  const url = `${postsUrl}/${encodeURIComponent(post.slug)}`;
 
   return {
     "@context": "https://schema.org",
@@ -140,7 +140,7 @@ export const generateJsonLdPostsPage = ({
   const url = `${appConfig.BASE_URL}/${CollectionName.posts}`;
 
   const itemListElement = posts.map((post, index) => {
-    const pUrl = `${url}/${post.slug}`;
+    const pUrl = `${url}/${encodeURIComponent(post.slug)}`;
 
     return {
       "@type": "ListItem",
@@ -182,7 +182,6 @@ export const generateJsonLdPostsPage = ({
     ],
   };
 };
-
 export const generateJsonLdBreadcrumbsPosts = () => {
   const url = `${appConfig.BASE_URL}/${CollectionName.posts}`;
 

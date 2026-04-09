@@ -46,7 +46,6 @@ export default function RenderBlocks({
     if (!blockType || !(blockType in blockComponents)) return null;
 
     const Block = blockComponents[blockType];
-
     return (
       <div className="my-4" key={index}>
         {/* @ts-expect-error dynamic block props union */}
