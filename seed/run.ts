@@ -1,26 +1,24 @@
 import "dotenv/config";
 import dotenv from "dotenv";
 dotenv.config();
-import { getPayload, migrate } from "payload";
-import configPromise from "@payload-config";
 
 import SeedService from "./index";
 // pnpm tsx seed/run.ts
 
+export const resetDb = async () => {
+  const { execSync } = await import("node:child_process");
+
+  execSync("yes | payload migrate:fresh", {
+    stdio: "inherit",
+    env: process.env,
+    shell: process.platform === "win32" ? "cmd.exe" : "/bin/sh",
+  });
+};
+
 async function run() {
-  // const { execSync } = await import("node:child_process");
+  // await resetDb();
 
-  // execSync("yes | payload migrate:fresh", {
-  //   stdio: "inherit",
-  //   env: process.env,
-  //   shell: process.platform === "win32" ? "cmd.exe" : "/bin/sh",
-  // });
-  // await migrate({ config: configPromise, fresh: true });
-  const payload = await getPayload({ config: configPromise });
-
-  const seed = new SeedService(payload, "seed");
-
-  await seed.run();
+  await new SeedService("seed").run();
 
   process.exit(0);
 }

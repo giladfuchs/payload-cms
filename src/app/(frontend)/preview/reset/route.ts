@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
 
-import DAL from "@/lib/core/dal/queries";
-
 export const maxDuration = 60;
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -10,11 +8,9 @@ export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   try {
     void request.url;
-    const payload = await DAL.getPayload();
     const { default: SeedService } = await import("seed");
 
-    const seed = new SeedService(payload, "seed");
-    await seed.run();
+    await new SeedService("reset").run();
 
     return NextResponse.json({
       success: true,

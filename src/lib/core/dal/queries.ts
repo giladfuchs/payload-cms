@@ -27,7 +27,7 @@ type PayloadFindGlobalArgs = Parameters<PayloadInstance["findGlobal"]>[0];
 export default class Queries {
   private static instance: PayloadInstance | null = null;
 
-  static async getPayload() {
+  private static async getPayload() {
     if (!Queries.instance) {
       Queries.instance = await initPayload({ config: configPromise });
     }

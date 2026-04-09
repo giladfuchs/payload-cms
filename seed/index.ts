@@ -1,11 +1,13 @@
 import type { CollectionSlug, Payload } from "payload";
+import { getPayload } from "payload";
 
 import { basename, join, resolve } from "node:path";
 import { readFile, rm } from "node:fs/promises";
 import appConfig from "@/lib/core/config";
-type SeedMode = "seed" | "reset";
 
 export default class SeedService {
+  private payload!: Payload;
+
   private mockData: {
     siteSettings: {};
     posts: any[];
@@ -23,18 +25,33 @@ export default class SeedService {
   } = {
     mediaIds: [],
   };
-  constructor(
-    private payload: Payload,
-    private mode: SeedMode = "reset",
-  ) {}
+  constructor(private mode: "seed" | "reset" = "reset") {}
+
+  async init() {
+    const { default: config } = await import("../src/payload.config");
+
+    this.payload = await getPayload({ config });
+    this.mockData = JSON.parse(
+      await readFile(
+        join(
+          process.cwd(),
+          "seed",
+          "data",
+          `mock-data-${appConfig.LOCAL.lang}.json`,
+        ),
+        "utf8",
+      ),
+    );
+  }
+
   private async resetDb() {
-    if (this.mode === "seed") {
+    if (this.mode === "reset") {
       const collections: CollectionSlug[] = [
+        "form-submissions",
+        "forms",
         "post-comments",
         "pages",
         "posts",
-        "forms",
-        "form-submissions",
         "redirects",
         "users",
       ];
@@ -58,8 +75,8 @@ export default class SeedService {
     }
   }
   async run() {
+    await this.init();
     await this.resetDb();
-    this.mockData = JSON.parse(await readFile(join(process.cwd(), "seed", "data", `mock-data-${appConfig.LOCAL.lang}.json`,),"utf8",),);
     this.payload.logger.info("Seeding database...");
     const media = await this.seedMedia();
     await this.seedUser();
