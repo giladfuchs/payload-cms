@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import type { CollectionSlug } from "payload";
 
 import appConfig from "@/lib/core/config";
-import { queryCurrentUser } from "@/lib/core/queries";
+import DAL from "@/lib/core/dal";
 
 export async function GET(req: Request): Promise<Response> {
   const { searchParams } = new URL(req.url);
@@ -29,7 +29,7 @@ export async function GET(req: Request): Promise<Response> {
   const draft = await draftMode();
 
   try {
-    const user = await queryCurrentUser(req);
+    const user = await DAL.queryCurrentUser(req);
 
     if (!user) {
       draft.disable();

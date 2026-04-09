@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
 
-import { getPayload } from "@/lib/core/queries";
+import DAL from "@/lib/core/dal/queries";
 
 export const maxDuration = 60;
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 // curl -X GET http://localhost:3060/preview/reset
 export async function GET(request: Request) {
   try {
     void request.url;
-    const payload = await getPayload();
+    const payload = await DAL.getPayload();
     const { default: SeedService } = await import("seed");
 
     const seed = new SeedService(payload, "seed");

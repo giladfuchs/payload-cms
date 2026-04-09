@@ -1,8 +1,10 @@
 import type {
-  SiteSetting,
   Page,
   Post,
   Media,
+  Redirect,
+  SiteSetting,
+  User,
 } from "@/lib/core/types/payload-types";
 
 export enum CollectionName {
@@ -19,15 +21,19 @@ export const AppConst = {
 
 export type PropsSlug = { params: Promise<{ slug: string }> };
 
-export type NavItemsProps = {
-  navItems: NonNullable<NonNullable<SiteSetting["header"]>["navItems"]>;
-};
-
 export type CardDocData = {
   relationTo: CollectionName;
   value:
     | Pick<Post, "slug" | "meta" | "title">
     | Pick<Page, "slug" | "meta" | "title">;
+};
+
+export type MetaInput = {
+  title: string;
+  description: string;
+  image: Media;
+  path: string;
+  modifiedTime?: string;
 };
 
 export type SitemapItem = { slug: string; updatedAt: string };
@@ -36,10 +42,16 @@ export type SitemapData = {
   [CollectionName.pages]: SitemapItem[];
   [CollectionName.posts]: SitemapItem[];
 };
-export type MetaInput = {
-  title: string;
-  description: string;
-  image: Media;
-  path: string;
-  modifiedTime?: string;
+
+export type DalStatic = {
+  queryCollection<T>(collection: CollectionName): Promise<T[]>;
+  queryMediaByIds(ids: number[]): Promise<Media[]>;
+
+  queryPostBySlug(slug: string): Promise<Post | null>;
+  queryPageBySlug(slug: string): Promise<Page | null>;
+  queryRedirectByFrom(from: string): Promise<Redirect | null>;
+
+  querySiteSettings(): Promise<SiteSetting>;
+  querySitemapData(): Promise<SitemapData>;
+  queryCurrentUser(req: Request): Promise<User | null>;
 };

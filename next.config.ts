@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   productionBrowserSourceMaps: false,
-  cacheComponents: true,
   typescript: {
     ignoreBuildErrors: false,
   },

@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
 
 import appConfig from "@/lib/core/config";
-import { querySitemapData } from "@/lib/core/queries";
+import DAL from "@/lib/core/dal";
 import { CollectionName } from "@/lib/core/types/types";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
-    const { pages, posts } = await querySitemapData();
+    const { pages, posts } = await DAL.querySitemapData();
 
     const result: MetadataRoute.Sitemap = [];
 

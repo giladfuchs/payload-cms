@@ -5,7 +5,6 @@ import { readFile, rm } from "node:fs/promises";
 import appConfig from "@/lib/core/config";
 type SeedMode = "seed" | "reset";
 
-const BASE_PATH = "seed/data";
 export default class SeedService {
   private mockData: {
     siteSettings: {};
@@ -60,12 +59,7 @@ export default class SeedService {
   }
   async run() {
     await this.resetDb();
-    this.mockData = JSON.parse(
-      await readFile(
-        join(BASE_PATH, `mock-data-${appConfig.LOCAL.lang}.json`),
-        "utf8",
-      ),
-    );
+    this.mockData = JSON.parse(await readFile(join(process.cwd(), "seed", "data", `mock-data-${appConfig.LOCAL.lang}.json`,),"utf8",),);
     this.payload.logger.info("Seeding database...");
     const media = await this.seedMedia();
     await this.seedUser();
@@ -92,7 +86,12 @@ export default class SeedService {
   }
 
   async uploadMediaFromDisk(filePath: string, alt = "Product image") {
-    const absolutePath = resolve(process.cwd(), filePath);
+    const absolutePath = resolve(
+      process.cwd(),
+      "seed",
+      "data",
+      basename(filePath),
+    );
     const buf = await readFile(absolutePath);
     const filename = basename(filePath);
 
@@ -134,8 +133,10 @@ export default class SeedService {
     this.payload.logger.info("— Seeding media...");
 
     if (!appConfig.R2_PUBLIC_URL) {
-      this.payload.logger.info("— Seefsadsdfas...");
-      await rm("public/media", { recursive: true, force: true });
+      await rm(resolve(process.cwd(), "public", "media"), {
+        recursive: true,
+        force: true,
+      });
     }
     const files = [
       "image-post1.webp",
@@ -150,7 +151,7 @@ export default class SeedService {
     ];
 
     const docs = await Promise.all(
-      files.map((name) => this.uploadMediaFromDisk(`${BASE_PATH}/${name}`)),
+      files.map((name) => this.uploadMediaFromDisk(name)),
     );
 
     this.ids.mediaIds.push(...docs);

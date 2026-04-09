@@ -8,7 +8,7 @@ import type { CardDocData, CollectionName } from "@/lib/core/types/types";
 
 import Cards from "@/components/ui/cards";
 import RichText from "@/components/ui/rich-text";
-import { queryCollection, queryMediaByIds } from "@/lib/core/queries";
+import DAL from "@/lib/core/dal";
 
 export async function ArchiveBlock(props: ArchiveBlockProps & { id?: string }) {
   const { id, introContent, relationTo, populateBy, selectedDocs } = props;
@@ -17,7 +17,7 @@ export async function ArchiveBlock(props: ArchiveBlockProps & { id?: string }) {
 
   if (populateBy === "collection") {
     posts = (
-      await queryCollection<Post | Page>(relationTo as CollectionName)
+      await DAL.queryCollection<Post | Page>(relationTo as CollectionName)
     ).map((doc) => ({
       relationTo: relationTo as CollectionName,
       value: doc,
@@ -35,7 +35,7 @@ export async function ArchiveBlock(props: ArchiveBlockProps & { id?: string }) {
       .map((doc) => doc.value.meta?.image)
       .filter((image): image is number => typeof image === "number");
 
-    const media = await queryMediaByIds(imageIds);
+    const media = await DAL.queryMediaByIds(imageIds);
     const mediaById = new Map<number, Media>(
       media.map((item) => [Number(item.id), item]),
     );

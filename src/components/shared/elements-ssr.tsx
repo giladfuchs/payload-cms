@@ -5,7 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import type { Media } from "@/lib/core/types/payload-types";
 
 import ImageVideo from "@/components/ui/image-video";
-import { queryRedirectByFrom } from "@/lib/core/queries";
+import DAL from "@/lib/core/dal";
 import { CollectionName } from "@/lib/core/types/types";
 
 export const WhatsAppButton = ({
@@ -65,7 +65,7 @@ export const PayloadRedirects = async ({
   disableNotFound?: boolean;
   url: string;
 }) => {
-  const redirectItem = await queryRedirectByFrom(url);
+  const redirectItem = await DAL.queryRedirectByFrom(url);
 
   if (redirectItem) {
     if (redirectItem.to?.url) {

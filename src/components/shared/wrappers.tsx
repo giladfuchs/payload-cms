@@ -53,6 +53,10 @@ export const FormBlock = dynamic(
   },
 );
 
-export const AdminBar = dynamic(() => import("@/components/layout/admin-bar"), {
-  ssr: false,
-});
+export const AdminBarWrapper = dynamic(
+  () =>
+    import("@/components/shared/elements-client").then((m) => m.AdminBarClient),
+  {
+    ssr: false,
+  },
+);

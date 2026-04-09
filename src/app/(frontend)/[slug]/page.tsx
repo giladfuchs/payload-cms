@@ -6,7 +6,7 @@ import { RenderHero } from "@/components/blocks/heros/RenderHero";
 import RenderBlocks from "@/components/blocks/RenderBlocks";
 import { JsonLd, PayloadRedirects } from "@/components/shared/elements-ssr";
 import appConfig from "@/lib/core/config";
-import { queryPageBySlug } from "@/lib/core/queries";
+import DAL from "@/lib/core/dal";
 import { getDecodedSlug } from "@/lib/core/utilities";
 import {
   generateJsonLdBreadcrumbsPage,
@@ -14,11 +14,13 @@ import {
 } from "@/lib/seo/jsonld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
+export const dynamic = "force-static";
+export const revalidate = false;
 export async function generateMetadata({
   params,
 }: PropsSlug): Promise<Metadata> {
   const slug = await getDecodedSlug(params);
-  const page = (await queryPageBySlug(slug)) as Page;
+  const page = (await DAL.queryPageBySlug(slug)) as Page;
   return buildMetadata({
     ...(page?.meta ?? {}),
     path: slug === appConfig.HOME_SLUG ? "" : slug,
@@ -27,7 +29,7 @@ export async function generateMetadata({
 
 export default async function PagePage({ params }: PropsSlug) {
   const slug = await getDecodedSlug(params);
-  const page = await queryPageBySlug(slug);
+  const page = await DAL.queryPageBySlug(slug);
   if (!page) {
     return <PayloadRedirects url={slug} />;
   }

@@ -11,7 +11,7 @@ import {
 } from "@/components/blocks/posts-components";
 import { JsonLd } from "@/components/shared/elements-ssr";
 import RichText from "@/components/ui/rich-text";
-import { queryPostBySlug } from "@/lib/core/queries";
+import DAL from "@/lib/core/dal";
 import { CollectionName } from "@/lib/core/types/types";
 import { getDecodedSlug } from "@/lib/core/utilities";
 import {
@@ -19,12 +19,13 @@ import {
   generateJsonLdPost,
 } from "@/lib/seo/jsonld";
 import { buildMetadata } from "@/lib/seo/metadata";
-
+export const dynamic = "force-static";
+export const revalidate = false;
 export async function generateMetadata({
   params,
 }: PropsSlug): Promise<Metadata> {
   const slug = await getDecodedSlug(params);
-  const post = (await queryPostBySlug(slug)) as Post;
+  const post = (await DAL.queryPostBySlug(slug)) as Post;
   return buildMetadata({
     ...(post?.meta ?? {}),
     path: `${CollectionName.posts}/${slug}`,
@@ -35,7 +36,7 @@ export async function generateMetadata({
 export default async function PostPage({ params }: PropsSlug) {
   const slug = await getDecodedSlug(params);
 
-  const post = await queryPostBySlug(slug);
+  const post = await DAL.queryPostBySlug(slug);
   if (!post) return notFound();
   return (
     <article>

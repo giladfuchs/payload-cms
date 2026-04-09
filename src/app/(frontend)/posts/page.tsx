@@ -3,16 +3,17 @@ import type { Metadata } from "next";
 
 import { JsonLd } from "@/components/shared/elements-ssr";
 import Cards from "@/components/ui/cards";
-import { querySiteSettings, queryCollection } from "@/lib/core/queries";
+import DAL from "@/lib/core/dal";
 import { CollectionName, type MetaInput } from "@/lib/core/types/types";
 import {
   generateJsonLdBreadcrumbsPosts,
   generateJsonLdPostsPage,
 } from "@/lib/seo/jsonld";
 import { buildMetadata } from "@/lib/seo/metadata";
-
+export const dynamic = "force-static";
+export const revalidate = false;
 export async function generateMetadata(): Promise<Metadata> {
-  const settings = await querySiteSettings();
+  const settings = await DAL.querySiteSettings();
 
   return buildMetadata({
     ...(settings.meta! as MetaInput),
@@ -22,8 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function PostsPage() {
   const [posts, settings]: [Post[], SiteSetting] = await Promise.all([
-    queryCollection<Post>(CollectionName.posts),
-    querySiteSettings(),
+    DAL.queryCollection<Post>(CollectionName.posts),
+    DAL.querySiteSettings(),
   ]);
 
   return (

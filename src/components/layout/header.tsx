@@ -1,13 +1,7 @@
-import { draftMode } from "next/headers";
-
 import type { Media, SiteSetting } from "@/lib/core/types/payload-types";
 
 import { Logo, WhatsAppButton } from "@/components/shared/elements-ssr";
-import {
-  AdminBar,
-  MobileMenu,
-  ThemeSelector,
-} from "@/components/shared/wrappers";
+import { MobileMenu, ThemeSelector } from "@/components/shared/wrappers";
 import CMSLink from "@/components/ui/cms-link";
 
 export const AppActions = ({
@@ -31,12 +25,8 @@ export default async function Header({
   header: NonNullable<SiteSetting["header"]>;
   general: NonNullable<SiteSetting["general"]>;
 }) {
-  const { isEnabled } = await draftMode();
-
   return (
     <header className="container relative z-20">
-      <AdminBar adminBarProps={{ preview: isEnabled }} />
-
       <div className="flex items-center justify-between  py-2">
         <>
           <nav className="hidden items-center gap-3 lg:flex">

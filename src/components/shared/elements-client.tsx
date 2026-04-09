@@ -1,7 +1,10 @@
 "use client";
 
+import { PayloadAdminBar } from "@payloadcms/admin-bar";
+import { RefreshRouteOnSave } from "@payloadcms/live-preview-react";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useState, type ComponentType } from "react";
+import { useState, useCallback, type ComponentType } from "react";
 import { createPortal } from "react-dom";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import { FiMoon, FiSun } from "react-icons/fi";
@@ -15,10 +18,73 @@ import {
   HiOutlineUnderline,
 } from "react-icons/hi2";
 
+import type { SiteSetting } from "@/payload-types";
+import type {
+  PayloadAdminBarProps,
+  PayloadMeUser,
+} from "@payloadcms/admin-bar";
+
 import Button from "@/components/ui/button";
 import CMSLink from "@/components/ui/cms-link";
-import { NavItemsProps } from "@/lib/core/types/types";
+import appConfig from "@/lib/core/config";
+import { cn } from "@/lib/core/utilities";
 import { useTheme } from "@/lib/providers/theme";
+
+export const AdminBarClient = ({
+  adminBarProps = {},
+}: {
+  adminBarProps?: PayloadAdminBarProps;
+}) => {
+  const [show, setShow] = useState(false);
+  const router = useRouter();
+
+  const onAuthChange = useCallback((user: PayloadMeUser) => {
+    setShow(Boolean(user?.id));
+  }, []);
+
+  return (
+    <div
+      dir="ltr"
+      className={cn(
+        "hidden w-full bg-black text-white md:px-18",
+        show && "md:block",
+      )}
+    >
+      {adminBarProps?.preview && (
+        <RefreshRouteOnSave
+          refresh={router.refresh}
+          serverURL={appConfig.SERVER_URL}
+        />
+      )}
+      <div className="container py-2">
+        <PayloadAdminBar
+          {...adminBarProps}
+          className="py-2 text-white"
+          classNames={{
+            controls: "font-medium text-white",
+            logo: "text-white",
+            user: "text-white",
+          }}
+          cmsURL={appConfig.SERVER_URL}
+          logo={<span>Dashboard</span>}
+          onAuthChange={onAuthChange}
+          onPreviewExit={() => {
+            fetch(`${appConfig.SERVER_URL}/preview/exit`).then(() => {
+              router.push("/");
+              router.refresh();
+            });
+          }}
+          style={{
+            backgroundColor: "transparent",
+            padding: 0,
+            position: "relative",
+            zIndex: "unset",
+          }}
+        />
+      </div>
+    </div>
+  );
+};
 
 export const ThemeSelectorClient = () => {
   const { theme, setTheme } = useTheme();
@@ -43,7 +109,11 @@ export const ThemeSelectorClient = () => {
   );
 };
 
-export const MobileMenuClient = ({ navItems }: NavItemsProps) => {
+export const MobileMenuClient = ({
+  navItems,
+}: {
+  navItems: NonNullable<NonNullable<SiteSetting["header"]>["navItems"]>;
+}) => {
   const [open, setOpen] = useState(false);
 
   return (
