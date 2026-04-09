@@ -6,17 +6,6 @@ Production-ready **CMS + website platform** built with **Payload CMS 3 + Next.js
 
 Perfect for **websites, blogs, landing pages, and content platforms**.
 
-## Features
-
-- Flexible **Pages & Posts** powered by Layout Builder
-- **Draft Preview** + **Live Preview** for real-time editing
-- **SEO-ready** (metadata, JSON-LD, sitemap, robots.txt)
-- Built-in **Redirects system** for safe URL changes
-- Integrated **Analytics & Pixels** (GA4, GTag, Meta, TikTok) with conversion tracking
-- **Media library** with automatic image optimization
-
-## Live Preview
-
 ## Live Preview
 
 - **Main Site:** https://cms.url-link.org
@@ -45,6 +34,17 @@ Deploy your own Payload-powered CMS.
 
 After creating your project, make sure to go to the Vercel dashboard
 and update your environment variables based on [.env.example](.env.example)
+
+---
+
+## Features
+
+- Flexible **Pages & Posts** powered by Layout Builder
+- **Draft Preview** + **Live Preview** for real-time editing
+- **SEO-ready** (metadata, JSON-LD, sitemap, robots.txt)
+- Built-in **Redirects system** for safe URL changes
+- Integrated **Analytics & Pixels** (GA4, GTag, Meta, TikTok) with conversion tracking
+- **Media library** with automatic image optimization
 
 ---
 

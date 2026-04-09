@@ -18,7 +18,8 @@
   "blocks": {
     "gallery": {
       "previous": "Previous image",
-      "next": "Next image"
+      "next": "Next image",
+      "select_image": "Select image"
     },
     "form": {
       "required": "This field is required",

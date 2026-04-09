@@ -130,6 +130,7 @@ export default async function GalleryBlock({
             >
               <label
                 htmlFor={`gallery-radio-${i}`}
+                aria-label={t("select_image")}
                 className={`gallery-thumb-${i} block w-full cursor-pointer overflow-hidden rounded-lg border border-neutral-200`}
               >
                 <ImageVideo

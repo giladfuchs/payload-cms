@@ -75,7 +75,7 @@ export const appConfig: AppConfig = {
   R2_ENDPOINT: process.env.R2_ENDPOINT as string,
   R2_ACCESS_KEY_ID: process.env.R2_ACCESS_KEY_ID as string,
   R2_SECRET_ACCESS_KEY: process.env.R2_SECRET_ACCESS_KEY as string,
-  R2_PUBLIC_URL: process.env.R2_PUBLIC_URL as string,
+  R2_PUBLIC_URL: process.env.NEXT_PUBLIC_R2_PUBLIC_URL as string,
 
   EMAIL_FROM_ADDRESS: process.env.EMAIL_FROM_ADDRESS as string,
   EMAIL_FROM_NAME: process.env.EMAIL_FROM_NAME as string,

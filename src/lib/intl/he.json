@@ -18,7 +18,8 @@
   "blocks": {
     "gallery": {
       "previous": "תמונה קודמת",
-      "next": "התמונה הבאה"
+      "next": "התמונה הבאה",
+      "select_image": "בחר תמונה"
     },
     "form": {
       "required": "שדה חובה",
