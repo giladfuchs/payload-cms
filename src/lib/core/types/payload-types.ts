@@ -290,7 +290,6 @@ export interface Post {
 export interface Media {
   id: number;
   alt: string;
-  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -712,6 +711,7 @@ export interface RichTextBlock {
  * via the `definition` "GalleryBlock".
  */
 export interface GalleryBlock {
+  title?: string | null;
   images: {
     image: number | Media;
     id?: string | null;
@@ -1156,6 +1156,7 @@ export interface RichTextBlockSelect<T extends boolean = true> {
  * via the `definition` "GalleryBlock_select".
  */
 export interface GalleryBlockSelect<T extends boolean = true> {
+  title?: T;
   images?:
     | T
     | {
@@ -1222,7 +1223,6 @@ export interface PostsSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
