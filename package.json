@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Website template for Payload CMS",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "dev": "next dev -p 3060",
     "build": "next build",
