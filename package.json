@@ -75,8 +75,8 @@
     "not op_mini all"
   ],
   "engines": {
-    "node": ">=22.0.0",
-    "pnpm": "10"
+    "node": ">=22",
+    "pnpm": ">=10"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
