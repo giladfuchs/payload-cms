@@ -1,0 +1,48 @@
+{
+  "post": {
+    "relatedArticles": "Related Articles",
+    "author": "Author",
+    "publishedAt": "Published",
+    "readTime": "Read time",
+    "minutes": "{count} min read",
+    "comments": "Comments",
+    "no_comments_yet": "No comments yet.",
+    "add_comment": "Add a Comment",
+    "add_comment_description": "Share your thoughts about this post.",
+    "name": "Name",
+    "email": "Email",
+    "comment": "Comment",
+    "send_comment": "Send Comment",
+    "comment_submitted_successfully": "Your comment was submitted successfully."
+  },
+  "blocks": {
+    "gallery": {
+      "previous": "Previous image",
+      "next": "Next image",
+      "select_image": "Select image"
+    },
+    "form": {
+      "required": "This field is required",
+      "submitError": "Something went wrong."
+    }
+  },
+  "general": {
+    "toggle_theme": "Toggle theme",
+    "pageNotFound": "This page could not be found.",
+    "goHome": "Go home",
+    "somethingWentWrongTitle": "Something went wrong",
+    "somethingWentWrongDescription": "There was an issue with our storefront. This may be temporary. Please try again.",
+    "tryAgain": "Try again"
+  },
+  "accessibility": {
+    "title": "Accessibility Tools",
+    "contrast": "High Contrast",
+    "grayscale": "Grayscale",
+    "underline": "Underline Links",
+    "zoomIn": "Increase Text Size",
+    "zoomOut": "Decrease Text Size",
+    "invert": "Invert Colors",
+    "readableFont": "Readable Font",
+    "reset": "Reset"
+  }
+}

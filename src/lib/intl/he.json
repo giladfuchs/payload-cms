@@ -1,0 +1,48 @@
+{
+  "post": {
+    "relatedArticles": "מאמרים קשורים",
+    "author": "מחבר",
+    "publishedAt": "פורסם",
+    "readTime": "זמן קריאה",
+    "minutes": "{count} דקות קריאה",
+    "comments": "תגובות",
+    "no_comments_yet": "עדיין אין תגובות.",
+    "add_comment": "הוסף תגובה",
+    "add_comment_description": "שתף את דעתך על הפוסט.",
+    "name": "שם",
+    "email": "אימייל",
+    "comment": "תגובה",
+    "send_comment": "שלח תגובה",
+    "comment_submitted_successfully": "התגובה נשלחה בהצלחה."
+  },
+  "blocks": {
+    "gallery": {
+      "previous": "תמונה קודמת",
+      "next": "התמונה הבאה",
+      "select_image": "בחר תמונה"
+    },
+    "form": {
+      "required": "שדה חובה",
+      "submitError": "משהו השתבש."
+    }
+  },
+  "general": {
+    "toggle_theme": "שינוי מצב תצוגה",
+    "pageNotFound": "העמוד שחיפשת לא נמצא.",
+    "goHome": "חזרה לדף הבית",
+    "somethingWentWrongTitle": "אירעה שגיאה",
+    "somethingWentWrongDescription": "אירעה תקלה באתר. ייתכן שמדובר בבעיה זמנית. אנא נסה שוב.",
+    "tryAgain": "נסה שוב"
+  },
+  "accessibility": {
+    "title": "כלי נגישות",
+    "contrast": "ניגודיות גבוהה",
+    "grayscale": "גווני אפור",
+    "underline": "קו תחתון לקישורים",
+    "zoomIn": "הגדלת טקסט",
+    "zoomOut": "הקטנת טקסט",
+    "invert": "היפוך צבעים",
+    "readableFont": "גופן קריא",
+    "reset": "איפוס"
+  }
+}

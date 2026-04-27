@@ -1,0 +1,1799 @@
+{
+  "siteSettings": {
+    "general": {
+      "logo": "__logo__",
+      "whatsappNumber": "15551234567",
+      "whatsappMessage": "היי צוות Payload, הגעתי מהאתר שלכם."
+    },
+    "popup": {
+      "delaySeconds": 0,
+      "repeatDays": 0,
+      "content": [
+        {
+          "blockType": "htmlEmbed",
+          "contentHtml": "<div style=\"position: relative; height: 22rem; width: 100%; overflow: hidden; border-radius: 1rem; direction: rtl;\">\n  <img\n    src=\"https://images.unsplash.com/photo-1687463221023-02f259da7d77?q=80&w=1170&auto=format&fit=crop\"\n    alt=\"רקע פופ-אפ\"\n    style=\"position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;\"\n  />\n\n  <div style=\"position: absolute; inset: 0; background: rgba(0,0,0,0.45);\"></div>\n\n  <div style=\"position: relative; z-index: 1; display: flex; height: 100%; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 1.5rem; text-align: center;\">\n    <h2 style=\"margin: 0; font-size: 1.75rem; font-weight: 700; color: white;\">\n      אל תפספסו את זה\n    </h2>\n\n    <p style=\"margin: 0; max-width: 32rem; font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.92);\">\n      גלו משהו מיוחד שמחכה רק לכם.<br/> המבצע לזמן מוגבל וזמין כעת.\n    </p>\n\n    <a\n      href=\"/contact\"\n      style=\"display: inline-block; border-radius: 9999px; background: white; padding: 0.75rem 1.5rem; font-size: 0.95rem; font-weight: 600; color: black; text-decoration: none;\"\n    >\n      בואו נתחיל\n    </a>\n  </div>\n</div>"
+        }
+      ]
+    },
+    "header": {
+      "navItems": [
+        {
+          "link": {
+            "type": "custom",
+            "label": "מאמרים",
+            "url": "/posts"
+          }
+        },
+        {
+          "link": {
+            "type": "reference",
+            "label": "צור קשר",
+            "reference": {
+              "relationTo": "pages",
+              "value": "__contactPageId__"
+            }
+          }
+        }
+      ]
+    },
+    "footer": {
+      "navItems": [
+        {
+          "link": {
+            "type": "custom",
+            "label": "ניהול",
+            "url": "/admin"
+          }
+        },
+        {
+          "link": {
+            "type": "custom",
+            "label": "קוד מקור",
+            "newTab": true,
+            "url": "https://github.com/giladfuchs/payload-cms"
+          }
+        },
+        {
+          "link": {
+            "type": "custom",
+            "label": "Payload",
+            "newTab": true,
+            "url": "https://payloadcms.com/"
+          }
+        }
+      ],
+      "phone": "+1 555-123-4567",
+      "email": "hello@payloadcms.com",
+      "website": "https://payloadcms.com/",
+      "instagram": "payloadcms",
+      "facebook": "payloadcms",
+      "tiktok": "payloadcms",
+      "linkedin": "payload-cms",
+      "youtube": "@payloadcms",
+      "x": "payloadcms"
+    },
+    "meta": {
+      "title": "תובנות ומאמרים",
+      "description": "גלו את המחשבות, המדריכים והרעיונות האחרונים שלנו - מטיפים פרקטיים ועד תובנות מעמיקות שנועדו להעשיר ולתת לכם השראה.",
+      "image": "__metaImage__"
+    }
+  },
+  "forms": [
+    {
+      "title": "טופס יצירת קשר",
+      "confirmationType": "message",
+      "submitButtonLabel": "שליחה",
+      "confirmationMessage": {
+        "root": {
+          "type": "root",
+          "children": [
+            {
+              "type": "heading",
+              "tag": "h2",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "הטופס נשלח בהצלחה, נשתמע בקרוב!"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "emails": [
+        {
+          "emailFrom": "\"Payload\" <demo@payloadcms.com>",
+          "emailTo": "{{email}}",
+          "subject": "התקבלה הודעה חדשה מהאתר",
+          "message": {
+            "root": {
+              "type": "root",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "פנייתך התקבלה במערכת שלנו בהצלחה. "
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "({{*:table}})"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "fields": [
+        {
+          "blockType": "text",
+          "blockName": "full-name",
+          "name": "full-name",
+          "label": "שם מלא",
+          "required": true,
+          "width": 100
+        },
+        {
+          "blockType": "email",
+          "blockName": "email",
+          "name": "email",
+          "label": "אימייל",
+          "required": true,
+          "width": 100
+        },
+        {
+          "blockType": "number",
+          "blockName": "phone",
+          "name": "phone",
+          "label": "טלפון",
+          "required": false,
+          "width": 100
+        },
+        {
+          "blockType": "textarea",
+          "blockName": "message",
+          "name": "message",
+          "label": "הודעה",
+          "required": true,
+          "width": 100
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "slug": "home",
+      "_status": "published",
+      "title": "בית",
+      "hero": {
+        "type": "highImpact",
+        "media": "__HERO_IMAGE__",
+        "links": [
+          {
+            "link": {
+              "type": "custom",
+              "appearance": "default",
+              "label": "כל הפוסטים",
+              "url": "/posts"
+            }
+          },
+          {
+            "link": {
+              "type": "custom",
+              "appearance": "outline",
+              "label": "צור קשר",
+              "url": "/contact"
+            }
+          }
+        ],
+        "richText": {
+          "root": {
+            "type": "root",
+            "children": [
+              {
+                "tag": "h1",
+                "type": "heading",
+                "format": "",
+                "indent": 0,
+                "version": 1,
+                "children": [
+                  {
+                    "mode": "normal",
+                    "text": "תבנית Payload CMS",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  }
+                ],
+                "direction": "rtl"
+              },
+              {
+                "type": "paragraph",
+                "format": "",
+                "indent": 0,
+                "version": 1,
+                "children": [
+                  {
+                    "type": "link",
+                    "fields": {
+                      "url": "/admin",
+                      "newTab": true,
+                      "linkType": "custom"
+                    },
+                    "format": "",
+                    "indent": 0,
+                    "version": 3,
+                    "children": [
+                      {
+                        "mode": "normal",
+                        "text": "בקרו בלוח הבקרה",
+                        "type": "text",
+                        "style": "",
+                        "detail": 0,
+                        "format": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "rtl"
+                  },
+                  {
+                    "mode": "normal",
+                    "text": " כדי להתחיל לנהל את תוכן האתר. ",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  },
+                  {
+                    "type": "linebreak",
+                    "version": 1
+                  },
+                  {
+                    "mode": "normal",
+                    "text": "הקוד עבור תבנית זו הוא בקוד פתוח לחלוטין וניתן למצוא אותו ",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  },
+                  {
+                    "type": "link",
+                    "fields": {
+                      "url": "https://github.com/giladfuchs/payload-cms",
+                      "newTab": true,
+                      "linkType": "custom"
+                    },
+                    "format": "",
+                    "indent": 0,
+                    "version": 3,
+                    "children": [
+                      {
+                        "mode": "normal",
+                        "text": "ב-GitHub שלנו",
+                        "type": "text",
+                        "style": "",
+                        "detail": 0,
+                        "format": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "rtl"
+                  },
+                  {
+                    "mode": "normal",
+                    "text": ". ",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  },
+                  {
+                    "type": "linebreak",
+                    "version": 1
+                  },
+                  {
+                    "mode": "normal",
+                    "text": "אם אתם מחפשים תבנית אי-קומרס מלאה, תוכלו לבקר ב-",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  },
+                  {
+                    "type": "link",
+                    "fields": {
+                      "url": "https://payload.url-link.org",
+                      "newTab": true,
+                      "linkType": "custom"
+                    },
+                    "format": "",
+                    "indent": 0,
+                    "version": 3,
+                    "children": [
+                      {
+                        "mode": "normal",
+                        "text": "Payload Ecommerce",
+                        "type": "text",
+                        "style": "",
+                        "detail": 0,
+                        "format": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "mode": "normal",
+                    "text": ".",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  }
+                ],
+                "direction": "rtl",
+                "textStyle": "",
+                "textFormat": 0
+              },
+              {
+                "type": "paragraph",
+                "format": "",
+                "indent": 0,
+                "version": 1,
+                "children": [
+                  {
+                    "mode": "normal",
+                    "text": "למטה תמצאו דוגמאות לבלוקים שתוכלו לבנות.",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 1,
+                    "version": 1
+                  }
+                ],
+                "direction": null,
+                "textStyle": "",
+                "textFormat": 1
+              }
+            ],
+            "direction": "rtl",
+            "format": "",
+            "indent": 0,
+            "version": 1
+          }
+        }
+      },
+      "layout": [
+        {
+          "blockName": "Content Block",
+          "blockType": "content",
+          "columns": [
+            {
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "פיצ'רים מרכזיים (Content Block)",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h2",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "full"
+            },
+            {
+              "enableLink": false,
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "לוח בקרה",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h3",
+                      "version": 1
+                    },
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "נהלו את דפי האתר והפוסטים מתוך ",
+                          "version": 1
+                        },
+                        {
+                          "type": "link",
+                          "children": [
+                            {
+                              "type": "text",
+                              "detail": 0,
+                              "format": 0,
+                              "mode": "normal",
+                              "style": "",
+                              "text": "לוח הבקרה",
+                              "version": 1
+                            }
+                          ],
+                          "direction": "rtl",
+                          "fields": {
+                            "linkType": "custom",
+                            "newTab": false,
+                            "url": "/admin"
+                          },
+                          "format": "",
+                          "indent": 0,
+                          "version": 2
+                        },
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": ".",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "format": "",
+                      "indent": 0,
+                      "textFormat": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "oneThird"
+            },
+            {
+              "enableLink": false,
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "תצוגה מקדימה",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h3",
+                      "version": 1
+                    },
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "באמצעות גרסאות, טיוטות ותצוגה מקדימה, עורכים יכולים לבדוק ולשתף את השינויים שלהם לפני הפרסום.",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "format": "",
+                      "indent": 0,
+                      "textFormat": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "oneThird"
+            },
+            {
+              "enableLink": false,
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "בונה דפים",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h3",
+                      "version": 1
+                    },
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "בונה דפים מותאם אישית מאפשר לכם ליצור פריסות ייחודיות לדפים, פוסטים ופרויקטים לכל סוג של תוכן.",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "format": "",
+                      "indent": 0,
+                      "textFormat": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "oneThird"
+            },
+            {
+              "enableLink": false,
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "SEO",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h3",
+                      "version": 1
+                    },
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "לעורכים יש שליטה מלאה על נתוני ה-SEO ותוכן האתר ישירות מתוך ",
+                          "version": 1
+                        },
+                        {
+                          "type": "link",
+                          "children": [
+                            {
+                              "type": "text",
+                              "detail": 0,
+                              "format": 0,
+                              "mode": "normal",
+                              "style": "",
+                              "text": "לוח הבקרה",
+                              "version": 1
+                            }
+                          ],
+                          "direction": "rtl",
+                          "fields": {
+                            "linkType": "custom",
+                            "newTab": false,
+                            "url": "/admin"
+                          },
+                          "format": "",
+                          "indent": 0,
+                          "version": 2
+                        },
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": ".",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "format": "",
+                      "indent": 0,
+                      "textFormat": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "oneThird"
+            },
+            {
+              "enableLink": false,
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "מצב כהה",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h3",
+                      "version": 1
+                    },
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "משתמשים יחוו את האתר בערכת הצבעים המועדפת עליהם, וניתן להפוך את הצבעים בכל בלוק.",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "format": "",
+                      "indent": 0,
+                      "textFormat": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "oneThird"
+            }
+          ]
+        },
+        {
+          "blockName": "Media Block",
+          "blockType": "mediaBlock",
+          "media": "__META_IMAGE__"
+        },
+        {
+          "blockName": "Archive Block",
+          "blockType": "archive",
+          "categories": [],
+          "introContent": {
+            "root": {
+              "type": "root",
+              "children": [
+                {
+                  "type": "heading",
+                  "children": [
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "פוסטים אחרונים (Archive Block)",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "tag": "h3",
+                  "version": 1
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "הפוסטים למטה מוצגים בפריסת \"ארכיון\", שהיא דרך עוצמתית להציג מסמכים בדף. ניתן למלא אותה אוטומטית לפי אוסף או קטגוריה, או לבחור פוסטים בודדים. פקדי דפדוף יופיעו אוטומטית אם מספר התוצאות יעלה על מספר הפריטים לדף.",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "textFormat": 0,
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "version": 1
+            }
+          },
+          "populateBy": "collection",
+          "relationTo": "posts"
+        },
+        {
+          "blockName": "CTA",
+          "blockType": "cta",
+          "links": [
+            {
+              "link": {
+                "type": "custom",
+                "appearance": "default",
+                "label": "כל הפוסטים",
+                "url": "/posts"
+              }
+            }
+          ],
+          "richText": {
+            "root": {
+              "type": "root",
+              "children": [
+                {
+                  "type": "heading",
+                  "children": [
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "זוהי קריאה לפעולה (CTA)",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "tag": "h3",
+                  "version": 1
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "זהו בלוק פריסה מותאם אישית ",
+                      "version": 1
+                    },
+                    {
+                      "type": "link",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "שהוגדר בלוח הבקרה",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "rtl",
+                      "fields": {
+                        "linkType": "custom",
+                        "newTab": false,
+                        "url": "/admin"
+                      },
+                      "format": "",
+                      "indent": 0,
+                      "version": 2
+                    },
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": ".",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "textFormat": 0,
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "version": 1
+            }
+          }
+        },
+        {
+          "blockName": "HTML Embed",
+          "blockType": "htmlEmbed",
+          "contentHtml": "<div style=\"position: relative; height: 24rem; width: 100%; overflow: hidden; border-radius: 1rem; font-family: sans-serif;\" dir=\"rtl\">\n  <img\n    src=\"https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop\"\n    alt=\"HTML Embed Demo\"\n    style=\"position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;\"\n  />\n\n  <div style=\"position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2));\"></div>\n\n  <div style=\"position: relative; z-index: 1; display: flex; height: 100%; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 2rem; text-align: center;\">\n    <h2 style=\"margin: 0; font-size: 2rem; font-weight: 700; color: white;\">\n      HTML Embed Block\n    </h2>\n\n    <p style=\"margin: 0; max-width: 36rem; font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9);\">\n      האזור הזה מבוסס על קוד HTML גולמי וגמיש.<br/>\n      כאן יש לכם חופש פעולה מלא להוסיף סקריפטים, לעצב פריסות מורכבות ולשלוט בכל אלמנט באתר בדיוק איך שמתחשק לכם.\n    </p>\n\n    <div style=\"display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;\">\n      <span style=\"background: white; color: black; padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600;\">עיצוב חופשי</span>\n      <span style=\"background: white; color: black; padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600;\">סקריפטים אישיים</span>\n      <span style=\"background: white; color: black; padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600;\">גמישות מקסימלית</span>\n    </div>\n\n    </div>\n</div>"
+        },
+        {
+          "blockName": "Gallery",
+          "blockType": "gallery",
+          "title": "Gallery Block",
+          "images": [
+            { "image": "__GALLERY_IMAGE_1__" },
+            { "image": "__GALLERY_IMAGE_2__" },
+            { "image": "__GALLERY_IMAGE_3__" },
+            { "image": "__GALLERY_IMAGE_4__" }
+          ]
+        },
+        {
+          "blockName": "FAQs",
+          "blockType": "faqs",
+          "title": "שאלות נפוצות (FAQs)",
+          "faqs": [
+            {
+              "question": "מה זה הפרויקט הזה?",
+              "answer": "זהו תבנית CMS גמישה לבניית אתר תוכן ובלוג, מבוססת Payload CMS ו־Next.js."
+            },
+            {
+              "question": "האם ניתן לנהל תוכן מתוך פאנל הניהול?",
+              "answer": "כן, ניתן לערוך את כל הדפים, הבלוקים והתוכן ישירות מלוח הבקרה של Payload."
+            },
+            {
+              "question": "האם זה מתאים לשימוש בסביבת ייצור (Production)?",
+              "answer": "כן, הפרויקט תוכנן להיות מוכן לייצור עם מבנה נכון, תמיכת SEO ויכולת גדילה."
+            },
+            {
+              "question": "האם אני יכול להוסיף בלוקים משלי?",
+              "answer": "בהחלט. ניתן ליצור ולרשום בלוקים מותאמים אישית כדי להרחיב את מערכת הפריסה לפי הצורך."
+            },
+            {
+              "question": "האם יש תמיכה בריבוי שפות?",
+              "answer": "התבנית מוכנה להרחבה עבור תמיכה בריבוי שפות במידת הצורך."
+            }
+          ]
+        }
+      ],
+      "meta": {
+        "title": "תבנית אתר Payload",
+        "description": "אתר בקוד פתוח שנבנה עם Payload ו-Next.js.",
+        "image": "__HERO_IMAGE__"
+      }
+    },
+
+    {
+      "slug": "contact",
+      "_status": "published",
+      "title": "צור קשר",
+      "hero": {
+        "type": "none"
+      },
+      "meta": {
+        "title": "צרו קשר",
+        "description": "מוזמנים לפנות אלינו לכל שאלה, משוב או בירור.",
+        "image": "__META_IMAGE__"
+      },
+      "layout": [
+        {
+          "blockType": "formBlock",
+          "enableIntro": true,
+          "form": "__FORM__",
+          "introContent": {
+            "root": {
+              "type": "root",
+              "children": [
+                {
+                  "type": "heading",
+                  "tag": "h3",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "דוגמה לטופס יצירת קשר:"
+                    }
+                  ],
+                  "direction": "rtl"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "comments": [
+        {
+          "authorName": "אמילי קרטר",
+          "authorEmail": "emily.carter@example.com",
+          "body": "נהניתי מאוד לקרוא את המאמר הזה. החלק שעוסק בדרך שבה הבינה המלאכותית משנה את תהליכי קבלת ההחלטות היה מעורר מחשבה במיוחד."
+        },
+        {
+          "authorName": "דניאל גרין",
+          "authorEmail": "daniel.green@example.com",
+          "body": "סקירה נהדרת של המגמות הטכנולוגיות הכי חמות כיום. הפרק על ה-IoT עזר לי להבין הרבה יותר טוב איך כל המכשירים האלו מתחברים אחד לשני בסופו של דבר."
+        }
+      ],
+      "slug": "digital-horizons",
+      "_status": "published",
+      "author": "יונתן כהן",
+      "readTime": 3,
+      "title": "אופקים דיגיטליים: הצצה אל המחר",
+      "relatedPosts": [],
+      "heroImage": "__HERO_IMAGE__",
+      "meta": {
+        "description": "צללו אל פלאי החדשנות המודרנית, שבה השינוי הוא הקבוע היחיד. מסע שבו פיקסלים ונתונים מתלכדים כדי לעצב את העתיד.",
+        "image": "__HERO_IMAGE__",
+        "title": "אופקים דיגיטליים: הצצה אל המחר"
+      },
+      "content": {
+        "root": {
+          "type": "root",
+          "children": [
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "צללו אל פלאי החדשנות המודרנית, שבה השינוי הוא הקבוע היחיד. מסע שבו פיקסלים ונתונים מתלכדים כדי לעצב את העתיד.",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Disclaimer",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 1,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "כתב ויתור:",
+                            "version": 1
+                          },
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": " תוכן זה נוצר לצורכי הדגמה בלבד. כדי לערוך את הפוסט הזה, ",
+                            "version": 1
+                          },
+                          {
+                            "type": "link",
+                            "children": [
+                              {
+                                "type": "text",
+                                "detail": 0,
+                                "format": 0,
+                                "mode": "normal",
+                                "style": "",
+                                "text": "עברו ללוח הבקרה של המנהל",
+                                "version": 1
+                              }
+                            ],
+                            "direction": "rtl",
+                            "fields": {
+                              "linkType": "custom",
+                              "newTab": true,
+                              "url": "/admin"
+                            },
+                            "format": "",
+                            "indent": 0,
+                            "version": 3
+                          },
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": ".",
+                            "version": 1
+                          }
+                        ],
+                        "direction": "rtl",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "rtl",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "עליית ה-AI והלמידה הממוחשבת",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "אנו נמצאים בעידן טרנספורמטיבי שבו הבינה המלאכותית (AI) עומדת בחזית האבולוציה הטכנולוגית. השפעותיה מעצבות מחדש תעשיות שלמות בקצב חסר תקדים. עסקים כבר לא מוגבלים על ידי תהליכים ידניים ומייגעים. במקום זאת, מערכות מתוחכמות, המבוססות על כמויות אדירות של נתונים, מסוגלות כיום לקבל החלטות שבעבר היו נתונות לאינטואיציה אנושית בלבד. המערכות החכמות הללו לא רק מייעלות את העבודה אלא גם סוללות דרכים לגישות חדשניות, ומבשרות על עידן חדש של שינוי עסקי עולמי.",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "כדי להדגים פונקציונליות בסיסית של AI, הנה קטע קוד JavaScript המבצע בקשת POST ל-API גנרי לצורך יצירת טקסט על סמך פרומפט.",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "tag": "h4",
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Generate Text",
+                "blockType": "code",
+                "code": "async function generateText(prompt) {\n    const apiKey = 'your-api-key';\n    const apiUrl = 'https://api.example.com/generate-text';\n\n    const response = await fetch(apiUrl, {\n        method: 'POST',\n        headers: {\n            'Content-Type': 'application/json',\n            'Authorization': `Bearer ${apiKey}`\n        },\n        body: JSON.stringify({\n            model: 'text-generation-model',\n            prompt: prompt,\n            max_tokens: 50\n        })\n    });\n\n    const data = await response.json();\n    console.log(data.choices[0].text.trim());\n}\n\n// Example usage\ngenerateText(\"Once upon a time in a faraway land,\");\n",
+                "language": "javascript"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "IoT: מחברים את העולם סביבנו",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "בנוף הטכנולוגי המתפתח במהירות של ימינו, האינטרנט של הדברים (IoT) בולט ככוח מהפכני. החל משינוי המגורים שלנו עם מערכות בית חכם ועד להגדרת התחבורה מחדש באמצעות מכוניות מחוברות, ההשפעה של ה-IoT מורגשת כמעט בכל היבט של חיי היומיום שלנו.",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "טכנולוגיה זו נשענת על שילוב חלק של מכשירים ומערכות, המאפשר להם לתקשר ולשתף פעולה ללא מאמץ. עם כל מכשיר מחובר, אנו מתקרבים צעד נוסף לעולם שבו נוחות ויעילות מוטמעות בעצם הקיום שלנו. כתוצאה מכך, אנו עוברים לעידן שבו הסביבה שלנו מגיבה באופן אינטואיטיבי לצרכים שלנו, ומבשרת על קהילה גלובלית חכמה ומקושרת יותר.",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "",
+                "blockType": "mediaBlock",
+                "media": "__BLOCK_IMAGE__"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Dynamic Components",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "התוכן לעיל הוא דינמי לחלוטין ומשתמש בבלוקים של פריסה מותאמת אישית שהוגדרו ב-CMS. זה יכול להיות כל דבר שתרצו – החל מטקסט עשיר ותמונות ועד לרכיבים מורכבים בעיצוב מתקדם.",
+                            "version": 1
+                          }
+                        ],
+                        "direction": "rtl",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "rtl",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            }
+          ],
+          "direction": "rtl",
+          "format": "",
+          "indent": 0,
+          "version": 1
+        }
+      }
+    },
+    {
+      "comments": [
+        {
+          "authorName": "דורון לוי",
+          "authorEmail": "d.levy@news-pro.co.il",
+          "body": "זה בדיוק מה שחסר בעיתונות המודרנית. לעיתים קרובות אנחנו הולכים לאיבוד בתוך הסטטיסטיקות של המשבר ושוכחים את הסיפורים האנושיים של בנייה מחדש וסולידריות שבאים לאחר מכן."
+        },
+        {
+          "authorName": "שירה חדד",
+          "authorEmail": "shira.h@social-watch.org",
+          "body": "החלק על צוותי ההצלה הקהילתיים באמת נגע בי. ראיתי את זה מקרוב באזורים מוכי שיטפונות; חוסן הוא לא רק מילה, הוא אסטרטגיית הישרדות של ממש."
+        },
+        {
+          "authorName": "יעל אברהם",
+          "authorEmail": "yael.a@sociology-hub.edu",
+          "body": "תזכורת עוצמתית לכך שגם בזמנים הכלכליים האפלים ביותר, המארג החברתי של עיר הוא הנכס הגדול ביותר שלה. מחכה לקרוא עוד סיפורים 'שלא סופרו' כאלו."
+        }
+      ],
+      "slug": "global-gaze",
+      "_status": "published",
+      "author": "ג'יין סמית'",
+      "readTime": 4,
+      "title": "מבט עולמי: מעבר לכותרות",
+      "relatedPosts": [],
+      "heroImage": "__HERO_IMAGE__",
+      "meta": {
+        "description": "חקרו את הסיפורים שלא סופרו ואת אלו שזכו להתעלמות. מבט מקרוב אל פינות העולם שבהן כל סיפור ראוי לבמה משלו.",
+        "image": "__HERO_IMAGE__",
+        "title": "מבט עולמי: מעבר לכותרות"
+      },
+      "content": {
+        "root": {
+          "type": "root",
+          "children": [
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "כוחה של הרוח האנושית נמצא לרוב בשוליים. אנחנו חוקרים את הנרטיבים שחומקים מבין הסדקים של מחזור החדשות של 24 השעות.",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Disclaimer",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 1,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "הערת עורך:",
+                            "version": 1
+                          },
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": " תוכן זה נוצר לצורכי הדגמה בלבד. כדי לערוך סיפורים אלו, אנא ",
+                            "version": 1
+                          },
+                          {
+                            "type": "link",
+                            "children": [
+                              {
+                                "type": "text",
+                                "detail": 0,
+                                "format": 0,
+                                "mode": "normal",
+                                "style": "",
+                                "text": "היכנסו לפאנל הניהול",
+                                "version": 1
+                              }
+                            ],
+                            "direction": "rtl",
+                            "fields": {
+                              "linkType": "custom",
+                              "newTab": true,
+                              "url": "/admin"
+                            },
+                            "format": "",
+                            "indent": 0,
+                            "version": 3
+                          },
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": ".",
+                            "version": 1
+                          }
+                        ],
+                        "direction": "rtl",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 1,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "rtl",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "הארכיטקטורה של החוסן: תקווה בתהליך ההתאוששות",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "לאורך ההיסטוריה, האנושות התמודדה עם השפעות מטלטלות של אסונות טבע, תהפוכות פוליטיות ותנודתיות כלכלית. ובכל זאת, ברגעים אלו של משבר, כוח בלתי ניתן להכנעה עולה בעקביות אל פני השטח: החוסן הקולקטיבי של הרוח האנושית. אלו אינם רק סיפורי הישרדות, אלא סיפורים על קהילות שיוצרות קשרים בלתי ניתנים לניתוק ומפגינות יכולת מולדת לבנות מחדש מתוך האפר.",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Community Action",
+                "blockType": "mediaBlock",
+                "media": "__BLOCK_IMAGE__"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "משכונות מקומיות המארגנות משימות הצלה עממיות ועד לערים שלמות שממציאות מחדש את הכלכלה המקומית שלהן, מהות האנושות נראית בבירור דרך הסולידריות. בעודנו חוקרים נרטיבים אלו, אנו רואים כיצד מצוקה פועלת כזרז לצמיחה עמוקה ולעתיד גלובלי מחובר יותר.",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Dynamic Layout",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "פריסת המערכת הזו בנויה באמצעות בלוקים מודולריים של CMS, המאפשרים שילוב חלק בין סיפור סיפורים סוחף לבין רכיבי מדיה אינטראקטיביים.",
+                            "version": 1
+                          }
+                        ],
+                        "direction": "rtl",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "rtl",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            }
+          ],
+          "direction": "rtl",
+          "format": "",
+          "indent": 0,
+          "version": 1
+        }
+      }
+    },
+    {
+      "comments": [
+        {
+          "authorName": "אמיר כהן",
+          "authorEmail": "amir.c@invest-il.co.il",
+          "body": "ההשוואה של כסף לשפה היא פשוט מבריקה. הבנת ה'תחביר' של השוק היא מה שמפריד בין מהמרים לבין אסטרטגים אמיתיים."
+        },
+        {
+          "authorName": "מאיה רוזנברג",
+          "authorEmail": "maya.r@fintech-weekly.io",
+          "body": "אהבתי מאוד את ההתמקדות ב'מרכז הלא ודאי'. כולם מדברים על השוורים והדובים, אבל רוב העבודה האמיתית קורה באזור האפור הזה שבו הסנטימנט עדיין לא השתנה לחלוטין."
+        },
+        {
+          "authorName": "רוני גל",
+          "authorEmail": "roni.gal@wealth-mgmt.net",
+          "body": "מדויק מאוד לגבי הפסיכולוגיה של המשקיעים. אפשר להחזיק בכל הנתונים שבעולם, אבל אם לא מבינים איך בני אדם אחרים יגיבו אליהם, רואים רק חצי מהתמונה."
+        }
+      ],
+      "slug": "dollar-and-sense-financial-forecast",
+      "_status": "published",
+      "author": "אלכס בראון",
+      "readTime": 4,
+      "title": "כסף ומשמעות: התחזית הפיננסית",
+      "relatedPosts": [],
+      "heroImage": "__HERO_IMAGE__",
+      "meta": {
+        "description": "כסף הוא לא רק מטבע; הוא שפה. צללו עמוק אל הניואנסים שלו, במקום שבו אסטרטגיה פוגשת אינטואיציה בים העצום של הפיננסים העולמיים.",
+        "image": "__HERO_IMAGE__",
+        "title": "כסף ומשמעות: התחזית הפיננסית"
+      },
+      "content": {
+        "root": {
+          "type": "root",
+          "children": [
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Disclaimer",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 1,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "הודעה פיננסית:",
+                            "version": 1
+                          },
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": " תוכן זה הוא סימולציה לצורכי הדגמה בלבד. כדי לנהל תובנות פיננסיות אלו, אנא ",
+                            "version": 1
+                          },
+                          {
+                            "type": "link",
+                            "children": [
+                              {
+                                "type": "text",
+                                "detail": 0,
+                                "format": 0,
+                                "mode": "normal",
+                                "style": "",
+                                "text": "בקרו בלוח הבקרה של המנהל.",
+                                "version": 1
+                              }
+                            ],
+                            "direction": "rtl",
+                            "fields": {
+                              "linkType": "custom",
+                              "newTab": true,
+                              "url": "/admin"
+                            },
+                            "format": "",
+                            "indent": 0,
+                            "version": 3
+                          }
+                        ],
+                        "direction": "rtl",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 1,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "rtl",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "מטבע כתקשורת: פיענוח השוק",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "בבסיסו, כסף מתעלה על הגבולות הפיזיים של מטבעות ונייר; הוא שפה עמוקה המבטאת ערך, אמון והמבנה הבסיסי של החברה. כמו כל דיאלקט, יש לו ניואנסים מורכבים. בתוך המעמקים הללו, הלוגיקה הקרה של האסטרטגיה הפיננסית פוגשת את הדופק הגולמי והאינסטינקטיבי של האינטואיציה האנושית. מומחים פיננסיים לא רק מנתחים נתונים - הם מנווטים בים סוער של סנטימנטים, מונחים על ידי ראיית הנולד ו'תחושות בטן' לא פחות מאשר על ידי גרפים טכניים.",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Market Analysis",
+                "blockType": "mediaBlock",
+                "media": "__BLOCK_IMAGE__"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "דינמיקת השוק: שוורים, דובים והאזור האפור",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "בורסה היא זירה המוגדרת על ידי התנהגות אנושית לא פחות מאשר על ידי כלכלה טהורה. זהו תיאטרון שבו האופטימיות של השור פוגשת את הזהירות של הדוב. בין שני הקצוות הללו שוכב ה'מרכז הלא ודאי' - אזור שבו המשקיעים הממולחים ביותר פועלים על ידי שקלול של תקווה קולקטיבית מול פחד מערכתי. הצלחה כאן דורשת יותר מאשר הבנה פיננסית; היא דורשת את היכולת לחזות כיצד ההמון יגיב עוד לפני שהמהלך בכלל מתחיל.",
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Interactive Content",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "סקירה פיננסית זו מופעלת על ידי ארכיטקטורת CMS מודולרית, המאפשרת עדכונים בזמן אמת והדמיית נתונים דינמית בתוך מסגרת מערכתית נקייה.",
+                            "version": 1
+                          }
+                        ],
+                        "direction": "rtl",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "rtl",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            }
+          ],
+          "direction": "rtl",
+          "format": "",
+          "indent": 0,
+          "version": 1
+        }
+      }
+    }
+  ]
+}

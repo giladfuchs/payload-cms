@@ -1,0 +1,1781 @@
+{
+  "siteSettings": {
+    "general": {
+      "logo": "__logo__",
+      "whatsappNumber": "15551234567",
+      "whatsappMessage": "Hi Payload team, I came from the website."
+    },
+    "popup": {
+      "delaySeconds": 0,
+      "repeatDays": 0,
+      "content": [
+        {
+          "blockType": "htmlEmbed",
+          "contentHtml": "<div style=\"position: relative; height: 22rem; width: 100%; overflow: hidden; border-radius: 1rem;\">\n  <img\n    src=\"https://images.unsplash.com/photo-1687463221023-02f259da7d77?q=80&w=1170&auto=format&fit=crop\"\n    alt=\"Popup background\"\n    style=\"position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;\"\n  />\n\n  <div style=\"position: absolute; inset: 0; background: rgba(0,0,0,0.45);\"></div>\n\n  <div style=\"position: relative; z-index: 1; display: flex; height: 100%; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 1.5rem; text-align: center;\">\n    <h2 style=\"margin: 0; font-size: 1.75rem; font-weight: 700; color: white;\">\n      Don’t miss this\n    </h2>\n\n    <p style=\"margin: 0; max-width: 32rem; font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.92);\">\n      Discover something special just for you.<br/> Limited time offer available now.\n    </p>\n\n    <a\n      href=\"/contact\"\n      style=\"display: inline-block; border-radius: 9999px; background: white; padding: 0.75rem 1.5rem; font-size: 0.95rem; font-weight: 600; color: black; text-decoration: none;\"\n    >\n      Get Started\n    </a>\n  </div>\n</div>"
+        }
+      ]
+    },
+    "header": {
+      "navItems": [
+        {
+          "link": {
+            "type": "custom",
+            "label": "Posts",
+            "url": "/posts"
+          }
+        },
+        {
+          "link": {
+            "type": "reference",
+            "label": "Contact",
+            "reference": {
+              "relationTo": "pages",
+              "value": "__contactPageId__"
+            }
+          }
+        }
+      ]
+    },
+    "footer": {
+      "navItems": [
+        {
+          "link": {
+            "type": "custom",
+            "label": "Admin",
+            "url": "/admin"
+          }
+        },
+        {
+          "link": {
+            "type": "custom",
+            "label": "Source Code",
+            "newTab": true,
+            "url": "https://github.com/giladfuchs/payload-cms"
+          }
+        },
+        {
+          "link": {
+            "type": "custom",
+            "label": "Payload",
+            "newTab": true,
+            "url": "https://payloadcms.com/"
+          }
+        }
+      ],
+      "phone": "+1 555-123-4567",
+      "email": "hello@payloadcms.com",
+      "website": "https://payloadcms.com/",
+      "instagram": "payloadcms",
+      "facebook": "payloadcms",
+      "tiktok": "payloadcms",
+      "linkedin": "payload-cms",
+      "youtube": "@payloadcms",
+      "x": "payloadcms"
+    },
+    "meta": {
+      "title": "Insights & Articles",
+      "description": "Explore our latest thoughts, guides, and ideas — from practical tips to deeper insights designed to inform, inspire, and keep you ahead.",
+      "image": "__metaImage__"
+    }
+  },
+  "forms": [
+    {
+      "title": "Contact Form",
+      "confirmationType": "message",
+      "submitButtonLabel": "Submit",
+      "confirmationMessage": {
+        "root": {
+          "type": "root",
+          "children": [
+            {
+              "type": "heading",
+              "tag": "h2",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "The contact form has been submitted successfully."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "emails": [
+        {
+          "emailFrom": "\"Payload\" <demo@payloadcms.com>",
+          "emailTo": "{{email}}",
+          "subject": "You've received a new message.",
+          "message": {
+            "root": {
+              "type": "root",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Your contact form submission was successfully received. "
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "({{*:table}})"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "fields": [
+        {
+          "blockType": "text",
+          "blockName": "full-name",
+          "name": "full-name",
+          "label": "Full Name",
+          "required": true,
+          "width": 100
+        },
+        {
+          "blockType": "email",
+          "blockName": "email",
+          "name": "email",
+          "label": "Email",
+          "required": true,
+          "width": 100
+        },
+        {
+          "blockType": "number",
+          "blockName": "phone",
+          "name": "phone",
+          "label": "Phone",
+          "required": false,
+          "width": 100
+        },
+        {
+          "blockType": "textarea",
+          "blockName": "message",
+          "name": "message",
+          "label": "Message",
+          "required": true,
+          "width": 100
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "slug": "home",
+      "_status": "published",
+      "title": "Home",
+      "hero": {
+        "type": "highImpact",
+        "media": "__HERO_IMAGE__",
+        "links": [
+          {
+            "link": {
+              "type": "custom",
+              "appearance": "default",
+              "label": "All posts",
+              "url": "/posts"
+            }
+          },
+          {
+            "link": {
+              "type": "custom",
+              "appearance": "outline",
+              "label": "Contact",
+              "url": "/contact"
+            }
+          }
+        ],
+        "richText": {
+          "root": {
+            "type": "root",
+            "children": [
+              {
+                "tag": "h1",
+                "type": "heading",
+                "format": "",
+                "indent": 0,
+                "version": 1,
+                "children": [
+                  {
+                    "mode": "normal",
+                    "text": "Payload CMS Template",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  }
+                ],
+                "direction": "ltr"
+              },
+              {
+                "type": "paragraph",
+                "format": "",
+                "indent": 0,
+                "version": 1,
+                "children": [
+                  {
+                    "type": "link",
+                    "fields": {
+                      "url": "/admin",
+                      "newTab": true,
+                      "linkType": "custom"
+                    },
+                    "format": "",
+                    "indent": 0,
+                    "version": 3,
+                    "children": [
+                      {
+                        "mode": "normal",
+                        "text": "Visit the admin dashboard",
+                        "type": "text",
+                        "style": "",
+                        "detail": 0,
+                        "format": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "mode": "normal",
+                    "text": " to begin managing this site's content. ",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  },
+                  {
+                    "type": "linebreak",
+                    "version": 1
+                  },
+                  {
+                    "mode": "normal",
+                    "text": "The code for this template is completely open-source and can be found ",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  },
+                  {
+                    "type": "link",
+                    "fields": {
+                      "url": "https://github.com/giladfuchs/payload-cms",
+                      "newTab": true,
+                      "linkType": "custom"
+                    },
+                    "format": "",
+                    "indent": 0,
+                    "version": 3,
+                    "children": [
+                      {
+                        "mode": "normal",
+                        "text": "on our Github",
+                        "type": "text",
+                        "style": "",
+                        "detail": 0,
+                        "format": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "mode": "normal",
+                    "text": ". ",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  },
+                  {
+                    "type": "linebreak",
+                    "version": 1
+                  },
+                  {
+                    "mode": "normal",
+                    "text": "If you’re looking for a full ecommerce template, you can visit ",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  },
+                  {
+                    "type": "link",
+                    "fields": {
+                      "url": "https://payload.url-link.org",
+                      "newTab": true,
+                      "linkType": "custom"
+                    },
+                    "format": "",
+                    "indent": 0,
+                    "version": 3,
+                    "children": [
+                      {
+                        "mode": "normal",
+                        "text": "Payload Ecommerce",
+                        "type": "text",
+                        "style": "",
+                        "detail": 0,
+                        "format": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "mode": "normal",
+                    "text": ".",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 0,
+                    "version": 1
+                  }
+                ],
+                "direction": "ltr",
+                "textStyle": "",
+                "textFormat": 0
+              },
+              {
+                "type": "paragraph",
+                "format": "",
+                "indent": 0,
+                "version": 1,
+                "children": [
+                  {
+                    "mode": "normal",
+                    "text": "Below you have examples of blocks you can build.",
+                    "type": "text",
+                    "style": "",
+                    "detail": 0,
+                    "format": 1,
+                    "version": 1
+                  }
+                ],
+                "direction": null,
+                "textStyle": "",
+                "textFormat": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "version": 1
+          }
+        }
+      },
+      "layout": [
+        {
+          "blockName": "Content Block",
+          "blockType": "content",
+          "columns": [
+            {
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "Core features (Content Block)",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h2",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "ltr",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "full"
+            },
+            {
+              "enableLink": false,
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "Admin Dashboard",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h3",
+                      "version": 1
+                    },
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "Manage this site's pages and posts from the ",
+                          "version": 1
+                        },
+                        {
+                          "type": "link",
+                          "children": [
+                            {
+                              "type": "text",
+                              "detail": 0,
+                              "format": 0,
+                              "mode": "normal",
+                              "style": "",
+                              "text": "admin dashboard",
+                              "version": 1
+                            }
+                          ],
+                          "direction": "ltr",
+                          "fields": {
+                            "linkType": "custom",
+                            "newTab": false,
+                            "url": "/admin"
+                          },
+                          "format": "",
+                          "indent": 0,
+                          "version": 2
+                        },
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": ".",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "format": "",
+                      "indent": 0,
+                      "textFormat": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": "ltr",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "oneThird"
+            },
+            {
+              "enableLink": false,
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "Preview",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h3",
+                      "version": 1
+                    },
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "Using versions, drafts, and preview, editors can review and share their changes before publishing them.",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "format": "",
+                      "indent": 0,
+                      "textFormat": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": "ltr",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "oneThird"
+            },
+            {
+              "enableLink": false,
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "Page Builder",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h3",
+                      "version": 1
+                    },
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "Custom page builder allows you to create unique page, post, and project layouts for any type of content.",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "format": "",
+                      "indent": 0,
+                      "textFormat": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": "ltr",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "oneThird"
+            },
+            {
+              "enableLink": false,
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "SEO",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h3",
+                      "version": 1
+                    },
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "Editors have complete control over SEO data and site content directly from the ",
+                          "version": 1
+                        },
+                        {
+                          "type": "link",
+                          "children": [
+                            {
+                              "type": "text",
+                              "detail": 0,
+                              "format": 0,
+                              "mode": "normal",
+                              "style": "",
+                              "text": "admin dashboard",
+                              "version": 1
+                            }
+                          ],
+                          "direction": "ltr",
+                          "fields": {
+                            "linkType": "custom",
+                            "newTab": false,
+                            "url": "/admin"
+                          },
+                          "format": "",
+                          "indent": 0,
+                          "version": 2
+                        },
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": ".",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "format": "",
+                      "indent": 0,
+                      "textFormat": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": "ltr",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "oneThird"
+            },
+            {
+              "enableLink": false,
+              "richText": {
+                "root": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "heading",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "Dark Mode",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "format": "",
+                      "indent": 0,
+                      "tag": "h3",
+                      "version": 1
+                    },
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "Users will experience this site in their preferred color scheme and each block can be inverted.",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "format": "",
+                      "indent": 0,
+                      "textFormat": 0,
+                      "version": 1
+                    }
+                  ],
+                  "direction": "ltr",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1
+                }
+              },
+              "size": "oneThird"
+            }
+          ]
+        },
+        {
+          "blockName": "Media Block",
+          "blockType": "mediaBlock",
+          "media": "__META_IMAGE__"
+        },
+        {
+          "blockName": "Archive Block",
+          "blockType": "archive",
+          "categories": [],
+          "introContent": {
+            "root": {
+              "type": "root",
+              "children": [
+                {
+                  "type": "heading",
+                  "children": [
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "Recent posts(Archive Block)",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "ltr",
+                  "format": "",
+                  "indent": 0,
+                  "tag": "h3",
+                  "version": 1
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "The posts below are displayed in an \"Archive\" layout building block which is an extremely powerful way to display documents on a page. It can be auto-populated by collection or by category, or posts can be individually selected. Pagination controls will automatically appear if the number of results exceeds the number of items per page.",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "ltr",
+                  "format": "",
+                  "indent": 0,
+                  "textFormat": 0,
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "version": 1
+            }
+          },
+          "populateBy": "collection",
+          "relationTo": "posts"
+        },
+        {
+          "blockName": "CTA",
+          "blockType": "cta",
+          "links": [
+            {
+              "link": {
+                "type": "custom",
+                "appearance": "default",
+                "label": "All posts",
+                "url": "/posts"
+              }
+            }
+          ],
+          "richText": {
+            "root": {
+              "type": "root",
+              "children": [
+                {
+                  "type": "heading",
+                  "children": [
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "This is a call to action(CTA)",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "ltr",
+                  "format": "",
+                  "indent": 0,
+                  "tag": "h3",
+                  "version": 1
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "This is a custom layout building block ",
+                      "version": 1
+                    },
+                    {
+                      "type": "link",
+                      "children": [
+                        {
+                          "type": "text",
+                          "detail": 0,
+                          "format": 0,
+                          "mode": "normal",
+                          "style": "",
+                          "text": "configured in the admin dashboard",
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "fields": {
+                        "linkType": "custom",
+                        "newTab": false,
+                        "url": "/admin"
+                      },
+                      "format": "",
+                      "indent": 0,
+                      "version": 2
+                    },
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": ".",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "ltr",
+                  "format": "",
+                  "indent": 0,
+                  "textFormat": 0,
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "version": 1
+            }
+          }
+        },
+        {
+          "blockName": "HTML Embed",
+          "blockType": "htmlEmbed",
+          "contentHtml": "<div style=\"position: relative; height: 24rem; width: 100%; overflow: hidden; border-radius: 1rem; font-family: sans-serif;\">\n  <img\n    src=\"https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop\"\n    alt=\"HTML Embed Demo\"\n    style=\"position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;\"\n  />\n\n  <div style=\"position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2));\"></div>\n\n  <div style=\"position: relative; z-index: 1; display: flex; height: 100%; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 2rem; text-align: center;\">\n    <h2 style=\"margin: 0; font-size: 2rem; font-weight: 700; color: white;\">\n      HTML Embed Block\n    </h2>\n\n    <p style=\"margin: 0; max-width: 36rem; font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.9);\">\n      This section is rendered using raw HTML inside Payload CMS.<br/>\n      You can fully customize layout, styles, and behavior without React components.\n    </p>\n\n    <div style=\"display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;\">\n      <span style=\"background: white; color: black; padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600;\">Custom Layout</span>\n      <span style=\"background: white; color: black; padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600;\">Inline Styles</span>\n      <span style=\"background: white; color: black; padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600;\">Flexible Design</span>\n    </div>\n\n    </div>\n</div>"
+        },
+        {
+          "blockName": "Gallery",
+          "blockType": "gallery",
+          "title": "Gallery Block",
+          "images": [
+            { "image": "__GALLERY_IMAGE_1__" },
+            { "image": "__GALLERY_IMAGE_2__" },
+            { "image": "__GALLERY_IMAGE_3__" },
+            { "image": "__GALLERY_IMAGE_4__" }
+          ]
+        },
+        {
+          "blockName": "FAQs",
+          "blockType": "faqs",
+          "title": "Frequently Asked Questions(FAQs)",
+          "faqs": [
+            {
+              "question": "What is this project?",
+              "answer": "This is a flexible CMS template for building a content website and blog, powered by Payload CMS and Next.js."
+            },
+            {
+              "question": "Can I manage content from the admin panel?",
+              "answer": "Yes, all pages, blocks, and content can be edited directly from the Payload admin dashboard."
+            },
+            {
+              "question": "Is this suitable for production use?",
+              "answer": "Yes, the project is designed to be production-ready with proper structure, SEO support, and scalability."
+            },
+            {
+              "question": "Can I add my own blocks?",
+              "answer": "Absolutely. You can create and register custom blocks to extend the layout system as needed."
+            },
+            {
+              "question": "Does it support multiple languages?",
+              "answer": "The template is ready to be extended for multi-language support if needed."
+            }
+          ]
+        }
+      ],
+      "meta": {
+        "title": "Payload Website Template",
+        "description": "An open-source website built with Payload and Next.js.",
+        "image": "__HERO_IMAGE__"
+      }
+    },
+
+    {
+      "slug": "contact",
+      "_status": "published",
+      "title": "Contact",
+      "hero": {
+        "type": "none"
+      },
+      "meta": {
+        "title": "Contact Us",
+        "description": "Reach out to us for any questions, feedback, or inquiries.",
+        "image": "__META_IMAGE__"
+      },
+      "layout": [
+        {
+          "blockType": "formBlock",
+          "enableIntro": true,
+          "form": "__FORM__",
+          "introContent": {
+            "root": {
+              "type": "root",
+              "children": [
+                {
+                  "type": "heading",
+                  "tag": "h3",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Example contact form:"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "comments": [
+        {
+          "authorName": "Emily Carter",
+          "authorEmail": "emily.carter@example.com",
+          "body": "This was a fantastic read. The deep dive into how AI is shifting from simple automation to complex decision-making was particularly insightful for my current project."
+        },
+        {
+          "authorName": "Daniel Green",
+          "authorEmail": "daniel.green@example.com",
+          "body": "Excellent breakdown of the modern tech landscape. The section on IoT really clarified how the 'connected ecosystem' actually functions in a practical sense. Thanks for sharing!"
+        }
+      ],
+      "slug": "digital-horizons-innovation",
+      "_status": "published",
+      "author": "Johnathan Doe",
+      "readTime": 4,
+      "title": "Digital Horizons: Navigating the Future of Innovation",
+      "relatedPosts": [],
+      "heroImage": "__HERO_IMAGE__",
+      "meta": {
+        "description": "Explore the cutting-edge developments in AI and IoT that are redefining our world. Discover how data and connectivity are crafting the next era of human experience.",
+        "image": "__HERO_IMAGE__",
+        "title": "Digital Horizons: Navigating the Future of Innovation"
+      },
+      "content": {
+        "root": {
+          "type": "root",
+          "children": [
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "The only constant in modern technology is change. We are currently embarking on a journey where pixels, connectivity, and big data converge to redefine the human experience.",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Disclaimer",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 1,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "Mock Content:",
+                            "version": 1
+                          },
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": " This post is for demonstration purposes. To modify this content, please ",
+                            "version": 1
+                          },
+                          {
+                            "type": "link",
+                            "children": [
+                              {
+                                "type": "text",
+                                "detail": 0,
+                                "format": 0,
+                                "mode": "normal",
+                                "style": "",
+                                "text": "log into your admin dashboard",
+                                "version": 1
+                              }
+                            ],
+                            "direction": "ltr",
+                            "fields": {
+                              "linkType": "custom",
+                              "newTab": true,
+                              "url": "/admin"
+                            },
+                            "format": "",
+                            "indent": 0,
+                            "version": 3
+                          },
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": ".",
+                            "version": 1
+                          }
+                        ],
+                        "direction": "ltr",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "The Evolution of AI and Machine Learning",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "We have entered a transformative era where artificial intelligence (AI) is the primary engine of technological growth. The ripple effects of machine learning are reshaping global industries at a staggering pace. Today, businesses are no longer limited by manual processes; instead, they leverage sophisticated models that turn historical data into actionable foresight. These systems are not merely optimizing existing workflows—they are pioneering entirely new business models that were once considered impossible.",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "Technical Implementation: Interfacing with Generative Models",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "tag": "h4",
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Generate Text Snippet",
+                "blockType": "code",
+                "code": "async function generateAIContent(prompt) {\n    const apiKey = 'your-api-key';\n    const apiUrl = 'https://api.example.com/v1/generate';\n\n    try {\n        const response = await fetch(apiUrl, {\n            method: 'POST',\n            headers: {\n                'Content-Type': 'application/json',\n                'Authorization': `Bearer ${apiKey}`\n            },\n            body: JSON.stringify({\n                model: 'gpt-next-gen',\n                prompt: prompt,\n                temperature: 0.7\n            })\n        });\n\n        const result = await response.json();\n        console.log('AI Response:', result.text);\n    } catch (error) {\n        console.error('API Error:', error);\n    }\n}\n\n// Trigger the model\ngenerateAIContent(\"Describe the future of smart cities.\");\n",
+                "language": "javascript"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "IoT: A Seamlessly Connected World",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "The Internet of Things (IoT) is the invisible thread weaving through our daily lives. From intuitive smart homes that anticipate our needs to connected logistics that keep global trade moving, IoT’s influence is omnipresent. This revolution hinges on the effortless communication between hardware and software, creating a global ecosystem where convenience and efficiency are baked into our environment.",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Featured Image",
+                "blockType": "mediaBlock",
+                "media": "__BLOCK_IMAGE__"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Dynamic Component Info",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "Note: The layout above is fully modular. By utilizing the Payload CMS block system, developers can create rich, responsive experiences that blend static text with interactive elements effortlessly.",
+                            "version": 1
+                          }
+                        ],
+                        "direction": "ltr",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "version": 1
+        }
+      }
+    },
+
+    {
+      "comments": [
+        {
+          "authorName": "Marcus Thorne",
+          "authorEmail": "m.thorne@globalpress.org",
+          "body": "This is exactly what modern journalism is missing. We often get lost in the statistics of a crisis and forget the human stories of rebuilding and solidarity that follow."
+        },
+        {
+          "authorName": "Sarah Al-Rashid",
+          "authorEmail": "sarah.rashid@humanitywatch.com",
+          "body": "The section on community-led rescue teams really resonated with me. I've seen this first-hand in flood-affected regions; resilience isn't just a word, it's a survival strategy."
+        },
+        {
+          "authorName": "Elena Rodriguez",
+          "authorEmail": "elena.rod@sociologytoday.edu",
+          "body": "A powerful reminder that even in the darkest economic times, the social fabric of a city is its greatest asset. Looking forward to more 'untold' stories like this one."
+        }
+      ],
+      "slug": "global-gaze",
+      "_status": "published",
+      "author": "Jane Smith",
+      "readTime": 4,
+      "title": "Global Gaze: Beyond the Headlines",
+      "relatedPosts": [],
+      "heroImage": "__HERO_IMAGE__",
+      "meta": {
+        "description": "Explore the untold and overlooked. A magnified view into the corners of the world, where every story deserves its spotlight.",
+        "image": "__HERO_IMAGE__",
+        "title": "Global Gaze: Beyond the Headlines"
+      },
+      "content": {
+        "root": {
+          "type": "root",
+          "children": [
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "The power of the human spirit is often found in the margins. We explore the narratives that slip through the cracks of the 24-hour news cycle.",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Disclaimer",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 1,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "Editor's Note:",
+                            "version": 1
+                          },
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": " This content is for demonstration purposes. To modify these stories, please ",
+                            "version": 1
+                          },
+                          {
+                            "type": "link",
+                            "children": [
+                              {
+                                "type": "text",
+                                "detail": 0,
+                                "format": 0,
+                                "mode": "normal",
+                                "style": "",
+                                "text": "access the administrative panel",
+                                "version": 1
+                              }
+                            ],
+                            "direction": "ltr",
+                            "fields": {
+                              "linkType": "custom",
+                              "newTab": true,
+                              "url": "/admin"
+                            },
+                            "format": "",
+                            "indent": 0,
+                            "version": 3
+                          },
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": ".",
+                            "version": 1
+                          }
+                        ],
+                        "direction": "ltr",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 1,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "The Architecture of Resilience: Hope in Recovery",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "Throughout history, humanity has faced the staggering impacts of natural disasters, political upheaval, and economic volatility. Yet, in these moments of crisis, an indomitable force consistently emerges: the collective resilience of the human spirit. These are not merely tales of survival, but of communities forging unbreakable bonds and demonstrating an innate ability to rebuild from the ashes.",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Community Action",
+                "blockType": "mediaBlock",
+                "media": "__BLOCK_IMAGE__"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "From local neighborhoods organizing grassroots rescue missions to entire cities reinventing their local economies, the essence of humanity is most visible through solidarity. As we explore these narratives, we see how adversity acts as a catalyst for profound growth and a more interconnected global future.",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Dynamic Layout",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "This editorial layout is built with modular CMS blocks, allowing for a seamless blend of immersive storytelling and interactive media components.",
+                            "version": 1
+                          }
+                        ],
+                        "direction": "ltr",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "version": 1
+        }
+      }
+    },
+
+    {
+      "comments": [
+        {
+          "authorName": "Julian Vane",
+          "authorEmail": "j.vane@equityanalysts.com",
+          "body": "The comparison of money to a language is brilliant. Understanding the 'syntax' of the market is what separates the gamblers from the actual strategists."
+        },
+        {
+          "authorName": "Katherine Wu",
+          "authorEmail": "katherine.wu@fintechweekly.io",
+          "body": "I love the focus on the 'uncertain middle.' Everyone talks about the Bulls and Bears, but most of the real work happens in that gray area where sentiment hasn't quite shifted yet."
+        },
+        {
+          "authorName": "David Miller",
+          "authorEmail": "dmiller@wealthmgmt.net",
+          "body": "Spot on regarding investor psychology. You can have all the data in the world, but if you don't understand how other humans will react to it, you're only seeing half the picture."
+        }
+      ],
+      "slug": "dollar-and-sense-financial-forecast",
+      "_status": "published",
+      "author": "Alex Brown",
+      "readTime": 4,
+      "title": "Dollar and Sense: The Financial Forecast",
+      "relatedPosts": [],
+      "heroImage": "__HERO_IMAGE__",
+      "meta": {
+        "description": "Money isn't just currency; it's a language. Dive deep into its nuances, where strategy meets intuition in the vast sea of global finance.",
+        "image": "__HERO_IMAGE__",
+        "title": "Dollar and Sense: The Financial Forecast"
+      },
+      "content": {
+        "root": {
+          "type": "root",
+          "children": [
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Disclaimer",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 1,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "Financial Notice: ",
+                            "version": 1
+                          },
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "This content is a simulation for demonstration. To manage these financial insights, please ",
+                            "version": 1
+                          },
+                          {
+                            "type": "link",
+                            "children": [
+                              {
+                                "type": "text",
+                                "detail": 0,
+                                "format": 0,
+                                "mode": "normal",
+                                "style": "",
+                                "text": "visit the admin dashboard.",
+                                "version": 1
+                              }
+                            ],
+                            "direction": "ltr",
+                            "fields": {
+                              "linkType": "custom",
+                              "newTab": true,
+                              "url": "/admin"
+                            },
+                            "format": "",
+                            "indent": 0,
+                            "version": 3
+                          }
+                        ],
+                        "direction": "ltr",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 1,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "Currency as Communication: Decoding the Market",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "At its core, money transcends the physical boundaries of coins and paper; it is a profound language that articulates value, trust, and the underlying structure of society. Like any dialect, it possesses intricate nuances. It is within these depths that the cold logic of financial strategy meets the raw, instinctive pulse of human intuition. Financial experts do not just analyze data—they navigate a tumultuous ocean of sentiment, guided as much by foresight and 'gut feeling' as they are by technical charts.",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Market Analysis",
+                "blockType": "mediaBlock",
+                "media": "__BLOCK_IMAGE__"
+              },
+              "format": "",
+              "version": 2
+            },
+            {
+              "type": "heading",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "Market Dynamics: Bulls, Bears, and the Grey Zone",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "tag": "h2",
+              "version": 1
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "The stock market is a landscape defined as much by human behavior as by pure economics. It is a theater where the optimism of the Bull meets the caution of the Bear. Between these extremes lies the 'uncertain middle'—a zone where the most astute investors operate by weighing collective hope against systemic fear. Success here requires more than financial acumen; it requires the ability to predict how the crowd will react before the move even begins.",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "textFormat": 0,
+              "version": 1
+            },
+            {
+              "type": "block",
+              "fields": {
+                "blockName": "Interactive Content",
+                "blockType": "banner",
+                "content": {
+                  "root": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": "This financial overview is powered by a modular CMS architecture, allowing for real-time updates and dynamic data visualization within a clean, editorial framework.",
+                            "version": 1
+                          }
+                        ],
+                        "direction": "ltr",
+                        "format": "",
+                        "indent": 0,
+                        "textFormat": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1
+                  }
+                },
+                "style": "info"
+              },
+              "format": "",
+              "version": 2
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "version": 1
+        }
+      }
+    }
+  ]
+}
