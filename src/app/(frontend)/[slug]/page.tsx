@@ -15,7 +15,7 @@ import {
 import { buildMetadata } from "@/lib/seo/metadata";
 
 export const dynamic = "force-static";
-export const revalidate = false;
+
 export async function generateMetadata({
   params,
 }: PropsSlug): Promise<Metadata> {
