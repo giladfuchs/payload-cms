@@ -9,8 +9,12 @@ import GalleryBlock from "@/components/blocks/Gallery/Component";
 import HtmlEmbedBlock from "@/components/blocks/HtmlEmbed/Component";
 import { MediaBlock } from "@/components/blocks/MediaBlock/Component";
 import RichText from "@/components/ui/rich-text";
+import {HeroBasicBlock} from "@/blocks/HeroBasic/Component";
+import {FeatureBentoBlock} from "@/blocks/FeatureBento/Component";
 
 const blockComponents = {
+  featureBento: FeatureBentoBlock,
+  heroBasic: HeroBasicBlock,
   archive: ArchiveBlock,
   content: ContentBlock,
   cta: CallToActionBlock,

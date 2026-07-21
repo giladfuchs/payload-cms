@@ -10,7 +10,7 @@ import { fields } from "./fields";
 import type { FormBlockProps } from "@/lib/core/types/types";
 import type { FormFieldBlock } from "@payloadcms/plugin-form-builder/types";
 
-import Button from "@/components/ui/button";
+import ButtonOriginal from "@/components/ui/button-original";
 import RichText from "@/components/ui/rich-text";
 import { postJson } from "@/lib/core/utilities";
 
@@ -126,7 +126,7 @@ export default function FormBlockClient({
                 <div className="mb-4">{`${error.status || "500"}: ${error.message || ""}`}</div>
               )}
 
-              <Button
+              <ButtonOriginal
                 form={String(form.id)}
                 eventName={form.title}
                 type="submit"
@@ -140,7 +140,7 @@ export default function FormBlockClient({
                   )}
                   <span>{form.submitButtonLabel}</span>
                 </span>
-              </Button>
+              </ButtonOriginal>
             </form>
           )}
 

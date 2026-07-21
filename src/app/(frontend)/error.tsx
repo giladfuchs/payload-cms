@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
-import Button from "@/components/ui/button";
+import ButtonOriginal from "@/components/ui/button-original";
 
 export default function Error({ reset }: { reset: () => void }) {
   const t = useTranslations("general");
@@ -18,13 +18,13 @@ export default function Error({ reset }: { reset: () => void }) {
           {t("somethingWentWrongDescription")}
         </p>
 
-        <Button
+        <ButtonOriginal
           onClick={reset}
           variant="nav"
           className="mt-6 w-full rounded-lg bg-blue-600 px-4 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
         >
           {t("tryAgain")}
-        </Button>
+        </ButtonOriginal>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import type { Form } from "@payloadcms/plugin-form-builder/types";
 import type { DefaultTypedEditorState } from "@payloadcms/richtext-lexical";
 
 import { FormBlockWrapper } from "@/components/shared/wrappers";
-import Card from "@/components/ui/card";
+import CardOriginal from "@/components/ui/cardOriginal";
 import { CollectionName } from "@/lib/core/types/types";
 import { formatDate } from "@/lib/core/utilities";
 
@@ -216,7 +216,7 @@ export async function RelatedPosts({
           if (typeof doc === "string") return null;
 
           return (
-            <Card
+            <CardOriginal
               key={index}
               doc={{ relationTo: CollectionName.posts, value: doc }}
             />

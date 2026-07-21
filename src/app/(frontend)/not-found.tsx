@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
-import Button from "@/components/ui/button";
+import ButtonOriginal from "@/components/ui/button-original";
 
 export default async function NotFound() {
   const t = await getTranslations("general");
@@ -14,9 +14,9 @@ export default async function NotFound() {
       </div>
 
       <div className="mt-8">
-        <Button>
+        <ButtonOriginal>
           <Link href="/">{t("goHome")}</Link>
-        </Button>
+        </ButtonOriginal>
       </div>
     </div>
   );

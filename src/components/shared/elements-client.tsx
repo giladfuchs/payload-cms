@@ -24,7 +24,7 @@ import type {
   PayloadMeUser,
 } from "@payloadcms/admin-bar";
 
-import Button from "@/components/ui/button";
+import ButtonOriginal from "@/components/ui/button-original";
 import CMSLink from "@/components/ui/cms-link";
 import appConfig from "@/lib/core/config";
 import { cn } from "@/lib/core/utilities";
@@ -93,7 +93,7 @@ export const ThemeSelectorClient = () => {
   const isDark = theme === "dark";
 
   return (
-    <Button
+    <ButtonOriginal
       variant="ghost"
       size="icon"
       aria-label={t("toggle_theme")}
@@ -105,7 +105,7 @@ export const ThemeSelectorClient = () => {
       ) : (
         <FiMoon className="size-5 text-blue-400" />
       )}
-    </Button>
+    </ButtonOriginal>
   );
 };
 

@@ -1,6 +1,6 @@
 import type { CardDocData } from "@/lib/core/types/types";
 
-import Card from "@/components/ui/card";
+import CardOriginal from "@/components/ui/cardOriginal";
 
 export default function Cards({ posts }: { posts: CardDocData[] }) {
   return (
@@ -10,7 +10,7 @@ export default function Cards({ posts }: { posts: CardDocData[] }) {
           if (typeof result === "object" && result !== null) {
             return (
               <div className="col-span-4" key={index}>
-                <Card className="h-full" doc={result} />
+                <CardOriginal className="h-full" doc={result} />
               </div>
             );
           }

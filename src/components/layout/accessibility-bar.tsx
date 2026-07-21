@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type ComponentType } from "react";
 import { RiWheelchairLine } from "react-icons/ri";
 
 import { createAccessibilityButtons } from "@/components/shared/elements-client";
-import Button from "@/components/ui/button";
+import ButtonOriginal from "@/components/ui/button-original";
 
 type ActionItemProps = {
   label: string;
@@ -21,7 +21,7 @@ const ActionItem = ({
   selected,
 }: ActionItemProps) => {
   return (
-    <Button
+    <ButtonOriginal
       variant="select"
       selected={selected}
       onClick={onClick}
@@ -29,7 +29,7 @@ const ActionItem = ({
     >
       <span>{label}</span>
       <Icon className="h-4 w-4 shrink-0" />
-    </Button>
+    </ButtonOriginal>
   );
 };
 
@@ -98,12 +98,12 @@ export default function AccessibilityBarClient() {
 
   return (
     <div className="fixed bottom-16 left-0 z-[999999] flex items-center">
-      <Button
+      <ButtonOriginal
         onClick={() => setOpen((v) => !v)}
         className="h-10 w-10 rounded-r-full rounded-l-none bg-black p-0 text-white shadow-lg"
       >
         <RiWheelchairLine className="h-5 w-5" />
-      </Button>
+      </ButtonOriginal>
 
       {open && (
         <div
