@@ -1,4 +1,4 @@
-import type { Field } from 'payload'
+import type { Field } from "payload";
 
 import { linkGroup } from "@/lib/collections/fields/linkGroup";
 
@@ -15,17 +15,17 @@ import { linkGroup } from "@/lib/collections/fields/linkGroup";
  */
 export const heroFields: Field[] = [
   {
-    name: 'eyebrow',
-    type: 'text',
+    name: "eyebrow",
+    type: "text",
   },
   {
-    name: 'title',
-    type: 'text',
+    name: "title",
+    type: "text",
     required: true,
   },
   {
-    name: 'description',
-    type: 'textarea',
+    name: "description",
+    type: "textarea",
     required: true,
   },
   linkGroup({
@@ -37,4 +37,4 @@ export const heroFields: Field[] = [
       minRows: 1,
     },
   }),
-]
+];

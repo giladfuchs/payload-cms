@@ -1,5 +1,7 @@
 import type { CollectionConfig, Field } from "payload";
 
+import { FeatureBento } from "@/blocks/FeatureBento/config";
+import { HeroBasic } from "@/blocks/HeroBasic/config";
 import { Archive } from "@/components/blocks/ArchiveBlock/config";
 import { CallToAction } from "@/components/blocks/CallToAction/config";
 import { Content, RichTextBlock } from "@/components/blocks/Content/config";
@@ -19,8 +21,6 @@ import {
 } from "@/lib/collections/fields/base-fields";
 import { makeRevalidateHooks } from "@/lib/collections/hooks";
 import { CollectionName } from "@/lib/core/types/types";
-import {HeroBasic} from "@/blocks/HeroBasic/config";
-import {FeatureBento} from "@/blocks/FeatureBento/config";
 
 export const Pages: CollectionConfig = {
   slug: "pages",

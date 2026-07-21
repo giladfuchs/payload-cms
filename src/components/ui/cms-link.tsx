@@ -3,7 +3,9 @@ import Link from "next/link";
 import type { Page, Post } from "@/lib/core/types/payload-types";
 import type { ReactNode } from "react";
 
-import ButtonOriginal, { type ButtonProps } from "@/components/ui/button-original";
+import ButtonOriginal, {
+  type ButtonProps,
+} from "@/components/ui/button-original";
 
 type CMSLinkType = {
   appearance?: "inline" | ButtonProps["variant"] | null;

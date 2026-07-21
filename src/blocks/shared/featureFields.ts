@@ -1,4 +1,4 @@
-import type { Field } from 'payload'
+import type { Field } from "payload";
 
 /**
  * Shared field core for the Feature component family.
@@ -15,16 +15,16 @@ import type { Field } from 'payload'
  */
 export const featureFields: Field[] = [
   {
-    name: 'eyebrow',
-    type: 'text',
+    name: "eyebrow",
+    type: "text",
   },
   {
-    name: 'title',
-    type: 'text',
+    name: "title",
+    type: "text",
     required: true,
   },
   {
-    name: 'description',
-    type: 'textarea',
+    name: "description",
+    type: "textarea",
   },
-]
+];

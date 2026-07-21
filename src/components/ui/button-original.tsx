@@ -51,15 +51,15 @@ const variantClass: Record<ButtonVariant, string> = {
 };
 
 export default function ButtonOriginal({
-                                 className,
-                                 variant = "default",
-                                 size = "default",
-                                 selected = false,
-                                 type = "button",
-                                 eventName,
-                                 onClick,
-                                 ...props
-                               }: ButtonProps) {
+  className,
+  variant = "default",
+  size = "default",
+  selected = false,
+  type = "button",
+  eventName,
+  onClick,
+  ...props
+}: ButtonProps) {
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     if (eventName)
       trackPixelEvent(eventName.trim().toLowerCase().replace(/\s+/g, "_"));

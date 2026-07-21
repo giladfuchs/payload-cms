@@ -1,5 +1,7 @@
 import type { Page } from "@/lib/core/types/payload-types";
 
+import { FeatureBentoBlock } from "@/blocks/FeatureBento/Component";
+import { HeroBasicBlock } from "@/blocks/HeroBasic/Component";
 import { ArchiveBlock } from "@/components/blocks/ArchiveBlock/Component";
 import { CallToActionBlock } from "@/components/blocks/CallToAction/Component";
 import ContentBlock from "@/components/blocks/Content/Component";
@@ -9,8 +11,6 @@ import GalleryBlock from "@/components/blocks/Gallery/Component";
 import HtmlEmbedBlock from "@/components/blocks/HtmlEmbed/Component";
 import { MediaBlock } from "@/components/blocks/MediaBlock/Component";
 import RichText from "@/components/ui/rich-text";
-import {HeroBasicBlock} from "@/blocks/HeroBasic/Component";
-import {FeatureBentoBlock} from "@/blocks/FeatureBento/Component";
 
 const blockComponents = {
   featureBento: FeatureBentoBlock,
