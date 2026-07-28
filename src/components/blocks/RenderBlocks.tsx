@@ -2,6 +2,7 @@ import type { Page } from "@/lib/core/types/payload-types";
 
 import { FeatureBentoBlock } from "@/blocks/FeatureBento/Component";
 import { HeroBasicBlock } from "@/blocks/HeroBasic/Component";
+import { IntegrationGridBlock } from "@/blocks/IntegrationGrid/Component";
 import { ArchiveBlock } from "@/components/blocks/ArchiveBlock/Component";
 import { CallToActionBlock } from "@/components/blocks/CallToAction/Component";
 import ContentBlock from "@/components/blocks/Content/Component";
@@ -15,6 +16,7 @@ import RichText from "@/components/ui/rich-text";
 const blockComponents = {
   featureBento: FeatureBentoBlock,
   heroBasic: HeroBasicBlock,
+  integrationGrid: IntegrationGridBlock,
   archive: ArchiveBlock,
   content: ContentBlock,
   cta: CallToActionBlock,
