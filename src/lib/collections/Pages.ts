@@ -2,6 +2,7 @@ import type { CollectionConfig, Field } from "payload";
 
 import { FeatureBento } from "@/blocks/FeatureBento/config";
 import { HeroBasic } from "@/blocks/HeroBasic/config";
+import { IntegrationGrid } from "@/blocks/IntegrationGrid/config";
 import { Archive } from "@/components/blocks/ArchiveBlock/config";
 import { CallToAction } from "@/components/blocks/CallToAction/config";
 import { Content, RichTextBlock } from "@/components/blocks/Content/config";
@@ -63,6 +64,7 @@ export const Pages: CollectionConfig = {
                 FeatureBento,
                 Faqs,
                 HeroBasic,
+                IntegrationGrid,
                 HtmlEmbed,
               ],
               required: true,

@@ -206,6 +206,7 @@ export interface Page {
     | FeatureBentoBlock
     | FaqsBlock
     | HeroBasicBlock
+    | IntegrationGridBlock
     | HtmlEmbedBlock
   )[];
   meta: {
@@ -798,6 +799,24 @@ export interface HeroBasicBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntegrationGridBlock".
+ */
+export interface IntegrationGridBlock {
+  heading: string;
+  subtext?: string | null;
+  integrations: {
+    logo: number | Media;
+    name: string;
+    description?: string | null;
+    href?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'integrationGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "HtmlEmbedBlock".
  */
 export interface HtmlEmbedBlock {
@@ -1106,6 +1125,7 @@ export interface PagesSelect<T extends boolean = true> {
         featureBento?: T | FeatureBentoBlockSelect<T>;
         faqs?: T | FaqsBlockSelect<T>;
         heroBasic?: T | HeroBasicBlockSelect<T>;
+        integrationGrid?: T | IntegrationGridBlockSelect<T>;
         htmlEmbed?: T | HtmlEmbedBlockSelect<T>;
       };
   meta?:
@@ -1303,6 +1323,25 @@ export interface HeroBasicBlockSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntegrationGridBlock_select".
+ */
+export interface IntegrationGridBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subtext?: T;
+  integrations?:
+    | T
+    | {
+        logo?: T;
+        name?: T;
+        description?: T;
+        href?: T;
         id?: T;
       };
   id?: T;
