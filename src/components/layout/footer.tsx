@@ -9,7 +9,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlinePhone, HiOutlineMail } from "react-icons/hi";
 import { TbWorld } from "react-icons/tb";
 
-import type { SiteSetting } from "@/lib/core/types/payload-types";
+import type { SiteSetting } from "@/payload-types";
 
 import ContentBlock from "@/components/blocks/Content/Component";
 import { AppActions } from "@/components/layout/header";

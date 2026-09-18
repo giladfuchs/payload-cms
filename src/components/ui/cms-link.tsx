@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-import type { Page, Post } from "@/lib/core/types/payload-types";
+import type { Blog, Page } from "@/payload-types";
 import type { ReactNode } from "react";
 
-import Button, { type ButtonProps } from "@/components/ui/button";
+import { buttonVariants, type ButtonProps } from "@/components/ui/button";
 
 type CMSLinkType = {
   appearance?: "inline" | ButtonProps["variant"] | null;
@@ -12,8 +12,8 @@ type CMSLinkType = {
   label?: string | null;
   newTab?: boolean | null;
   reference?: {
-    relationTo: "pages" | "posts";
-    value: Page | Post | string | number;
+    relationTo: "pages" | "blog";
+    value: Blog | Page | string | number;
   } | null;
   size?: ButtonProps["size"] | null;
   type?: "custom" | "reference" | null;
@@ -59,11 +59,13 @@ export default function CMSLink({
   }
 
   return (
-    <Button className={className} size={size} variant={appearance}>
-      <Link className={className} href={href} {...newTabProps}>
-        {label}
-        {children}
-      </Link>
-    </Button>
+    <Link
+      className={buttonVariants({ className, size, variant: appearance })}
+      href={href}
+      {...newTabProps}
+    >
+      {label}
+      {children}
+    </Link>
   );
 }

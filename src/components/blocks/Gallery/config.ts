@@ -18,7 +18,7 @@ export const Gallery: Block = {
         {
           name: "image",
           type: "upload",
-          relationTo: "media",
+          relationTo: "gallery-media",
           required: true,
         },
       ],

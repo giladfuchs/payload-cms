@@ -1,0 +1,304 @@
+{
+  "i18n": {
+    "plugin-redirects": {
+      "customUrl": "כתובת URL מותאמת אישית",
+      "documentToRedirect": "מסמך להפניה",
+      "fromUrl": "כתובת מקור",
+      "internalLink": "קישור פנימי",
+      "redirectType": "סוג הפניה",
+      "toUrlType": "סוג כתובת היעד"
+    }
+  },
+  "collections": {
+    "pages": {
+      "singular": "עמוד",
+      "plural": "עמודים"
+    },
+    "blog": {
+      "singular": "מאמר",
+      "plural": "מאמרים"
+    },
+    "media": {
+      "singular": "קובץ מדיה",
+      "plural": "קובצי מדיה"
+    },
+    "seo-media": {
+      "singular": "תמונת SEO",
+      "plural": "תמונות SEO"
+    },
+    "gallery-media": {
+      "singular": "תמונת גלריה",
+      "plural": "תמונות גלריה"
+    },
+    "users": {
+      "singular": "משתמש",
+      "plural": "משתמשים"
+    },
+    "blog-comments": {
+      "singular": "תגובת בלוג",
+      "plural": "תגובות בלוג"
+    },
+    "redirects": {
+      "singular": "הפניה",
+      "plural": "הפניות"
+    },
+    "forms": {
+      "singular": "טופס",
+      "plural": "טפסים"
+    },
+    "form-submissions": {
+      "singular": "הגשת טופס",
+      "plural": "הגשות טפסים"
+    }
+  },
+  "globals": {
+    "site-settings": "הגדרות האתר"
+  },
+  "navigationGroups": {
+    "content": {
+      "en": "Content",
+      "he": "תוכן",
+      "entities": ["pages", "blog", "blog-comments", "site-settings"]
+    },
+    "media": {
+      "en": "Media",
+      "he": "מדיה",
+      "entities": ["media", "seo-media", "gallery-media"]
+    },
+    "collectionsData": {
+      "en": "other",
+      "he": "אחר",
+      "entities": ["forms", "form-submissions", "redirects", "users"]
+    }
+  },
+  "blocks": {
+    "archive": {
+      "singular": "ארכיון",
+      "plural": "ארכיונים"
+    },
+    "banner": {
+      "singular": "באנר",
+      "plural": "באנרים"
+    },
+    "cta": {
+      "singular": "קריאה לפעולה",
+      "plural": "קריאות לפעולה"
+    },
+    "code": {
+      "singular": "קטע קוד",
+      "plural": "קטעי קוד"
+    },
+    "content": {
+      "singular": "אזור תוכן",
+      "plural": "אזורי תוכן"
+    },
+    "richText": {
+      "singular": "טקסט עשיר",
+      "plural": "אזורי טקסט עשיר"
+    },
+    "faqs": {
+      "singular": "שאלות נפוצות",
+      "plural": "שאלות נפוצות"
+    },
+    "formBlock": {
+      "singular": "טופס",
+      "plural": "בלוקי טופס"
+    },
+    "gallery": {
+      "singular": "גלריה",
+      "plural": "גלריות"
+    },
+    "htmlEmbed": {
+      "singular": "הטמעת HTML",
+      "plural": "הטמעות HTML"
+    },
+    "mediaBlock": {
+      "singular": "מדיה",
+      "plural": "בלוקי מדיה"
+    }
+  },
+  "fields": {
+    "alt": "טקסט חלופי",
+    "title": "כותרת",
+    "layout": "תוכן העמוד",
+    "heroImage": "תמונת פתיחה",
+    "content": "תוכן",
+    "comments": "תגובות",
+    "relatedArticles": "מאמרים קשורים",
+    "publishedAt": "מועד פרסום",
+    "author": "מחבר",
+    "readTime": "זמן קריאה",
+    "name": "שם",
+    "blog": "מאמר",
+    "authorName": "שם המגיב",
+    "authorEmail": "דוא״ל המגיב",
+    "body": "תגובה",
+    "general": "כללי",
+    "logo": "לוגו",
+    "whatsappNumber": "מספר WhatsApp",
+    "whatsappMessage": "הודעת WhatsApp",
+    "popup": "חלון קופץ",
+    "delaySeconds": "השהיה בשניות",
+    "repeatDays": "חזרה לאחר מספר ימים",
+    "header": "כותרת עליונה",
+    "navItems": "קישורי ניווט",
+    "footer": "כותרת תחתונה",
+    "phone": "טלפון",
+    "email": "דוא״ל",
+    "website": "אתר",
+    "instagram": "אינסטגרם",
+    "facebook": "פייסבוק",
+    "tiktok": "טיקטוק",
+    "linkedin": "לינקדאין",
+    "youtube": "יוטיוב",
+    "type": "סוג",
+    "links": "קישורים",
+    "link": "קישור",
+    "newTab": "פתיחה בכרטיסייה חדשה",
+    "reference": "מסמך מקושר",
+    "url": "כתובת URL",
+    "label": "תווית",
+    "appearance": "עיצוב הקישור",
+    "media": "מדיה",
+    "introContent": "תוכן פתיחה",
+    "populateBy": "אופן בחירת התוכן",
+    "displayMode": "אופן תצוגה",
+    "relationTo": "סוג תוכן להצגה",
+    "selectedDocs": "פריטים נבחרים",
+    "style": "סגנון",
+    "language": "שפה",
+    "code": "קוד",
+    "columns": "עמודות",
+    "size": "רוחב עמודה",
+    "enableLink": "הפעלת קישור",
+    "faqs": "שאלות נפוצות",
+    "question": "שאלה",
+    "answer": "תשובה",
+    "form": "טופס",
+    "enableIntro": "הצגת תוכן פתיחה",
+    "images": "תמונות",
+    "image": "תמונה",
+    "contentHtml": "HTML",
+    "description": "תיאור",
+    "overview": "סקירה",
+    "preview": "תצוגה מקדימה",
+    "from": "כתובת מקור",
+    "to": "כתובת יעד",
+    "submissionData": "נתוני ההגשה",
+    "submissionUploads": "קבצים שהועלו",
+    "field": "שדה",
+    "value": "ערך"
+  },
+  "arrayLabels": {
+    "layout": {
+      "singular": "בלוק תוכן",
+      "plural": "בלוקי תוכן"
+    },
+    "links": {
+      "singular": "קישור",
+      "plural": "קישורים"
+    },
+    "columns": {
+      "singular": "עמודה",
+      "plural": "עמודות"
+    },
+    "faqs": {
+      "singular": "שאלה נפוצה",
+      "plural": "שאלות נפוצות"
+    },
+    "images": {
+      "singular": "תמונה",
+      "plural": "תמונות"
+    },
+    "navItems": {
+      "singular": "קישור ניווט",
+      "plural": "קישורי ניווט"
+    },
+    "content": {
+      "singular": "עמודת תוכן",
+      "plural": "עמודות תוכן"
+    },
+    "emails": {
+      "singular": "הודעת דוא״ל",
+      "plural": "הודעות דוא״ל"
+    },
+    "submissionData": {
+      "singular": "ערך שנשלח",
+      "plural": "נתוני ההגשה"
+    },
+    "submissionUploads": {
+      "singular": "קובץ שהועלה",
+      "plural": "קבצים שהועלו"
+    }
+  },
+  "tabs": {
+    "hero": "אזור פתיחה",
+    "content": "תוכן",
+    "meta": "מידע נוסף",
+    "general": "כללי",
+    "popup": "חלון קופץ",
+    "blog": "בלוג",
+    "header": "כותרת עליונה",
+    "footer": "כותרת תחתונה"
+  },
+  "labels": {
+    "Hero": "אזור פתיחה",
+    "Content": "תוכן",
+    "Meta": "מידע נוסף",
+    "SEO": "SEO",
+    "General": "כללי",
+    "Popup": "חלון קופץ",
+    "Blog": "בלוג",
+    "Header": "כותרת עליונה",
+    "Footer": "כותרת תחתונה",
+    "Meta Image": "תמונת מטא",
+    "Overview": "סקירה",
+    "Preview": "תצוגה מקדימה",
+    "HTML": "HTML"
+  },
+  "options": {
+    "reference": "קישור פנימי",
+    "custom": "כתובת URL מותאמת אישית",
+    "default": "ברירת מחדל",
+    "outline": "קו מתאר",
+    "collection": "לפי אוסף",
+    "selection": "בחירה ידנית",
+    "blog": "בלוג",
+    "pages": "עמודים",
+    "info": "מידע",
+    "warning": "אזהרה",
+    "error": "שגיאה",
+    "success": "הצלחה",
+    "none": "ללא",
+    "highImpact": "השפעה גבוהה",
+    "mediumImpact": "השפעה בינונית",
+    "lowImpact": "השפעה נמוכה",
+    "oneThird": "שליש",
+    "half": "חצי",
+    "twoThirds": "שני שלישים",
+    "full": "רוחב מלא",
+    "grid": "רשת",
+    "autoScroll": "שורה נעה אוטומטית",
+    "301": "301 - הפניה קבועה",
+    "302": "302 - הפניה זמנית",
+    "303": "303 - מעבר ליעד אחר",
+    "307": "307 - הפניה זמנית",
+    "308": "308 - הפניה קבועה"
+  },
+  "groups": {
+    "Content": "תוכן"
+  },
+  "breakpoints": {
+    "mobile": "נייד",
+    "tablet": "טאבלט",
+    "desktop": "מחשב"
+  },
+  "descriptions": {
+    "Reading time in minutes": "זמן הקריאה המשוער בדקות.",
+    "Choose how the link should be rendered.": "בחרו כיצד הקישור יוצג.",
+    "You will need to rebuild the website when changing this field.": "לאחר שינוי השדה יש לבנות את האתר מחדש.",
+    "Images for the SEO tab (social sharing + listing cards). Use the Media collection instead for hero, gallery, or content images.": "תמונות ללשונית SEO, לשיתוף ברשתות חברתיות ולכרטיסי תוכן. לתמונות פתיחה, גלריה או תוכן יש להשתמש באוסף המדיה.",
+    "Images for the Gallery block. Use the Media collection instead for hero or content-block images.": "תמונות לבלוק הגלריה. לתמונות פתיחה או תוכן יש להשתמש באוסף המדיה.",
+    "Maximum upload file size: 12MB. Recommended file size for images is <500KB.": "גודל הקובץ המרבי הוא 12MB. מומלץ להעלות תמונות שגודלן קטן מ־500KB."
+  }
+}

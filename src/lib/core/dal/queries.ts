@@ -5,16 +5,19 @@ import { getPayload as initPayload, type PayloadRequest } from "payload";
 
 import type {
   Media,
+  SeoMedia,
   Page,
-  Post,
+  Blog,
   Redirect,
   SiteSetting,
   User,
-} from "@/lib/core/types/payload-types";
+} from "@/payload-types";
 
+import { resolvePageLayout } from "@/lib/core/dal/archive";
 import {
   AppConst,
   CollectionName,
+  type ResolvedPage,
   type SitemapData,
   type SitemapItem,
 } from "@/lib/core/types/types";
@@ -115,56 +118,57 @@ export default class Queries {
     }
   }
 
-  static queryMediaByIds(ids: number[]): Promise<Media[]> {
+  private static queryByIds<T>(
+    collection: PayloadFindArgs["collection"],
+    ids: number[],
+  ): Promise<T[]> {
     const uniqueIds = Array.from(new Set(ids)).sort((a, b) => a - b);
 
     if (!uniqueIds.length) {
       return Promise.resolve([]);
     }
 
-    return Queries.cache(
-      () =>
-        Queries.runPayloadFind<Media>({
-          collection: "media",
-          tag: AppConst.CACHE_TAG_GENERAL,
-          params: {
-            depth: 0,
-            limit: 0,
-            pagination: false,
-            where: {
-              id: { in: uniqueIds },
-            },
-          },
-        }),
-      `media-${uniqueIds.join(",")}`,
-      AppConst.CACHE_TAG_GENERAL,
-    )();
+    return Queries.runPayloadFind<T>({
+      collection,
+      tag: AppConst.CACHE_TAG_GENERAL,
+      params: {
+        depth: 0,
+        limit: 0,
+        pagination: false,
+        where: {
+          id: { in: uniqueIds },
+        },
+      },
+    });
+  }
+
+  static queryMediaByIds(ids: number[]): Promise<Media[]> {
+    return Queries.queryByIds<Media>("media", ids);
+  }
+
+  static querySeoMediaByIds(ids: number[]): Promise<SeoMedia[]> {
+    return Queries.queryByIds<SeoMedia>("seo-media", ids);
   }
 
   static queryCollection<T>(collection: CollectionName): Promise<T[]> {
-    return Queries.cache(
-      () =>
-        Queries.runPayloadFind<T>({
-          collection,
-          tag: AppConst.CACHE_TAG_GENERAL,
-          params: {
-            depth: 1,
-            limit: 0,
-            pagination: false,
-            sort: "-publishedAt",
-            where: {
-              _status: { equals: "published" },
-            },
-            select: {
-              title: true,
-              slug: true,
-              meta: true,
-            },
-          },
-        }),
-      `collection-${collection}`,
-      AppConst.CACHE_TAG_GENERAL,
-    )();
+    return Queries.runPayloadFind<T>({
+      collection,
+      tag: AppConst.CACHE_TAG_SITEMAP,
+      params: {
+        depth: 1,
+        limit: 0,
+        pagination: false,
+        sort: "-publishedAt",
+        where: {
+          _status: { equals: "published" },
+        },
+        select: {
+          title: true,
+          slug: true,
+          meta: true,
+        },
+      },
+    });
   }
 
   static async queryRedirectByFrom(from: string): Promise<Redirect | null> {
@@ -218,8 +222,8 @@ export default class Queries {
     return docs[0] ?? null;
   }
 
-  static queryPostBySlug(slug: string): Promise<Post | null> {
-    return Queries.getBySlug<Post>(CollectionName.posts, slug, 2, {
+  static queryBlogBySlug(slug: string): Promise<Blog | null> {
+    return Queries.getBySlug<Blog>(CollectionName.blog, slug, 2, {
       slug: true,
       title: true,
       heroImage: true,
@@ -230,70 +234,65 @@ export default class Queries {
       publishedAt: true,
       createdAt: true,
       updatedAt: true,
-      relatedPosts: true,
+      relatedArticles: true,
       comments: true,
     });
   }
 
-  static queryPageBySlug(slug: string): Promise<Page | null> {
-    return Queries.getBySlug<Page>(CollectionName.pages, slug, 1, {
+  static async queryPageBySlug(slug: string): Promise<ResolvedPage | null> {
+    const page = await Queries.getBySlug<Page>(CollectionName.pages, slug, 1, {
       slug: true,
       title: true,
       hero: true,
       layout: true,
       meta: true,
+      createdAt: true,
       updatedAt: true,
     });
+
+    if (!page) return null;
+
+    return { ...page, layout: await resolvePageLayout(page.layout, Queries) };
   }
 
   private static fetchSlugs(
     collection: CollectionName,
   ): Promise<SitemapItem[]> {
-    return Queries.cache(
-      () =>
-        Queries.runPayloadFind<SitemapItem>({
-          collection,
-          tag: `${AppConst.CACHE_TAG_SITEMAP}-${collection}`,
-          params: {
-            limit: 0,
-            pagination: false,
-            sort: "-updatedAt",
-            depth: 0,
-            where: {
-              _status: { equals: "published" },
-            },
-            select: {
-              slug: true,
-              updatedAt: true,
-            },
-          },
-        }),
-      `sitemap-${collection}`,
-      AppConst.CACHE_TAG_SITEMAP,
-    )();
+    return Queries.runPayloadFind<SitemapItem>({
+      collection,
+      tag: AppConst.CACHE_TAG_SITEMAP,
+      params: {
+        limit: 0,
+        pagination: false,
+        sort: "-updatedAt",
+        depth: 0,
+        where: {
+          _status: { equals: "published" },
+        },
+        select: {
+          slug: true,
+          updatedAt: true,
+        },
+      },
+    });
   }
 
   static async querySitemapData(): Promise<SitemapData> {
-    const [pages, posts] = await Promise.all([
+    const [pages, blog] = await Promise.all([
       Queries.fetchSlugs(CollectionName.pages),
-      Queries.fetchSlugs(CollectionName.posts),
+      Queries.fetchSlugs(CollectionName.blog),
     ]);
 
-    return { pages, posts };
+    return { pages, blog };
   }
 
   static querySiteSettings(): Promise<SiteSetting> {
-    return Queries.cache(
-      () =>
-        Queries.runPayloadGlobal<SiteSetting>({
-          tag: AppConst.CACHE_TAG_GENERAL,
-          params: {
-            slug: "site-settings",
-            depth: 2,
-          },
-        }),
-      "site-settings",
-      AppConst.CACHE_TAG_GENERAL,
-    )();
+    return Queries.runPayloadGlobal<SiteSetting>({
+      tag: AppConst.CACHE_TAG_GENERAL,
+      params: {
+        slug: "site-settings",
+        depth: 2,
+      },
+    });
   }
 }

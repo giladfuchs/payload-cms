@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 
-import type { Post, PostComment } from "@/payload-types";
+import type { Blog, BlogComment } from "@/payload-types";
 import type { Form } from "@payloadcms/plugin-form-builder/types";
 import type { DefaultTypedEditorState } from "@payloadcms/richtext-lexical";
 
@@ -13,7 +13,7 @@ import { formatDate } from "@/lib/core/utilities";
 
 const commentForm: Form = {
   id: 0,
-  title: "post_comment",
+  title: "blog_comment",
   emails: [],
   fields: [
     {
@@ -74,14 +74,14 @@ const commentForm: Form = {
     },
   },
 } as unknown as Form;
-export const PostComments = async ({
+export const BlogComments = async ({
   comments,
-  postId,
+  blogId,
 }: {
-  comments: PostComment[];
-  postId: number;
+  comments: BlogComment[];
+  blogId: number;
 }) => {
-  const t = await getTranslations("post");
+  const t = await getTranslations("blog");
   const labelMap = {
     authorName: t("name"),
     authorEmail: t("email"),
@@ -188,37 +188,37 @@ export const PostComments = async ({
             refreshOnSubmit
             enableIntro
             introContent={introContent}
-            submitUrl="post-comments"
-            submitData={{ post: postId }}
+            submitUrl="blog-comments"
+            submitData={{ blog: blogId }}
           />
         </div>
       </div>
     </section>
   );
 };
-export async function RelatedPosts({
+export async function RelatedArticles({
   className,
-  posts,
+  articles,
 }: {
   className?: string;
-  posts?: Post[];
+  articles?: Blog[];
 }) {
-  const t = await getTranslations("post");
+  const t = await getTranslations("blog");
 
-  if (!posts?.length) return null;
+  if (!articles?.length) return null;
 
   return (
     <div className={clsx("lg:container", className)}>
       <h2 className="mb-6 text-2xl font-semibold">{t("relatedArticles")}</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-stretch">
-        {posts.map((doc, index) => {
+        {articles.map((doc, index) => {
           if (typeof doc === "string") return null;
 
           return (
             <Card
               key={index}
-              doc={{ relationTo: CollectionName.posts, value: doc }}
+              doc={{ relationTo: CollectionName.blog, value: doc }}
             />
           );
         })}

@@ -2,17 +2,79 @@
 
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState, type ComponentType } from "react";
-import { RiWheelchairLine } from "react-icons/ri";
+import { BsUniversalAccessCircle } from "react-icons/bs";
+import {
+  HiOutlineAdjustmentsHorizontal,
+  HiOutlineArrowPath,
+  HiOutlineDocumentText,
+  HiOutlineEye,
+  HiOutlineMagnifyingGlassMinus,
+  HiOutlineMagnifyingGlassPlus,
+  HiOutlineUnderline,
+} from "react-icons/hi2";
 
-import { createAccessibilityButtons } from "@/components/shared/elements-client";
 import Button from "@/components/ui/button";
 
-type ActionItemProps = {
-  label: string;
+type ButtonItem = {
+  id: string;
   icon: ComponentType<{ className?: string }>;
   onClick: () => void;
   selected?: boolean;
 };
+
+type ActionItemProps = Omit<ButtonItem, "id"> & {
+  label: string;
+};
+
+const createAccessibilityButtons = (
+  increaseFont: () => void,
+  decreaseFont: () => void,
+  reset: () => void,
+  grayscale: boolean,
+  setGrayscale: (v: boolean) => void,
+  highContrast: boolean,
+  setHighContrast: (v: boolean) => void,
+  invert: boolean,
+  setInvert: (v: boolean) => void,
+  underlineLinks: boolean,
+  setUnderlineLinks: (v: boolean) => void,
+  readableFont: boolean,
+  setReadableFont: (v: boolean) => void,
+): ButtonItem[] => [
+  { id: "zoomIn", icon: HiOutlineMagnifyingGlassPlus, onClick: increaseFont },
+  { id: "zoomOut", icon: HiOutlineMagnifyingGlassMinus, onClick: decreaseFont },
+  {
+    id: "grayscale",
+    icon: HiOutlineAdjustmentsHorizontal,
+    onClick: () => setGrayscale(!grayscale),
+    selected: grayscale,
+  },
+  {
+    id: "contrast",
+    icon: HiOutlineAdjustmentsHorizontal,
+    onClick: () => setHighContrast(!highContrast),
+    selected: highContrast,
+  },
+  {
+    id: "invert",
+    icon: HiOutlineEye,
+    onClick: () => setInvert(!invert),
+    selected: invert,
+  },
+  {
+    id: "underline",
+    icon: HiOutlineUnderline,
+    onClick: () => setUnderlineLinks(!underlineLinks),
+    selected: underlineLinks,
+  },
+  {
+    id: "readableFont",
+    icon: HiOutlineDocumentText,
+    onClick: () => setReadableFont(!readableFont),
+    selected: readableFont,
+  },
+  { id: "reset", icon: HiOutlineArrowPath, onClick: reset },
+];
 
 const ActionItem = ({
   label,
@@ -33,7 +95,7 @@ const ActionItem = ({
   );
 };
 
-export default function AccessibilityBarClient() {
+export default function AccessibilityBar() {
   const t = useTranslations("accessibility");
   const panelRef = useRef<HTMLDivElement | null>(null);
 
@@ -100,9 +162,9 @@ export default function AccessibilityBarClient() {
     <div className="fixed bottom-16 left-0 z-[999999] flex items-center">
       <Button
         onClick={() => setOpen((v) => !v)}
-        className="h-10 w-10 rounded-r-full rounded-l-none bg-black p-0 text-white shadow-lg"
+        className="h-8 w-7 rounded-r-full rounded-l-none bg-black p-0 text-white shadow-lg"
       >
-        <RiWheelchairLine className="h-5 w-5" />
+        <BsUniversalAccessCircle />
       </Button>
 
       {open && (

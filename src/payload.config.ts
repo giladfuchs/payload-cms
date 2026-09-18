@@ -4,14 +4,19 @@ import { fileURLToPath } from "url";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import { buildConfig } from "payload";
+import { en } from "payload/i18n/en";
+import { he } from "payload/i18n/he";
+import sharp from "sharp";
 
 import {
   Media,
+  SeoMedia,
+  GalleryMedia,
   Pages,
-  Posts,
+  Blog,
   Users,
   SiteSettings,
-  PostComments,
+  BlogComments,
 } from "@/lib/collections";
 import { defaultLexical } from "@/lib/collections/fields/base-fields";
 import appConfig from "@/lib/core/config";
@@ -46,13 +51,28 @@ export default buildConfig({
 
   editor: defaultLexical,
 
+  i18n: {
+    fallbackLanguage: appConfig.LOCAL.lang,
+    supportedLanguages: appConfig.LOCAL.lang === "he" ? { he } : { en },
+  },
+
+  sharp,
+
   db: postgresAdapter({
     pool: {
       connectionString: appConfig.DATABASE_URL,
     },
   }),
 
-  collections: [Pages, Posts, Media, Users, PostComments],
+  collections: [
+    Pages,
+    Blog,
+    Media,
+    SeoMedia,
+    GalleryMedia,
+    Users,
+    BlogComments,
+  ],
 
   cors: [appConfig.BASE_URL],
 

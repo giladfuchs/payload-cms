@@ -1,6 +1,8 @@
 export { Media } from "./Media";
+export { SeoMedia } from "./SeoMedia";
+export { GalleryMedia } from "./GalleryMedia";
 export { Pages } from "./Pages";
-export { Posts } from "./Posts";
+export { Blog } from "./Blog";
 export { Users } from "./Users";
-export { PostComments } from "./PostComments";
+export { BlogComments } from "./BlogComments";
 export { SiteSettings } from "./SiteSettings";

@@ -68,13 +68,15 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
-    posts: Post;
+    blog: Blog;
+    'blog-comments': BlogComment;
     media: Media;
-    users: User;
-    'post-comments': PostComment;
-    redirects: Redirect;
+    'seo-media': SeoMedia;
+    'gallery-media': GalleryMedia;
     forms: Form;
     'form-submissions': FormSubmission;
+    redirects: Redirect;
+    users: User;
     'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -82,19 +84,21 @@ export interface Config {
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {
-    posts: {
-      comments: 'post-comments';
+    blog: {
+      comments: 'blog-comments';
     };
   };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
-    posts: PostsSelect<false> | PostsSelect<true>;
+    blog: BlogSelect<false> | BlogSelect<true>;
+    'blog-comments': BlogCommentsSelect<false> | BlogCommentsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    users: UsersSelect<false> | UsersSelect<true>;
-    'post-comments': PostCommentsSelect<false> | PostCommentsSelect<true>;
-    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    'seo-media': SeoMediaSelect<false> | SeoMediaSelect<true>;
+    'gallery-media': GalleryMediaSelect<false> | GalleryMediaSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -180,8 +184,8 @@ export interface Page {
                   value: number | Page;
                 } | null)
               | ({
-                  relationTo: 'posts';
-                  value: number | Post;
+                  relationTo: 'blog';
+                  value: number | Blog;
                 } | null);
             url?: string | null;
             label: string;
@@ -207,12 +211,12 @@ export interface Page {
     | HtmlEmbedBlock
   )[];
   meta: {
-    title?: string | null;
+    title: string;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image: number | Media;
-    description?: string | null;
+    image: number | SeoMedia;
+    description: string;
   };
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
@@ -225,9 +229,9 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
+ * via the `definition` "blog".
  */
-export interface Post {
+export interface Blog {
   id: number;
   title: string;
   heroImage?: (number | null) | Media;
@@ -247,18 +251,18 @@ export interface Post {
     [k: string]: unknown;
   };
   comments?: {
-    docs?: (number | PostComment)[];
+    docs?: (number | BlogComment)[];
     hasNextPage?: boolean;
     totalDocs?: number;
   };
-  relatedPosts?: (number | Post)[] | null;
+  relatedArticles?: (number | Blog)[] | null;
   meta: {
-    title?: string | null;
+    title: string;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image: number | Media;
-    description?: string | null;
+    image: number | SeoMedia;
+    description: string;
   };
   publishedAt?: string | null;
   author: string;
@@ -297,16 +301,55 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "post-comments".
+ * via the `definition` "blog-comments".
  */
-export interface PostComment {
+export interface BlogComment {
   id: number;
-  post: number | Post;
+  blog: number | Blog;
   authorName: string;
   authorEmail?: string | null;
   body: string;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * Images for the SEO tab (social sharing + listing cards). Use the Media collection instead for hero, gallery, or content images.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-media".
+ */
+export interface SeoMedia {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    og?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -339,8 +382,8 @@ export interface CallToActionBlock {
                 value: number | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: number | Post;
+                relationTo: 'blog';
+                value: number | Blog;
               } | null);
           url?: string | null;
           label: string;
@@ -389,8 +432,8 @@ export interface ContentBlock {
                 value: number | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: number | Post;
+                relationTo: 'blog';
+                value: number | Blog;
               } | null);
           url?: string | null;
           label: string;
@@ -437,12 +480,13 @@ export interface ArchiveBlock {
     [k: string]: unknown;
   };
   populateBy?: ('collection' | 'selection') | null;
-  relationTo?: ('posts' | 'pages') | null;
+  displayMode: 'grid' | 'autoScroll';
+  relationTo?: ('blog' | 'pages') | null;
   selectedDocs?:
     | (
         | {
-            relationTo: 'posts';
-            value: number | Post;
+            relationTo: 'blog';
+            value: number | Blog;
           }
         | {
             relationTo: 'pages';
@@ -597,9 +641,6 @@ export interface Form {
       )[]
     | null;
   submitButtonLabel?: string | null;
-  /**
-   * Choose whether to display an on-page message or redirect to a different page after they submit the form.
-   */
   confirmationType?: ('message' | 'redirect') | null;
   confirmationMessage?: {
     root: {
@@ -619,9 +660,6 @@ export interface Form {
   redirect?: {
     url: string;
   };
-  /**
-   * Send custom emails when the form submits. Use comma separated lists to send the same email to multiple recipients. To reference a value from this form, wrap that field's name with double curly brackets, i.e. {{firstName}}. You can use a wildcard {{*}} to output all data and {{*:table}} to format it as an HTML table in the email.
-   */
   emails?:
     | {
         emailTo?: string | null;
@@ -630,9 +668,6 @@ export interface Form {
         replyTo?: string | null;
         emailFrom?: string | null;
         subject: string;
-        /**
-         * Enter the message that should be sent in this email.
-         */
         message?: {
           root: {
             type: string;
@@ -685,12 +720,43 @@ export interface RichTextBlock {
 export interface GalleryBlock {
   title?: string | null;
   images: {
-    image: number | Media;
+    image: number | GalleryMedia;
     id?: string | null;
   }[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'gallery';
+}
+/**
+ * Images for the Gallery block. Use the Media collection instead for hero or content-block images.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-media".
+ */
+export interface GalleryMedia {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    gallery?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -721,6 +787,49 @@ export interface HtmlEmbedBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions".
+ */
+export interface FormSubmission {
+  id: number;
+  form: number | Form;
+  submissionData?:
+    | {
+        field: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: number;
+  /**
+   * You will need to rebuild the website when changing this field.
+   */
+  from: string;
+  to?: {
+    type?: ('reference' | 'custom') | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'blog';
+          value: number | Blog;
+        } | null);
+    url?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -744,49 +853,6 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
- */
-export interface Redirect {
-  id: number;
-  /**
-   * You will need to rebuild the website when changing this field.
-   */
-  from: string;
-  to?: {
-    type?: ('reference' | 'custom') | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: number | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: number | Post;
-        } | null);
-    url?: string | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "form-submissions".
- */
-export interface FormSubmission {
-  id: number;
-  form: number | Form;
-  submissionData?:
-    | {
-        field: string;
-        value: string;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -909,24 +975,24 @@ export interface PayloadLockedDocument {
         value: number | Page;
       } | null)
     | ({
-        relationTo: 'posts';
-        value: number | Post;
+        relationTo: 'blog';
+        value: number | Blog;
+      } | null)
+    | ({
+        relationTo: 'blog-comments';
+        value: number | BlogComment;
       } | null)
     | ({
         relationTo: 'media';
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'users';
-        value: number | User;
+        relationTo: 'seo-media';
+        value: number | SeoMedia;
       } | null)
     | ({
-        relationTo: 'post-comments';
-        value: number | PostComment;
-      } | null)
-    | ({
-        relationTo: 'redirects';
-        value: number | Redirect;
+        relationTo: 'gallery-media';
+        value: number | GalleryMedia;
       } | null)
     | ({
         relationTo: 'forms';
@@ -935,6 +1001,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'form-submissions';
         value: number | FormSubmission;
+      } | null)
+    | ({
+        relationTo: 'redirects';
+        value: number | Redirect;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1098,6 +1172,7 @@ export interface MediaBlockSelect<T extends boolean = true> {
 export interface ArchiveBlockSelect<T extends boolean = true> {
   introContent?: T;
   populateBy?: T;
+  displayMode?: T;
   relationTo?: T;
   selectedDocs?: T;
   id?: T;
@@ -1165,14 +1240,14 @@ export interface HtmlEmbedBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts_select".
+ * via the `definition` "blog_select".
  */
-export interface PostsSelect<T extends boolean = true> {
+export interface BlogSelect<T extends boolean = true> {
   title?: T;
   heroImage?: T;
   content?: T;
   comments?: T;
-  relatedPosts?: T;
+  relatedArticles?: T;
   meta?:
     | T
     | {
@@ -1188,6 +1263,18 @@ export interface PostsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-comments_select".
+ */
+export interface BlogCommentsSelect<T extends boolean = true> {
+  blog?: T;
+  authorName?: T;
+  authorEmail?: T;
+  body?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1210,54 +1297,77 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
+ * via the `definition` "seo-media_select".
  */
-export interface UsersSelect<T extends boolean = true> {
-  name?: T;
+export interface SeoMediaSelect<T extends boolean = true> {
+  alt?: T;
   updatedAt?: T;
   createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
     | T
     | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
+        card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        og?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
       };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "post-comments_select".
+ * via the `definition` "gallery-media_select".
  */
-export interface PostCommentsSelect<T extends boolean = true> {
-  post?: T;
-  authorName?: T;
-  authorEmail?: T;
-  body?: T;
+export interface GalleryMediaSelect<T extends boolean = true> {
+  alt?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects_select".
- */
-export interface RedirectsSelect<T extends boolean = true> {
-  from?: T;
-  to?:
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
     | T
     | {
-        type?: T;
-        reference?: T;
-        url?: T;
+        gallery?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
       };
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1410,6 +1520,45 @@ export interface FormSubmissionsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  from?: T;
+  to?:
+    | T
+    | {
+        type?: T;
+        reference?: T;
+        url?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  name?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -1495,14 +1644,6 @@ export interface SiteSetting {
     repeatDays: number;
     content?: (HtmlEmbedBlock | RichTextBlock)[] | null;
   };
-  meta: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image: number | Media;
-    description?: string | null;
-  };
   header?: {
     navItems?:
       | {
@@ -1515,8 +1656,8 @@ export interface SiteSetting {
                   value: number | Page;
                 } | null)
               | ({
-                  relationTo: 'posts';
-                  value: number | Post;
+                  relationTo: 'blog';
+                  value: number | Blog;
                 } | null);
             url?: string | null;
             label: string;
@@ -1537,8 +1678,8 @@ export interface SiteSetting {
                   value: number | Page;
                 } | null)
               | ({
-                  relationTo: 'posts';
-                  value: number | Post;
+                  relationTo: 'blog';
+                  value: number | Blog;
                 } | null);
             url?: string | null;
             label: string;
@@ -1574,8 +1715,8 @@ export interface SiteSetting {
                   value: number | Page;
                 } | null)
               | ({
-                  relationTo: 'posts';
-                  value: number | Post;
+                  relationTo: 'blog';
+                  value: number | Blog;
                 } | null);
             url?: string | null;
             label: string;
@@ -1623,13 +1764,6 @@ export interface SiteSettingsSelect<T extends boolean = true> {
               htmlEmbed?: T | HtmlEmbedBlockSelect<T>;
               richText?: T | RichTextBlockSelect<T>;
             };
-      };
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
       };
   header?:
     | T
@@ -1722,8 +1856,8 @@ export interface TaskSchedulePublish {
           value: number | Page;
         } | null)
       | ({
-          relationTo: 'posts';
-          value: number | Post;
+          relationTo: 'blog';
+          value: number | Blog;
         } | null);
     global?: string | null;
     user?: (number | null) | User;

@@ -27,17 +27,34 @@ export const Archive: Block = {
       ],
     },
     {
+      name: "displayMode",
+      type: "select",
+      defaultValue: "grid",
+      label: "Display",
+      options: [
+        {
+          label: "Grid",
+          value: "grid",
+        },
+        {
+          label: "Auto-scrolling row",
+          value: "autoScroll",
+        },
+      ],
+      required: true,
+    },
+    {
       name: "relationTo",
       type: "select",
       admin: {
         condition: (_, siblingData) => siblingData.populateBy === "collection",
       },
-      defaultValue: "posts",
+      defaultValue: "blog",
       label: "Collections To Show",
       options: [
         {
-          label: "Posts",
-          value: "posts",
+          label: "Blog",
+          value: "blog",
         },
         {
           label: "Pages",
@@ -53,7 +70,7 @@ export const Archive: Block = {
       },
       hasMany: true,
       label: "Selection",
-      relationTo: ["posts", "pages"],
+      relationTo: ["blog", "pages"],
     },
   ],
   labels: {

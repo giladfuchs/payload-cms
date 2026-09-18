@@ -1,5 +1,5 @@
 {
-  "post": {
+  "blog": {
     "relatedArticles": "Related Articles",
     "author": "Author",
     "publishedAt": "Published",
@@ -8,7 +8,7 @@
     "comments": "Comments",
     "no_comments_yet": "No comments yet.",
     "add_comment": "Add a Comment",
-    "add_comment_description": "Share your thoughts about this post.",
+    "add_comment_description": "Share your thoughts about this article.",
     "name": "Name",
     "email": "Email",
     "comment": "Comment",

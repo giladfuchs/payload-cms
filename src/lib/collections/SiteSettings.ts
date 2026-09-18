@@ -7,10 +7,7 @@ import {
   RichTextBlock,
 } from "@/components/blocks/Content/config";
 import { HtmlEmbed } from "@/components/blocks/HtmlEmbed/config";
-import {
-  adminOnlyAccess,
-  META_FIELD,
-} from "@/lib/collections/fields/base-fields";
+import { adminOnlyAccess } from "@/lib/collections/fields/base-fields";
 import { link } from "@/lib/collections/fields/link";
 import { AppConst } from "@/lib/core/types/types";
 
@@ -74,11 +71,6 @@ export const SiteSettings: GlobalConfig = {
               blocks: [HtmlEmbed, RichTextBlock],
             },
           ],
-        },
-        {
-          ...META_FIELD,
-          name: "meta",
-          label: "Posts",
         },
         {
           name: "header",

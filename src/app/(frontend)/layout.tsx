@@ -3,16 +3,15 @@ import "@/lib/styles/globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-import RenderBlocks from "@/components/blocks/RenderBlocks";
-import AdminBar from "@/components/layout/admin-bar";
 import AnalyticsLayout from "@/components/layout/analytics";
 import Footer from "@/components/layout/footer";
 import Head from "@/components/layout/head";
 import Header from "@/components/layout/header";
-import { AccessibilityBar, Popup } from "@/components/shared/wrappers";
+import { JsonLd } from "@/components/shared/elements-ssr";
 import appConfig from "@/lib/core/config";
 import Dal from "@/lib/core/dal";
 import { IntlProvider } from "@/lib/providers/intl";
+import { createJsonLdSite } from "@/lib/seo/jsonld";
 import { generateMetadataLayout } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = generateMetadataLayout();
@@ -31,6 +30,7 @@ export default async function RootLayout({
     >
       <head>
         <Head />
+        <JsonLd data={createJsonLdSite(siteSettings)} />
       </head>
 
       <body>
@@ -38,18 +38,7 @@ export default async function RootLayout({
           <AnalyticsLayout />
 
           <IntlProvider>
-            <AdminBar />
-            <Header
-              header={siteSettings.header!}
-              general={siteSettings.general}
-            />
-            {siteSettings.popup?.content?.length ? (
-              <Popup
-                popup={siteSettings.popup}
-                content={<RenderBlocks blocks={siteSettings.popup.content} />}
-              />
-            ) : null}
-            <AccessibilityBar />
+            <Header settings={siteSettings} />
             {children}
             <Footer
               footer={siteSettings.footer!}

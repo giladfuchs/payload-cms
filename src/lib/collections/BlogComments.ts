@@ -5,8 +5,12 @@ import type { CollectionConfig } from "payload";
 import { adminOnlyAccess } from "@/lib/collections/fields/base-fields";
 import { CollectionName } from "@/lib/core/types/types";
 
-export const PostComments: CollectionConfig = {
-  slug: "post-comments",
+export const BlogComments: CollectionConfig = {
+  slug: "blog-comments",
+  labels: {
+    singular: "Blog Comment",
+    plural: "Blog Comments",
+  },
   access: {
     ...adminOnlyAccess,
     read: () => true,
@@ -15,17 +19,17 @@ export const PostComments: CollectionConfig = {
   hooks: {
     afterChange: [
       async ({ doc, req }) => {
-        const postId = typeof doc.post === "object" ? doc.post.id : doc.post;
-        if (!postId) return;
+        const blogId = typeof doc.blog === "object" ? doc.blog.id : doc.blog;
+        if (!blogId) return;
 
-        const post = await req.payload.findByID({
-          collection: CollectionName.posts,
-          id: postId,
+        const blog = await req.payload.findByID({
+          collection: CollectionName.blog,
+          id: blogId,
           depth: 0,
           select: { slug: true },
         });
         try {
-          revalidateTag(`${CollectionName.posts}-${post.slug}`, "max");
+          revalidateTag(`${CollectionName.blog}-${blog.slug}`, "max");
         } catch {}
       },
     ],
@@ -33,13 +37,13 @@ export const PostComments: CollectionConfig = {
   admin: {
     useAsTitle: "authorName",
     group: "Content",
-    defaultColumns: ["authorName", "post", "createdAt"],
+    defaultColumns: ["authorName", "blog", "createdAt"],
   },
   fields: [
     {
-      name: "post",
+      name: "blog",
       type: "relationship",
-      relationTo: CollectionName.posts,
+      relationTo: CollectionName.blog,
       required: true,
       index: true,
     },
@@ -51,6 +55,9 @@ export const PostComments: CollectionConfig = {
     {
       name: "authorEmail",
       type: "email",
+      access: {
+        read: ({ req }) => Boolean(req.user),
+      },
     },
     {
       name: "body",

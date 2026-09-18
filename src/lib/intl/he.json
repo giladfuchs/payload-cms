@@ -1,5 +1,5 @@
 {
-  "post": {
+  "blog": {
     "relatedArticles": "מאמרים קשורים",
     "author": "מחבר",
     "publishedAt": "פורסם",
@@ -8,7 +8,7 @@
     "comments": "תגובות",
     "no_comments_yet": "עדיין אין תגובות.",
     "add_comment": "הוסף תגובה",
-    "add_comment_description": "שתף את דעתך על הפוסט.",
+    "add_comment_description": "שתף את דעתך על המאמר.",
     "name": "שם",
     "email": "אימייל",
     "comment": "תגובה",

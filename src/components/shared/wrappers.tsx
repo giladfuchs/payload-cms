@@ -2,6 +2,37 @@
 
 import dynamic from "next/dynamic";
 
+import { AppConst } from "@/lib/core/types/types";
+import { cn } from "@/lib/core/utilities";
+
+export const AutoScrollRow = dynamic(
+  () =>
+    import("@/components/shared/elements-client").then(
+      (module) => module.AutoScrollRowClient,
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex gap-4 overflow-hidden" aria-hidden="true">
+        {Array.from({ length: 3 }).map((_, index) => (
+          <div
+            className={cn(AppConst.CAROUSEL_ITEM_CLASS, "animate-pulse")}
+            key={index}
+          >
+            <div className="w-full overflow-hidden rounded-lg border border-border bg-card">
+              <div className="aspect-[3/2] bg-muted" />
+              <div className="space-y-2 p-4">
+                <div className="h-5 w-2/3 rounded bg-muted" />
+                <div className="h-4 w-full rounded bg-muted" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    ),
+  },
+);
+
 export const ThemeSelector = dynamic(
   () =>
     import("@/components/shared/elements-client").then(
@@ -14,24 +45,9 @@ export const ThemeSelector = dynamic(
     ),
   },
 );
-export const MobileMenu = dynamic(
-  () =>
-    import("@/components/shared/elements-client").then(
-      (m) => m.MobileMenuClient,
-    ),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="h-10 w-full animate-pulse bg-neutral-200 dark:bg-neutral-800 rounded-md" />
-    ),
-  },
-);
 
-export const Popup = dynamic(() => import("@/components/layout/popup"), {
-  ssr: false,
-});
-export const AccessibilityBar = dynamic(
-  () => import("@/components/layout/accessibility-bar"),
+export const HeaderClientWrapper = dynamic(
+  () => import("@/components/layout/header-client"),
   {
     ssr: false,
   },
@@ -50,13 +66,5 @@ export const FormBlockWrapper = dynamic(
         <div className="h-10 w-32 bg-gray-300 rounded" />
       </div>
     ),
-  },
-);
-
-export const AdminBarWrapper = dynamic(
-  () =>
-    import("@/components/shared/elements-client").then((m) => m.AdminBarClient),
-  {
-    ssr: false,
   },
 );

@@ -6,7 +6,7 @@ import { CollectionName } from "@/lib/core/types/types";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
-    const { pages, posts } = await DAL.querySitemapData();
+    const { pages, blog } = await DAL.querySitemapData();
 
     const result: MetadataRoute.Sitemap = [];
 
@@ -28,19 +28,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         })),
     );
 
-    if (posts.length) {
-      result.push({
-        url: `${appConfig.BASE_URL}/${CollectionName.posts}`,
-        lastModified: posts[0].updatedAt,
-      });
-
-      result.push(
-        ...posts.map((p) => ({
-          url: `${appConfig.BASE_URL}/${CollectionName.posts}/${encodeURIComponent(p.slug)}`,
-          lastModified: p.updatedAt,
-        })),
-      );
-    }
+    result.push(
+      ...blog.map((article) => ({
+        url: `${appConfig.BASE_URL}/${CollectionName.blog}/${encodeURIComponent(article.slug)}`,
+        lastModified: article.updatedAt,
+      })),
+    );
 
     return result;
   } catch {

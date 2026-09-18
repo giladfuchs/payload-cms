@@ -18,7 +18,7 @@ export default function HtmlEmbedBlock({
             minHeight: "100%",
             marginTop: html.includes("iframe") ? "-2.2rem" : undefined,
           }}
-          dangerouslySetInnerHTML={{ __html: contentHtml }}
+          dangerouslySetInnerHTML={{ __html: html }}
         />
       ) : null}
 

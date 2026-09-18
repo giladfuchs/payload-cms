@@ -1,3 +1,6 @@
+import path from "path";
+import { fileURLToPath } from "url";
+
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -30,6 +33,9 @@ import type {
   Field,
   Access,
   AccessArgs,
+  CollectionConfig,
+  ImageSize,
+  ImageUploadFormatOptions,
   TextFieldSingleValidation,
   CollectionAdminOptions,
 } from "payload";
@@ -38,35 +44,44 @@ import { Banner } from "@/components/blocks/Banner/config";
 import { Code } from "@/components/blocks/Code/config";
 import { MediaBlock } from "@/components/blocks/MediaBlock/config";
 import appConfig from "@/lib/core/config";
-import { User } from "@/lib/core/types/payload-types";
 import { CollectionName } from "@/lib/core/types/types";
+import { User } from "@/payload-types";
 
-export const META_FIELD = {
-  name: "meta",
-  label: "SEO",
+export const metaField = (name = "meta", label = "SEO") => ({
+  name,
+  label,
   fields: [
     OverviewField({
-      titlePath: "meta.title",
-      descriptionPath: "meta.description",
-      imagePath: "meta.image",
+      titlePath: `${name}.title`,
+      descriptionPath: `${name}.description`,
+      imagePath: `${name}.image`,
     }),
     MetaTitleField({
       hasGenerateFn: true,
-    }),
-    MetaImageField({
-      relationTo: "media",
       overrides: {
         required: true,
       },
     }),
-    MetaDescriptionField({}),
+    MetaImageField({
+      relationTo: "seo-media",
+      overrides: {
+        required: true,
+      },
+    }),
+    MetaDescriptionField({
+      overrides: {
+        required: true,
+      },
+    }),
     PreviewField({
       hasGenerateFn: true,
-      titlePath: "meta.title",
-      descriptionPath: "meta.description",
+      titlePath: `${name}.title`,
+      descriptionPath: `${name}.description`,
     }),
   ],
-};
+});
+
+export const META_FIELD = metaField();
 
 const pickString = (v: unknown): string => {
   if (typeof v === "string") return v;
@@ -131,7 +146,7 @@ const baseFeatures: NonNullable<LexicalEditorProps["features"]> = ({
   InlineToolbarFeature(),
   HorizontalRuleFeature(),
   LinkFeature({
-    enabledCollections: [CollectionName.pages, CollectionName.posts],
+    enabledCollections: [CollectionName.pages, CollectionName.blog],
     fields: ({ defaultFields }) => {
       const filtered = defaultFields.filter(
         (field) => !("name" in field && field.name === "url"),
@@ -248,4 +263,73 @@ export const adminOnlyAccess = {
   update: authenticated,
   delete: authenticated,
   admin: authenticated,
+};
+
+const PUBLIC_DIR = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../../../../public",
+);
+
+// Shared shape for upload collections (Media, SeoMedia, GalleryMedia, ...): admin-only
+// write access, webp conversion for the original file (Payload's own upload pipeline —
+// EXIF rotation, format/mimetype/size, and collision-safe filenames are all handled
+// natively via `formatOptions`, so no custom hook is needed), a required alt field, and
+// local-disk vs. cloud-storage config. Pass `imageSizes` only for collections that need
+// named derivatives — omit it for collections where editors crop manually via Payload's UI.
+export const makeMediaCollection = ({
+  slug,
+  labels,
+  description,
+  imageSizes,
+}: {
+  slug: string;
+  labels?: CollectionConfig["labels"];
+  description?: string;
+  imageSizes?: ImageSize[];
+}): CollectionConfig => {
+  const uploadBase = {
+    focalPoint: true,
+    formatOptions: {
+      format: "webp",
+      options: { quality: 85, effort: 6 },
+    } as ImageUploadFormatOptions,
+    ...(imageSizes ? { imageSizes } : {}),
+  };
+
+  return {
+    slug,
+    ...(labels ? { labels } : {}),
+    admin: {
+      group: "Content",
+      ...(description ? { description } : {}),
+    },
+    access: {
+      ...adminOnlyAccess,
+      read: () => true,
+    },
+    hooks: {
+      afterError: [
+        ({ error }) => {
+          console.error(
+            `${slug.toUpperCase().replace(/-/g, " ")} UPLOAD ERROR:`,
+            error,
+          );
+          throw error;
+        },
+      ],
+    },
+    fields: [
+      {
+        name: "alt",
+        type: "text",
+        required: true,
+      },
+    ],
+    upload: appConfig.STORAGE_PROVIDER
+      ? uploadBase
+      : {
+          staticDir: path.join(PUBLIC_DIR, slug),
+          ...uploadBase,
+        },
+  };
 };

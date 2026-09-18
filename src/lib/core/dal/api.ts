@@ -1,19 +1,21 @@
-import { unstable_cache } from "next/cache";
 import { draftMode } from "next/headers";
 
 import type {
   Media,
+  SeoMedia,
   Page,
-  Post,
+  Blog,
   Redirect,
   SiteSetting,
   User,
-} from "@/lib/core/types/payload-types";
+} from "@/payload-types";
 
 import appConfig from "@/lib/core/config";
+import { resolvePageLayout } from "@/lib/core/dal/archive";
 import {
   AppConst,
   CollectionName,
+  type ResolvedPage,
   type SitemapData,
   type SitemapItem,
 } from "@/lib/core/types/types";
@@ -28,13 +30,6 @@ type FetchApiOptions = {
 };
 
 export default class Api {
-  private static cache<T>(fn: () => Promise<T>, key: string, tag: string) {
-    return unstable_cache(fn, [key], {
-      revalidate: false,
-      tags: [getRevalidateTag(tag)],
-    });
-  }
-
   private static buildApiUrl(
     path: string,
     params?: Record<string, string | number | boolean | null | undefined>,
@@ -133,50 +128,51 @@ export default class Api {
     }
   }
 
-  static queryMediaByIds(ids: number[]): Promise<Media[]> {
+  private static queryByIds<T>(
+    collection: string,
+    ids: number[],
+  ): Promise<T[]> {
     const uniqueIds = Array.from(new Set(ids)).sort((a, b) => a - b);
 
     if (!uniqueIds.length) {
       return Promise.resolve([]);
     }
 
-    return Api.cache(
-      () =>
-        Api.fetchApi<Media[]>("media", {
-          params: {
-            depth: 0,
-            limit: 0,
-            "where[id][in]": uniqueIds.join(","),
-          },
-          expect: "docs",
-          tag: AppConst.CACHE_TAG_GENERAL,
-        }),
-      `media-${uniqueIds.join(",")}`,
-      AppConst.CACHE_TAG_GENERAL,
-    )();
+    return Api.fetchApi<T[]>(collection, {
+      params: {
+        depth: 0,
+        limit: 0,
+        "where[id][in]": uniqueIds.join(","),
+      },
+      expect: "docs",
+      tag: AppConst.CACHE_TAG_GENERAL,
+    });
+  }
+
+  static queryMediaByIds(ids: number[]): Promise<Media[]> {
+    return Api.queryByIds<Media>("media", ids);
+  }
+
+  static querySeoMediaByIds(ids: number[]): Promise<SeoMedia[]> {
+    return Api.queryByIds<SeoMedia>("seo-media", ids);
   }
 
   static queryCollection<T>(collection: CollectionName): Promise<T[]> {
-    return Api.cache(
-      () =>
-        Api.fetchApi<T[]>(`${collection}`, {
-          params: {
-            depth: 1,
-            limit: 0,
-            sort: "-publishedAt",
-            "where[_status][equals]": "published",
-          },
-          select: {
-            title: true,
-            slug: true,
-            meta: true,
-          },
-          expect: "docs",
-          tag: AppConst.CACHE_TAG_GENERAL,
-        }),
-      `collection-${collection}`,
-      AppConst.CACHE_TAG_GENERAL,
-    )();
+    return Api.fetchApi<T[]>(`${collection}`, {
+      params: {
+        depth: 1,
+        limit: 0,
+        sort: "-publishedAt",
+        "where[_status][equals]": "published",
+      },
+      select: {
+        title: true,
+        slug: true,
+        meta: true,
+      },
+      expect: "docs",
+      tag: AppConst.CACHE_TAG_GENERAL,
+    });
   }
 
   static async queryRedirectByFrom(from: string): Promise<Redirect | null> {
@@ -224,8 +220,8 @@ export default class Api {
     });
   }
 
-  static queryPostBySlug(slug: string): Promise<Post | null> {
-    return Api.getBySlug<Post>(CollectionName.posts, slug, 2, {
+  static queryBlogBySlug(slug: string): Promise<Blog | null> {
+    return Api.getBySlug<Blog>(CollectionName.blog, slug, 2, {
       slug: true,
       title: true,
       heroImage: true,
@@ -236,67 +232,62 @@ export default class Api {
       publishedAt: true,
       createdAt: true,
       updatedAt: true,
-      relatedPosts: true,
+      relatedArticles: true,
       comments: true,
     });
   }
 
-  static queryPageBySlug(slug: string): Promise<Page | null> {
-    return Api.getBySlug<Page>(CollectionName.pages, slug, 1, {
+  static async queryPageBySlug(slug: string): Promise<ResolvedPage | null> {
+    const page = await Api.getBySlug<Page>(CollectionName.pages, slug, 1, {
       slug: true,
       title: true,
       hero: true,
       layout: true,
       meta: true,
+      createdAt: true,
       updatedAt: true,
     });
+
+    if (!page) return null;
+
+    return { ...page, layout: await resolvePageLayout(page.layout, Api) };
   }
 
   private static fetchSlugs(
     collection: CollectionName,
   ): Promise<SitemapItem[]> {
-    return Api.cache(
-      () =>
-        Api.fetchApi<SitemapItem[]>(`${collection}`, {
-          params: {
-            depth: 0,
-            limit: 0,
-            sort: "-updatedAt",
-            "where[_status][equals]": "published",
-          },
-          select: {
-            slug: true,
-            updatedAt: true,
-          },
-          expect: "docs",
-          tag: `${AppConst.CACHE_TAG_SITEMAP}-${collection}`,
-        }),
-      `sitemap-${collection}`,
-      AppConst.CACHE_TAG_SITEMAP,
-    )();
+    return Api.fetchApi<SitemapItem[]>(`${collection}`, {
+      params: {
+        depth: 0,
+        limit: 0,
+        sort: "-updatedAt",
+        "where[_status][equals]": "published",
+      },
+      select: {
+        slug: true,
+        updatedAt: true,
+      },
+      expect: "docs",
+      tag: AppConst.CACHE_TAG_SITEMAP,
+    });
   }
 
   static async querySitemapData(): Promise<SitemapData> {
-    const [pages, posts] = await Promise.all([
+    const [pages, blog] = await Promise.all([
       Api.fetchSlugs(CollectionName.pages),
-      Api.fetchSlugs(CollectionName.posts),
+      Api.fetchSlugs(CollectionName.blog),
     ]);
 
-    return { pages, posts };
+    return { pages, blog };
   }
 
   static querySiteSettings(): Promise<SiteSetting> {
-    return Api.cache(
-      () =>
-        Api.fetchApi<SiteSetting>("globals/site-settings", {
-          params: {
-            depth: 2,
-          },
-          expect: "json",
-          tag: AppConst.CACHE_TAG_GENERAL,
-        }),
-      "site-settings",
-      AppConst.CACHE_TAG_GENERAL,
-    )();
+    return Api.fetchApi<SiteSetting>("globals/site-settings", {
+      params: {
+        depth: 2,
+      },
+      expect: "json",
+      tag: AppConst.CACHE_TAG_GENERAL,
+    });
   }
 }

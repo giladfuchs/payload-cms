@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   try {
     void request.url;
-    const { default: SeedService } = await import("seed");
+    const { default: SeedService } = await import("../../../../../seed");
 
     await new SeedService("reset").run();
 

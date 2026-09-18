@@ -21,7 +21,7 @@
           "link": {
             "type": "custom",
             "label": "מאמרים",
-            "url": "/posts"
+            "url": "/blog"
           }
         },
         {
@@ -71,11 +71,6 @@
       "linkedin": "payload-cms",
       "youtube": "@payloadcms",
       "x": "payloadcms"
-    },
-    "meta": {
-      "title": "תובנות ומאמרים",
-      "description": "גלו את המחשבות, המדריכים והרעיונות האחרונים שלנו - מטיפים פרקטיים ועד תובנות מעמיקות שנועדו להעשיר ולתת לכם השראה.",
-      "image": "__metaImage__"
     }
   },
   "forms": [
@@ -181,8 +176,8 @@
             "link": {
               "type": "custom",
               "appearance": "default",
-              "label": "כל הפוסטים",
-              "url": "/posts"
+              "label": "כל המאמרים",
+              "url": "/blog"
             }
           },
           {
@@ -450,7 +445,7 @@
                           "format": 0,
                           "mode": "normal",
                           "style": "",
-                          "text": "נהלו את דפי האתר והפוסטים מתוך ",
+                          "text": "נהלו את דפי האתר והמאמרים מתוך ",
                           "version": 1
                         },
                         {
@@ -588,7 +583,7 @@
                           "format": 0,
                           "mode": "normal",
                           "style": "",
-                          "text": "בונה דפים מותאם אישית מאפשר לכם ליצור פריסות ייחודיות לדפים, פוסטים ופרויקטים לכל סוג של תוכן.",
+                          "text": "בונה דפים מותאם אישית מאפשר לכם ליצור פריסות ייחודיות לדפים, מאמרים ופרויקטים לכל סוג של תוכן.",
                           "version": 1
                         }
                       ],
@@ -750,7 +745,7 @@
         {
           "blockName": "Media Block",
           "blockType": "mediaBlock",
-          "media": "__META_IMAGE__"
+          "media": "__CONTENT_IMAGE__"
         },
         {
           "blockName": "Archive Block",
@@ -769,7 +764,7 @@
                       "format": 0,
                       "mode": "normal",
                       "style": "",
-                      "text": "פוסטים אחרונים (Archive Block)",
+                      "text": "מאמרים אחרונים (Archive Block)",
                       "version": 1
                     }
                   ],
@@ -788,7 +783,7 @@
                       "format": 0,
                       "mode": "normal",
                       "style": "",
-                      "text": "הפוסטים למטה מוצגים בפריסת \"ארכיון\", שהיא דרך עוצמתית להציג מסמכים בדף. ניתן למלא אותה אוטומטית לפי אוסף או קטגוריה, או לבחור פוסטים בודדים. פקדי דפדוף יופיעו אוטומטית אם מספר התוצאות יעלה על מספר הפריטים לדף.",
+                      "text": "המאמרים למטה מוצגים בפריסת \"ארכיון\", שהיא דרך עוצמתית להציג מסמכים בדף. ניתן למלא אותה אוטומטית לפי אוסף או קטגוריה, או לבחור מאמרים בודדים. פקדי דפדוף יופיעו אוטומטית אם מספר התוצאות יעלה על מספר הפריטים לדף.",
                       "version": 1
                     }
                   ],
@@ -806,7 +801,7 @@
             }
           },
           "populateBy": "collection",
-          "relationTo": "posts"
+          "relationTo": "blog"
         },
         {
           "blockName": "CTA",
@@ -816,8 +811,8 @@
               "link": {
                 "type": "custom",
                 "appearance": "default",
-                "label": "כל הפוסטים",
-                "url": "/posts"
+                "label": "כל המאמרים",
+                "url": "/blog"
               }
             }
           ],
@@ -913,10 +908,18 @@
           "blockType": "gallery",
           "title": "Gallery Block",
           "images": [
-            { "image": "__GALLERY_IMAGE_1__" },
-            { "image": "__GALLERY_IMAGE_2__" },
-            { "image": "__GALLERY_IMAGE_3__" },
-            { "image": "__GALLERY_IMAGE_4__" }
+            {
+              "image": "__GALLERY_IMAGE_1__"
+            },
+            {
+              "image": "__GALLERY_IMAGE_2__"
+            },
+            {
+              "image": "__GALLERY_IMAGE_3__"
+            },
+            {
+              "image": "__GALLERY_IMAGE_4__"
+            }
           ]
         },
         {
@@ -950,10 +953,9 @@
       "meta": {
         "title": "תבנית אתר Payload",
         "description": "אתר בקוד פתוח שנבנה עם Payload ו-Next.js.",
-        "image": "__HERO_IMAGE__"
+        "image": "__META_IMAGE__"
       }
     },
-
     {
       "slug": "contact",
       "_status": "published",
@@ -991,9 +993,80 @@
           }
         }
       ]
+    },
+    {
+      "slug": "blog",
+      "_status": "published",
+      "title": "בלוג",
+      "hero": {
+        "type": "none"
+      },
+      "layout": [
+        {
+          "blockName": "Archive Block",
+          "blockType": "archive",
+          "introContent": {
+            "root": {
+              "type": "root",
+              "children": [
+                {
+                  "type": "heading",
+                  "children": [
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "תובנות ומאמרים",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "tag": "h1",
+                  "version": 1
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "גלו את המחשבות, המדריכים והרעיונות האחרונים שלנו - מטיפים פרקטיים ועד תובנות מעמיקות שנועדו להעשיר ולתת לכם השראה.",
+                      "version": 1
+                    }
+                  ],
+                  "direction": "rtl",
+                  "format": "",
+                  "indent": 0,
+                  "textFormat": 0,
+                  "version": 1
+                }
+              ],
+              "direction": "rtl",
+              "format": "",
+              "indent": 0,
+              "version": 1
+            }
+          },
+          "populateBy": "collection",
+          "relationTo": "blog",
+          "displayMode": "grid"
+        }
+      ],
+      "meta": {
+        "title": "תובנות ומאמרים",
+        "description": "גלו את המחשבות, המדריכים והרעיונות האחרונים שלנו - מטיפים פרקטיים ועד תובנות מעמיקות שנועדו להעשיר ולתת לכם השראה.",
+        "image": "__META_IMAGE__"
+      }
     }
   ],
-  "posts": [
+  "blog": [
     {
       "comments": [
         {
@@ -1012,11 +1085,10 @@
       "author": "יונתן כהן",
       "readTime": 3,
       "title": "אופקים דיגיטליים: הצצה אל המחר",
-      "relatedPosts": [],
       "heroImage": "__HERO_IMAGE__",
       "meta": {
         "description": "צללו אל פלאי החדשנות המודרנית, שבה השינוי הוא הקבוע היחיד. מסע שבו פיקסלים ונתונים מתלכדים כדי לעצב את העתיד.",
-        "image": "__HERO_IMAGE__",
+        "image": "__META_IMAGE__",
         "title": "אופקים דיגיטליים: הצצה אל המחר"
       },
       "content": {
@@ -1069,7 +1141,7 @@
                             "format": 0,
                             "mode": "normal",
                             "style": "",
-                            "text": " תוכן זה נוצר לצורכי הדגמה בלבד. כדי לערוך את הפוסט הזה, ",
+                            "text": " תוכן זה נוצר לצורכי הדגמה בלבד. כדי לערוך את המאמר הזה, ",
                             "version": 1
                           },
                           {
@@ -1304,7 +1376,8 @@
           "indent": 0,
           "version": 1
         }
-      }
+      },
+      "relatedArticles": []
     },
     {
       "comments": [
@@ -1329,11 +1402,10 @@
       "author": "ג'יין סמית'",
       "readTime": 4,
       "title": "מבט עולמי: מעבר לכותרות",
-      "relatedPosts": [],
       "heroImage": "__HERO_IMAGE__",
       "meta": {
         "description": "חקרו את הסיפורים שלא סופרו ואת אלו שזכו להתעלמות. מבט מקרוב אל פינות העולם שבהן כל סיפור ראוי לבמה משלו.",
-        "image": "__HERO_IMAGE__",
+        "image": "__META_IMAGE__",
         "title": "מבט עולמי: מעבר לכותרות"
       },
       "content": {
@@ -1553,7 +1625,8 @@
           "indent": 0,
           "version": 1
         }
-      }
+      },
+      "relatedArticles": []
     },
     {
       "comments": [
@@ -1578,11 +1651,10 @@
       "author": "אלכס בראון",
       "readTime": 4,
       "title": "כסף ומשמעות: התחזית הפיננסית",
-      "relatedPosts": [],
       "heroImage": "__HERO_IMAGE__",
       "meta": {
         "description": "כסף הוא לא רק מטבע; הוא שפה. צללו עמוק אל הניואנסים שלו, במקום שבו אסטרטגיה פוגשת אינטואיציה בים העצום של הפיננסים העולמיים.",
-        "image": "__HERO_IMAGE__",
+        "image": "__META_IMAGE__",
         "title": "כסף ומשמעות: התחזית הפיננסית"
       },
       "content": {
@@ -1793,7 +1865,8 @@
           "indent": 0,
           "version": 1
         }
-      }
+      },
+      "relatedArticles": []
     }
   ]
 }

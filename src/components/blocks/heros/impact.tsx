@@ -1,4 +1,4 @@
-import type { Page } from "@/lib/core/types/payload-types";
+import type { Page } from "@/payload-types";
 import type { ReactNode } from "react";
 
 import CMSLink from "@/components/ui/cms-link";

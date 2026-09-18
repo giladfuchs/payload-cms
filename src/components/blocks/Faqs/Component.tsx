@@ -1,17 +1,17 @@
 import { HiPlus, HiMinus } from "react-icons/hi2";
 
-import type { FaqsBlock as FaqBlockProps } from "@/lib/core/types/payload-types";
+import type { FaqsBlock as FaqBlockProps } from "@/payload-types";
 
 import { JsonLd } from "@/components/shared/elements-ssr";
-import { generateJsonLdFaq } from "@/lib/seo/jsonld";
+import { createJsonLdFaq } from "@/lib/seo/jsonld";
 
 export default function FaqBlock({ faqs, title }: FaqBlockProps) {
   if (!faqs?.length) return null;
 
   return (
     <>
-      <JsonLd data={generateJsonLdFaq(faqs, title || "")} />
-      <section className="container my-16 w-full max-w-2xl mx-auto">
+      <JsonLd data={createJsonLdFaq(faqs, title || "")} />
+      <section className="container my-16 w-full !max-w-3xl mx-auto">
         <h3 className="mt-1 mb-8 text-2xl font-medium">{title}</h3>
 
         <div className="divide-y divide-neutral-200 dark:divide-neutral-800 border-t border-neutral-200 dark:border-neutral-800">

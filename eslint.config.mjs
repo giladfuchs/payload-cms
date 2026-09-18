@@ -12,6 +12,7 @@ export default [
       "**/build/**",
       "**/coverage/**",
       "**/public/**",
+      "**/other/**",
       "**/seed/**",
       "**/*.mjs",
       "**/next-env.d.ts",

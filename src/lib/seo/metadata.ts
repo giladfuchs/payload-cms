@@ -49,7 +49,7 @@ export const buildMetadata = ({
   }
 
   const url = `${appConfig.BASE_URL}/${path}`;
-  const imageUrl = resolveMediaUrl(image);
+  const imageUrl = resolveMediaUrl(image, "og");
 
   return {
     title,

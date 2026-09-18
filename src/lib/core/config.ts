@@ -1,5 +1,7 @@
 type AppLocale = "en" | "he";
 
+type StorageProvider = "vercel" | "s3";
+
 type LocaleConfig = {
   lang: AppLocale;
   dir: "ltr" | "rtl";
@@ -35,12 +37,16 @@ export type AppConfig = {
   PREVIEW_SECRET: string;
   PAYLOAD_SECRET: string;
 
-  R2_BUCKET: string;
-  R2_BUCKET_PREFIX: string;
-  R2_ENDPOINT: string;
-  R2_ACCESS_KEY_ID: string;
-  R2_SECRET_ACCESS_KEY: string;
-  R2_PUBLIC_URL: string;
+  STORAGE_PROVIDER?: StorageProvider;
+  STORAGE_URL?: string;
+  BUCKET_PREFIX: string;
+
+  BLOB_READ_WRITE_TOKEN?: string;
+
+  S3_BUCKET: string;
+  S3_ENDPOINT: string;
+  S3_ACCESS_KEY_ID: string;
+  S3_SECRET_ACCESS_KEY: string;
 
   EMAIL_FROM_ADDRESS: string;
   EMAIL_FROM_NAME: string;
@@ -70,12 +76,17 @@ export const appConfig: AppConfig = {
   PREVIEW_SECRET: process.env.PREVIEW_SECRET as string,
   PAYLOAD_SECRET: process.env.PAYLOAD_SECRET as string,
 
-  R2_BUCKET: process.env.R2_BUCKET as string,
-  R2_BUCKET_PREFIX: process.env.R2_BUCKET_PREFIX ?? "payload_cms",
-  R2_ENDPOINT: process.env.R2_ENDPOINT as string,
-  R2_ACCESS_KEY_ID: process.env.R2_ACCESS_KEY_ID as string,
-  R2_SECRET_ACCESS_KEY: process.env.R2_SECRET_ACCESS_KEY as string,
-  R2_PUBLIC_URL: process.env.NEXT_PUBLIC_R2_PUBLIC_URL as string,
+  STORAGE_PROVIDER: process.env.STORAGE_PROVIDER as StorageProvider,
+
+  STORAGE_URL: process.env.NEXT_PUBLIC_STORAGE_URL?.replace(/\/+$/, ""),
+  BUCKET_PREFIX: process.env.BUCKET_PREFIX ?? "payload_cms",
+
+  BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN as string,
+
+  S3_BUCKET: process.env.S3_BUCKET as string,
+  S3_ENDPOINT: process.env.S3_ENDPOINT as string,
+  S3_ACCESS_KEY_ID: process.env.S3_ACCESS_KEY_ID as string,
+  S3_SECRET_ACCESS_KEY: process.env.S3_SECRET_ACCESS_KEY as string,
 
   EMAIL_FROM_ADDRESS: process.env.EMAIL_FROM_ADDRESS as string,
   EMAIL_FROM_NAME: process.env.EMAIL_FROM_NAME as string,

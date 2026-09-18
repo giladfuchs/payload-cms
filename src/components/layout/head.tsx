@@ -1,21 +1,25 @@
 import appConfig from "@/lib/core/config";
 
 export default function Head() {
+  const urls = [
+    ...new Set(
+      [appConfig.SERVER_URL, appConfig.STORAGE_URL].filter(
+        (url): url is string => Boolean(url),
+      ),
+    ),
+  ];
+
   return (
     <>
-      <link
-        rel="preconnect"
-        href={appConfig.R2_PUBLIC_URL}
-        crossOrigin="anonymous"
-      />
-      <link rel="dns-prefetch" href={appConfig.R2_PUBLIC_URL} />
-
-      <link
-        rel="preconnect"
-        href={appConfig.SERVER_URL}
-        crossOrigin="anonymous"
-      />
-      <link rel="dns-prefetch" href={appConfig.SERVER_URL} />
+      {urls.flatMap((url) => [
+        <link
+          key={`preconnect-${url}`}
+          rel="preconnect"
+          href={url}
+          crossOrigin="anonymous"
+        />,
+        <link key={`dns-prefetch-${url}`} rel="dns-prefetch" href={url} />,
+      ])}
 
       <script
         id="theme-script"

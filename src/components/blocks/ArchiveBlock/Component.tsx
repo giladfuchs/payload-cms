@@ -1,62 +1,62 @@
-import type {
-  ArchiveBlock as ArchiveBlockProps,
-  Media,
-  Page,
-  Post,
-} from "@/lib/core/types/payload-types";
-import type { CardDocData, CollectionName } from "@/lib/core/types/types";
-
-import Cards from "@/components/ui/cards";
+import { AutoScrollRow } from "@/components/shared/wrappers";
+import Card from "@/components/ui/card";
 import RichText from "@/components/ui/rich-text";
-import DAL from "@/lib/core/dal";
+import {
+  AppConst,
+  type CardDocData,
+  type ResolvedArchiveBlock,
+} from "@/lib/core/types/types";
 
-export async function ArchiveBlock(props: ArchiveBlockProps & { id?: string }) {
-  const { id, introContent, relationTo, populateBy, selectedDocs } = props;
+const cardKey = (item: CardDocData) => `${item.relationTo}-${item.value.slug}`;
 
-  let posts: CardDocData[] = [];
-
-  if (populateBy === "collection") {
-    posts = (
-      await DAL.queryCollection<Post | Page>(relationTo as CollectionName)
-    ).map((doc) => ({
-      relationTo: relationTo as CollectionName,
-      value: doc,
-    }));
-  } else if (selectedDocs?.length) {
-    const docs = selectedDocs
-      .map((doc) =>
-        typeof doc.value === "object" && doc.value !== null
-          ? { relationTo: doc.relationTo as CollectionName, value: doc.value }
-          : null,
-      )
-      .filter(Boolean) as CardDocData[];
-
-    const imageIds = docs
-      .map((doc) => doc.value.meta?.image)
-      .filter((image): image is number => typeof image === "number");
-
-    const media = await DAL.queryMediaByIds(imageIds);
-    const mediaById = new Map<number, Media>(
-      media.map((item) => [Number(item.id), item]),
+const ArchiveCards = ({
+  displayMode,
+  items,
+}: Pick<ResolvedArchiveBlock, "displayMode" | "items">) => {
+  if (displayMode === "autoScroll") {
+    return (
+      <div className="container min-w-0">
+        <ul className="sr-only">
+          {items.map((item) => (
+            <li key={cardKey(item)}>
+              <Card doc={item} />
+            </li>
+          ))}
+        </ul>
+        <AutoScrollRow className="cursor-grab rounded-xl active:cursor-grabbing">
+          {items.map((item) => (
+            <div className={AppConst.CAROUSEL_ITEM_CLASS} key={cardKey(item)}>
+              <Card
+                className="h-full"
+                doc={item}
+                imageSizes={AppConst.CAROUSEL_ITEM_SIZES}
+                tabIndex={-1}
+              />
+            </div>
+          ))}
+        </AutoScrollRow>
+      </div>
     );
-
-    posts = docs.map((doc) => ({
-      ...doc,
-      value: {
-        ...doc.value,
-        meta: {
-          ...doc.value.meta,
-          image:
-            typeof doc.value.meta?.image === "number"
-              ? (mediaById.get(doc.value.meta.image) ?? doc.value.meta.image)
-              : doc.value.meta?.image,
-        },
-      },
-    }));
   }
 
   return (
-    <div className="my-16" id={`block-${id}`}>
+    <div className="container">
+      <div className="grid grid-cols-4 gap-x-4 gap-y-4 sm:grid-cols-8 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-8 xl:gap-x-8">
+        {items.map((item) => (
+          <div className="col-span-4" key={cardKey(item)}>
+            <Card className="h-full" doc={item} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export function ArchiveBlock(props: ResolvedArchiveBlock & { id?: string }) {
+  const { displayMode = "grid", id, introContent, items } = props;
+
+  return (
+    <section className="my-16 min-w-0" id={id ? `block-${id}` : undefined}>
       {introContent && (
         <div className="container mb-16">
           <RichText
@@ -67,7 +67,7 @@ export async function ArchiveBlock(props: ArchiveBlockProps & { id?: string }) {
         </div>
       )}
 
-      <Cards posts={posts} />
-    </div>
+      <ArchiveCards items={items} displayMode={displayMode} />
+    </section>
   );
 }

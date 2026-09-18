@@ -12,15 +12,19 @@ import {
 import { makeRevalidateHooks } from "@/lib/collections/hooks";
 import { CollectionName } from "@/lib/core/types/types";
 
-export const Posts: CollectionConfig = {
-  slug: "posts",
+export const Blog: CollectionConfig = {
+  slug: "blog",
+  labels: {
+    singular: "Blog Article",
+    plural: "Blog",
+  },
   access: {
     ...adminOnlyAccess,
     read: authenticatedOrPublished,
   },
   admin: {
     defaultColumns: ["title", "slug", "author", "readTime", "updatedAt"],
-    ...makeAdminPreview(CollectionName.posts),
+    ...makeAdminPreview(CollectionName.blog),
     useAsTitle: "title",
   },
   fields: [
@@ -48,11 +52,11 @@ export const Posts: CollectionConfig = {
             {
               name: "comments",
               type: "join",
-              collection: "post-comments",
-              on: "post",
+              collection: "blog-comments",
+              on: "blog",
             },
             {
-              name: "relatedPosts",
+              name: "relatedArticles",
               type: "relationship",
               admin: {
                 position: "sidebar",
@@ -63,7 +67,7 @@ export const Posts: CollectionConfig = {
                 },
               }),
               hasMany: true,
-              relationTo: "posts",
+              relationTo: "blog",
             },
           ],
           label: "Meta",
@@ -112,6 +116,6 @@ export const Posts: CollectionConfig = {
     mixedSlugField(),
   ],
 
-  hooks: makeRevalidateHooks(CollectionName.posts),
+  hooks: makeRevalidateHooks(CollectionName.blog),
   versions: BASE_VERSIONS,
 };

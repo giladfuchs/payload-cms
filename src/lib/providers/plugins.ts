@@ -2,8 +2,9 @@ import { formBuilderPlugin } from "@payloadcms/plugin-form-builder";
 import { redirectsPlugin } from "@payloadcms/plugin-redirects";
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import { s3Storage } from "@payloadcms/storage-s3";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 
-import type { Page, Post } from "@/lib/core/types/payload-types";
+import type { Blog, Page } from "@/payload-types";
 import type { GenerateTitle, GenerateURL } from "@payloadcms/plugin-seo/types";
 import type { Plugin } from "payload";
 
@@ -14,43 +15,64 @@ import {
 } from "@/lib/collections/hooks";
 import appConfig from "@/lib/core/config";
 import { CollectionName } from "@/lib/core/types/types";
+import { adminTranslationsPlugin } from "@/lib/intl/admin";
 
-const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => doc.title;
+const generateTitle: GenerateTitle<Blog | Page> = ({ doc }) => doc.title;
 
-const generateURL: GenerateURL<Post | Page> = ({ doc }) =>
-  doc?.slug ? `${appConfig.SERVER_URL}/${doc.slug}` : appConfig.SERVER_URL;
+const generateURL: GenerateURL<Blog | Page> = ({ collectionConfig, doc }) => {
+  if (!doc?.slug) return appConfig.BASE_URL;
 
+  const path =
+    collectionConfig?.slug === CollectionName.blog
+      ? `${CollectionName.blog}/${doc.slug}`
+      : doc.slug;
+
+  return `${appConfig.BASE_URL}/${path}`;
+};
+
+let storagePlugin: Plugin | undefined;
+
+if (appConfig.STORAGE_PROVIDER === "vercel") {
+  storagePlugin = vercelBlobStorage({
+    enabled: !!appConfig.BLOB_READ_WRITE_TOKEN,
+    token: appConfig.BLOB_READ_WRITE_TOKEN,
+    addRandomSuffix: true,
+    collections: {
+      media: {
+        prefix: appConfig.BUCKET_PREFIX,
+        ...(appConfig.STORAGE_URL ? { disablePayloadAccessControl: true } : {}),
+      },
+    },
+  });
+} else if (appConfig.STORAGE_PROVIDER === "s3") {
+  storagePlugin = s3Storage({
+    collections: {
+      media: {
+        disableLocalStorage: true,
+        disablePayloadAccessControl: true,
+        prefix: appConfig.BUCKET_PREFIX,
+        generateFileURL: ({ filename, prefix }) => {
+          const key = prefix ? `${prefix}/${filename}` : filename;
+          return `${appConfig.STORAGE_URL}/${key}`;
+        },
+      },
+    },
+    bucket: appConfig.S3_BUCKET,
+    config: {
+      endpoint: appConfig.S3_ENDPOINT,
+      region: "auto",
+      credentials: {
+        accessKeyId: appConfig.S3_ACCESS_KEY_ID,
+        secretAccessKey: appConfig.S3_SECRET_ACCESS_KEY,
+      },
+      forcePathStyle: true,
+    },
+  });
+}
 export const plugins: Plugin[] = [
-  // R2 needs Cloudflare cache rules for caching
-  ...(appConfig.R2_PUBLIC_URL
-    ? [
-        s3Storage({
-          collections: {
-            media: {
-              disableLocalStorage: true,
-              disablePayloadAccessControl: true,
-              prefix: appConfig.R2_BUCKET_PREFIX,
-              generateFileURL: ({ filename, prefix }) => {
-                const key = prefix ? `${prefix}/${filename}` : filename;
-                return `${appConfig.R2_PUBLIC_URL}/${key}`;
-              },
-            },
-          },
-          bucket: appConfig.R2_BUCKET,
-          config: {
-            endpoint: appConfig.R2_ENDPOINT,
-            region: "auto",
-            credentials: {
-              accessKeyId: appConfig.R2_ACCESS_KEY_ID,
-              secretAccessKey: appConfig.R2_SECRET_ACCESS_KEY,
-            },
-            forcePathStyle: true,
-          },
-        }),
-      ]
-    : []),
+  ...(storagePlugin ? [storagePlugin] : []),
   redirectsPlugin({
-    collections: [CollectionName.pages, CollectionName.posts],
+    collections: [CollectionName.pages, CollectionName.blog],
     overrides: {
       // @ts-expect-error mapped redirect fields are broader than Payload infers here
       fields: ({ defaultFields }) =>
@@ -99,4 +121,5 @@ export const plugins: Plugin[] = [
       },
     },
   }),
+  adminTranslationsPlugin,
 ];

@@ -82,7 +82,7 @@ export const link: LinkType = ({
         condition: (_, siblingData) => siblingData?.type === "reference",
       },
       label: "Document to link to",
-      relationTo: ["pages", "posts"],
+      relationTo: ["pages", "blog"],
       required: true,
     },
     {

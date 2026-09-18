@@ -1,5 +1,7 @@
 note.txt
 public/media
+public/seo-media
+public/gallery-media
 # local env files
 .env
 

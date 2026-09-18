@@ -14,7 +14,7 @@ import type {
   BannerBlock as BannerBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
-} from "@/lib/core/types/payload-types";
+} from "@/payload-types";
 
 import { BannerBlock } from "@/components/blocks/Banner/Component";
 import { CallToActionBlock } from "@/components/blocks/CallToAction/Component";
@@ -36,7 +36,7 @@ const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
     throw new Error("Expected value to be an object");
   }
   const slug = value.slug;
-  return relationTo === "posts" ? `/posts/${slug}` : `/${slug}`;
+  return relationTo === "blog" ? `/blog/${slug}` : `/${slug}`;
 };
 
 const jsxConverters: JSXConvertersFunction<NodeTypes> = ({

@@ -35,5 +35,5 @@
     ".next/dev/types/**/*.ts",
     "next.config.ts"
   ],
-  "exclude": ["node_modules", "seed", "src/app/(payload)"]
+  "exclude": ["node_modules", "seed", "other", "src/app/(payload)"]
 }

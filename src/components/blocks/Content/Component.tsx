@@ -1,4 +1,4 @@
-import type { ContentBlock as ContentBlockProps } from "@/lib/core/types/payload-types";
+import type { ContentBlock as ContentBlockProps } from "@/payload-types";
 
 import CMSLink from "@/components/ui/cms-link";
 import RichText from "@/components/ui/rich-text";

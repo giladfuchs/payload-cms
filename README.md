@@ -39,7 +39,7 @@ and update your environment variables based on [.env.example](.env.example)
 
 ## Features
 
-- Flexible **Pages & Posts** powered by Layout Builder
+- Flexible **Pages & Blogs** powered by Layout Builder
 - **Draft Preview** + **Live Preview** for real-time editing
 - **SEO-ready** (metadata, JSON-LD, sitemap, robots.txt)
 - Built-in **Redirects system** for safe URL changes
@@ -56,7 +56,7 @@ Flexible layout-driven content to create landing pages and core site pages.
 
 ---
 
-### Posts
+### Blogs
 
 Used for dynamic content like blogs, news, or articles.
 
@@ -104,7 +104,7 @@ Create flexible pages using pre-built blocks:
   Highlight actions like buttons, links, or promotions
 
 - **Archive**
-  Auto-list content (posts, items, etc.)
+  Auto-list content (blogs, pages, etc.)
 
 - **Gallery**
   Image gallery / grid display

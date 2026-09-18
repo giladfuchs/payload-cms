@@ -1,50 +1,10 @@
-import path from "path";
-import { fileURLToPath } from "url";
-
 import type { CollectionConfig } from "payload";
 
-import { adminOnlyAccess } from "@/lib/collections/fields/base-fields";
-import { mediaTransformUploadHook } from "@/lib/collections/hooks";
-import appConfig from "@/lib/core/config";
+import { makeMediaCollection } from "@/lib/collections/fields/base-fields";
 
-export const Media: CollectionConfig = {
+// Generic media for hero and content-block images. No size variants here — editors
+// crop/focal-point these manually via Payload's built-in upload UI. Gallery and SEO
+// images have their own collections (own size variants); see GalleryMedia/SeoMedia.
+export const Media: CollectionConfig = makeMediaCollection({
   slug: "media",
-
-  admin: {
-    group: "Content",
-  },
-
-  access: {
-    ...adminOnlyAccess,
-    read: () => true,
-  },
-
-  hooks: {
-    beforeChange: [mediaTransformUploadHook],
-    afterError: [
-      ({ error }) => {
-        console.error("MEDIA UPLOAD ERROR:", error);
-        throw error;
-      },
-    ],
-  },
-
-  fields: [
-    {
-      name: "alt",
-      type: "text",
-      required: true,
-    },
-  ],
-  upload: Boolean(appConfig.R2_PUBLIC_URL)
-    ? {
-        focalPoint: true,
-      }
-    : {
-        staticDir: path.resolve(
-          path.dirname(fileURLToPath(import.meta.url)),
-          "../../../public/media",
-        ),
-        focalPoint: true,
-      },
-};
+});

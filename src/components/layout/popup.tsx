@@ -8,7 +8,7 @@ import type { SiteSetting } from "@/payload-types";
 
 import { AppConst } from "@/lib/core/types/types";
 
-export default function PopupClient({
+export default function Popup({
   popup,
   content,
 }: {

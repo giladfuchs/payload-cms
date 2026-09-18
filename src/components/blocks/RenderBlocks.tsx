@@ -1,4 +1,5 @@
-import type { Page } from "@/lib/core/types/payload-types";
+import type { ResolvedPageBlock } from "@/lib/core/types/types";
+import type { Page } from "@/payload-types";
 
 import { ArchiveBlock } from "@/components/blocks/ArchiveBlock/Component";
 import { CallToActionBlock } from "@/components/blocks/CallToAction/Component";
@@ -37,7 +38,7 @@ const blockComponents = {
 export default function RenderBlocks({
   blocks,
 }: {
-  blocks: Page["layout"][0][];
+  blocks: ResolvedPageBlock[];
 }) {
   if (!blocks?.length) return null;
   return blocks.map((block, index) => {

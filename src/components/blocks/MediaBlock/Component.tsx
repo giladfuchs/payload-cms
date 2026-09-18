@@ -1,9 +1,6 @@
 import React from "react";
 
-import type {
-  Media,
-  MediaBlock as MediaBlockProps,
-} from "@/lib/core/types/payload-types";
+import type { Media, MediaBlock as MediaBlockProps } from "@/payload-types";
 
 import ImageVideo from "@/components/ui/image-video";
 import { cn } from "@/lib/core/utilities";

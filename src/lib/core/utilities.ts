@@ -1,12 +1,41 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import type { Media, RichTextBlock } from "@/lib/core/types/payload-types";
+import type {
+  GalleryMedia,
+  Media,
+  RichTextBlock,
+  SeoMedia,
+} from "@/payload-types";
 
 import appConfig from "@/lib/core/config";
 
-export const resolveMediaUrl = (media: Media) => {
-  const url = media.url!;
+export type MediaVariant = "og" | "card" | "gallery";
+export type UploadMedia = Media | SeoMedia | GalleryMedia;
+
+type SizedVariant = {
+  url?: string | null;
+  width?: number | null;
+  height?: number | null;
+};
+
+export const getSizedVariant = (
+  media: UploadMedia,
+  variant?: MediaVariant,
+): SizedVariant | undefined => {
+  if (!media || !variant || !("sizes" in media)) return undefined;
+  return (
+    (media.sizes as Partial<Record<MediaVariant, SizedVariant | null>>)?.[
+      variant
+    ] ?? undefined
+  );
+};
+
+export const resolveMediaUrl = (media: UploadMedia, variant?: MediaVariant) => {
+  if (!media) return "";
+
+  const sizedUrl = getSizedVariant(media, variant)?.url;
+  const url = sizedUrl || media.url!;
   return url.startsWith("http") || url.startsWith("/")
     ? url
     : `${appConfig.SERVER_URL}${url}`;

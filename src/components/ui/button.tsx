@@ -50,6 +50,25 @@ const variantClass: Record<ButtonVariant, string> = {
   select: "rounded-lg px-3 py-3 border",
 };
 
+type ButtonVariantsProps = Pick<
+  ButtonProps,
+  "className" | "selected" | "size" | "variant"
+>;
+
+export const buttonVariants = ({
+  className,
+  variant = "default",
+  size = "default",
+  selected = false,
+}: ButtonVariantsProps = {}) =>
+  cn(
+    base,
+    sizeClass[size],
+    variantClass[variant],
+    selected && "ring-2 ring-primary",
+    className,
+  );
+
 export default function Button({
   className,
   variant = "default",
@@ -71,13 +90,7 @@ export default function Button({
       data-slot="button"
       type={type}
       onClick={typeof window !== "undefined" ? handleClick : undefined}
-      className={cn(
-        base,
-        sizeClass[size],
-        variantClass[variant],
-        selected && "ring-2 ring-primary",
-        className,
-      )}
+      className={buttonVariants({ className, variant, size, selected })}
       {...props}
     />
   );
