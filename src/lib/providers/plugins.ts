@@ -32,31 +32,51 @@ const generateURL: GenerateURL<Blog | Page> = ({ collectionConfig, doc }) => {
 
 let storagePlugin: Plugin | undefined;
 
+const uploadCollections = ["media", "seo-media", "gallery-media"] as const;
+
+type UploadCollection = (typeof uploadCollections)[number];
+
+const createCollections = <T>(
+  getOptions: (collection: UploadCollection) => T,
+): Record<UploadCollection, T> =>
+  Object.fromEntries(
+    uploadCollections.map((collection) => [collection, getOptions(collection)]),
+  ) as Record<UploadCollection, T>;
+
+const getVercelCollectionOptions = (collection: UploadCollection) => ({
+  prefix: `${appConfig.BUCKET_PREFIX}/${collection}`,
+  ...(appConfig.STORAGE_URL
+    ? { disablePayloadAccessControl: true as const }
+    : {}),
+});
+
+const getS3CollectionOptions = (collection: UploadCollection) => ({
+  disableLocalStorage: true,
+  disablePayloadAccessControl: true as const,
+  prefix: `${appConfig.BUCKET_PREFIX}/${collection}`,
+  generateFileURL: ({
+    filename,
+    prefix,
+  }: {
+    filename: string;
+    prefix?: string;
+  }) => {
+    const key = prefix ? `${prefix}/${filename}` : filename;
+
+    return `${appConfig.STORAGE_URL}/${key}`;
+  },
+});
+
 if (appConfig.STORAGE_PROVIDER === "vercel") {
   storagePlugin = vercelBlobStorage({
     enabled: !!appConfig.BLOB_READ_WRITE_TOKEN,
     token: appConfig.BLOB_READ_WRITE_TOKEN,
     addRandomSuffix: true,
-    collections: {
-      media: {
-        prefix: appConfig.BUCKET_PREFIX,
-        ...(appConfig.STORAGE_URL ? { disablePayloadAccessControl: true } : {}),
-      },
-    },
+    collections: createCollections(getVercelCollectionOptions),
   });
 } else if (appConfig.STORAGE_PROVIDER === "s3") {
   storagePlugin = s3Storage({
-    collections: {
-      media: {
-        disableLocalStorage: true,
-        disablePayloadAccessControl: true,
-        prefix: appConfig.BUCKET_PREFIX,
-        generateFileURL: ({ filename, prefix }) => {
-          const key = prefix ? `${prefix}/${filename}` : filename;
-          return `${appConfig.STORAGE_URL}/${key}`;
-        },
-      },
-    },
+    collections: createCollections(getS3CollectionOptions),
     bucket: appConfig.S3_BUCKET,
     config: {
       endpoint: appConfig.S3_ENDPOINT,
